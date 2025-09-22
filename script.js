@@ -3,54 +3,47 @@ const slides = Array.from(track.children);
 const nextButton = document.querySelector('.next');
 const prevButton = document.querySelector('.prev');
 const magicButton = document.getElementById('magicButton');
-const timeline = document.getElementById('timeline');
-
-// Configura os slides
-const slideWidth = slides[0].getBoundingClientRect().width;
-slides.forEach((slide, index) => {
-  slide.style.left = slideWidth * index + 'px';
-});
-
-// Função para mover o carrossel
-const moveToSlide = (track, currentSlide, targetSlide) => {
-  track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-};
-
-// Botão next
-nextButton.addEventListener('click', () => {
-  const currentSlide = track.querySelector('.current-slide') || slides[0];
-  let nextSlide = currentSlide.nextElementSibling || slides[0];
-  currentSlide.classList.remove('current-slide');
-  nextSlide.classList.add('current-slide');
-  moveToSlide(track, currentSlide, nextSlide);
-});
-
-// Botão prev
-prevButton.addEventListener('click', () => {
-  const currentSlide = track.querySelector('.current-slide') || slides[0];
-  let prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
-  currentSlide.classList.remove('current-slide');
-  prevSlide.classList.add('current-slide');
-  moveToSlide(track, currentSlide, prevSlide);
-});
-
-// Inicializa o primeiro slide
-slides[0].classList.add('current-slide');
-
-// Corações flutuantes
-const heartContainer = document.getElementById('heartContainer');
-const heartEmojis = ["💖", "💘", "💕", "💞", "💓", "💝"];
-
-function createFloatingHeart() {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
- 
-::contentReference[oaicite:4]{index=4}
-}
 const videosButton = document.getElementById('videosButton');
+const timeline = document.getElementById('timeline');
 const videosSection = document.getElementById('videos');
 
-videosButton.addEventListener('click', () => {
-  videosSection.scrollIntoView({ behavior: 'smooth' });
+// Função para esconder todas as seções
+function hideAllSections() {
+  timeline.style.display = 'none';
+  videosSection.style.display = 'none';
+
+  // Pausa vídeos ao fechar
+  document.getElementById('video1').src = document.getElementById('video1').src;
+  document.getElementById('video2').src = document.getElementById('video2').src;
+}
+
+// Timeline button
+magicButton.addEventListener('click', () => {
+  if (timeline.style.display === 'block') {
+    hideAllSections();
+  } else {
+    hideAllSections();
+    timeline.style.display = 'block';
+    timeline.scrollIntoView({ behavior: 'smooth' });
+
+    // Corações animados
+    let heartInterval = setInterval(createFloatingHeart, 300);
+    setTimeout(() => clearInterval(heartInterval), 5000);
+  }
 });
+
+// Videos button
+videosButton.addEventListener('click', () => {
+  if (videosSection.style.display === 'block') {
+    hideAllSections();
+  } else {
+    hideAllSections();
+    videosSection.style.display = 'block';
+    videosSection.scrollIntoView({ behavior: 'smooth' });
+
+    // Corações animados
+    let heartInterval = setInterval(createFloatingHeart, 300);
+    setTimeout(() => clearInterval(heartInterval), 5000);
+  }
+});
+

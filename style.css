@@ -213,10 +213,10 @@ button#videosButton {
   font-size: 1.5rem;
   border: none;
   border-radius: 50px;
-  background: linear-gradient(45deg, #330066, #6600cc);
+  background: linear-gradient(45deg, #9900cc, #ff33ff);
   color: white;
   cursor: pointer;
-  box-shadow: 0 5px 20px rgba(102, 0, 204, 0.6);
+  box-shadow: 0 5px 20px rgba(153, 0, 204, 0.6);
   transition: all 0.3s ease;
   margin-bottom: 40px;
   display: block;
@@ -224,8 +224,10 @@ button#videosButton {
 
 button#videosButton:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 35px rgba(102, 0, 204, 0.9);
+  box-shadow: 0 8px 35px rgba(153, 0, 204, 0.9);
 }
+
+/* Seção de vídeos */
 .videos {
   max-width: 900px;
   margin: 80px auto;
@@ -253,4 +255,50 @@ button#videosButton:hover {
   height: 225px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(255, 153, 204, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.video-container iframe:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 153, 204, 0.8);
+}
+/* Grupo de botões centralizado */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Botões estilos */
+button#magicButton,
+button#videosButton {
+  padding: 14px 50px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 0, 80, 0.6);
+  transition: all 0.3s ease;
+}
+
+button#magicButton {
+  background: linear-gradient(45deg,#990033,#ff0033);
+}
+
+button#magicButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 35px rgba(255,0,80,0.9);
+}
+
+button#videosButton {
+  background: linear-gradient(45deg, #9900cc, #ff33ff);
+}
+
+button#videosButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 35px rgba(153,0,204,0.9);
+}
+
+/* Timeline e vídeos ocultos por padrão já têm display:none */
