@@ -208,3 +208,49 @@ button#magicButton:hover {
     opacity: 0;
   }
 }
+button#videosButton {
+  padding: 14px 50px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #330066, #6600cc);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(102, 0, 204, 0.6);
+  transition: all 0.3s ease;
+  margin-bottom: 40px;
+  display: block;
+}
+
+button#videosButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 35px rgba(102, 0, 204, 0.9);
+}
+.videos {
+  max-width: 900px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.videos h2 {
+  font-size: 2.2rem;
+  color: #ff99cc;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 15px rgba(255, 153, 204, 0.8);
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-width: 400px;
+  height: 225px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 153, 204, 0.6);
+}

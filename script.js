@@ -48,3 +48,9 @@ function createFloatingHeart() {
  
 ::contentReference[oaicite:4]{index=4}
 }
+const videosButton = document.getElementById('videosButton');
+const videosSection = document.getElementById('videos');
+
+videosButton.addEventListener('click', () => {
+  videosSection.scrollIntoView({ behavior: 'smooth' });
+});
