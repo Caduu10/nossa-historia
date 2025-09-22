@@ -111,17 +111,20 @@ button#magicButton:hover {
 .timeline {
   width: 100%;
   max-width: 1000px;
-  margin: 80px auto;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   gap: 80px;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  pointer-events: none; /* bloqueia interações quando escondida */
+  transition: opacity 1s ease;
 }
 
 .timeline.show {
   opacity: 1;
+  pointer-events: auto; /* libera interações quando visível */
 }
+
 
 .timeline-item {
   position: relative;

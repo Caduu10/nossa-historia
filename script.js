@@ -69,7 +69,7 @@ magicButton.addEventListener('click', () => {
     // Criar e mostrar vídeo
     if (!videoElement) {
       videoElement = document.createElement('video');
-      videoElement.src = 'img/nossaHistoria.mp4'; // coloque seu vídeo aqui
+      videoElement.src = 'img/nossaHistoria.mp4';
       videoElement.controls = true;
       videoElement.autoplay = true;
       videoElement.style.position = 'relative';
@@ -98,3 +98,4 @@ magicButton.addEventListener('click', () => {
     clearInterval(heartInterval);
   }
 });
+
