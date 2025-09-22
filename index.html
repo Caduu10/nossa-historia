@@ -1,43 +1,27 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentos com Beatriz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Com você, cada momento vira lembrança eterna 💖</h1>
-    <button id="magicButton">Nossa História 💌</button>
+<div class="container">
+  <h1>Com você, cada momento vira lembrança eterna 💖</h1>
+  
+  <!-- Botão Nossa História -->
+  <button id="magicButton">Nossa História 💌</button>
 
-    <!-- Link do vídeo, oculto inicialmente -->
-    <div id="videoLinkContainer" class="hidden">
-      <p>💖 Assista ao nosso vídeo fofo: 
-         <a href="https://seu-link-do-video.com" target="_blank">Clique aqui!</a>
-      </p>
-    </div>
-
-    <!-- Carrossel -->
-    <div class="carousel">
-      <button class="prev">&#10084;</button>
-      <div class="carousel-track-container">
-        <ul class="carousel-track">
-          <li class="carousel-slide"><img src="img/beatriz.jpg" alt="Foto 1"></li>
-          <li class="carousel-slide"><img src="img/beatriz2.jpg" alt="Foto 2"></li>
-          <li class="carousel-slide"><img src="img/minhaMedica.jpg" alt="Foto 3"></li>
-          <li class="carousel-slide"><img src="img/noisdoiscomcoração.jpg" alt="Foto 4"></li>
-          <li class="carousel-slide"><img src="img/nosdois.jpg" alt="Foto 5"></li>
-        </ul>
-      </div>
-      <button class="next">&#10084;</button>
-    </div>
+  <!-- Mensagem do vídeo, oculta inicialmente -->
+  <div id="videoLinkContainer">
+    💖 Assista ao nosso vídeo fofo: 
+    <a href="https://seu-link-do-video.com" target="_blank">Clique aqui!</a>
   </div>
 
-  <!-- Container para corações flutuantes -->
-  <div id="heartContainer"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <!-- Carrossel -->
+  <div class="carousel">
+    <button class="prev">&#10084;</button>
+    <div class="carousel-track-container">
+      <ul class="carousel-track">
+        <li class="carousel-slide"><img src="img/beatriz.jpg" alt="Foto 1"></li>
+        <li class="carousel-slide"><img src="img/beatriz2.jpg" alt="Foto 2"></li>
+        <li class="carousel-slide"><img src="img/minhaMedica.jpg" alt="Foto 3"></li>
+        <li class="carousel-slide"><img src="img/noisdoiscomcoração.jpg" alt="Foto 4"></li>
+        <li class="carousel-slide"><img src="img/nosdois.jpg" alt="Foto 5"></li>
+      </ul>
+    </div>
+    <button class="next">&#10084;</button>
+  </div>
+</div>

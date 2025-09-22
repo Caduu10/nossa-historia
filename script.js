@@ -13,12 +13,11 @@ window.onload = () => {
     slide.style.left = slideWidth * index + 'px';
   });
 
-  // Função mover carrossel
   const moveToSlide = (track, currentSlide, targetSlide) => {
     track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
   };
 
-  // Botão next
+  // Botões do carrossel
   nextButton.addEventListener('click', () => {
     const currentSlide = track.querySelector('.current-slide') || slides[0];
     let nextSlide = currentSlide.nextElementSibling || slides[0];
@@ -27,7 +26,6 @@ window.onload = () => {
     moveToSlide(track, currentSlide, nextSlide);
   });
 
-  // Botão prev
   prevButton.addEventListener('click', () => {
     const currentSlide = track.querySelector('.current-slide') || slides[0];
     let prevSlide = currentSlide.previousElementSibling || slides[slides.length-1];
@@ -48,17 +46,16 @@ window.onload = () => {
     heart.style.fontSize = (Math.random()*30 + 20) + 'px';
     heart.style.animationDuration = (Math.random()*5 + 5) + 's';
     heartContainer.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, (parseFloat(heart.style.animationDuration)*1000));
+    setTimeout(() => { heart.remove(); }, parseFloat(heart.style.animationDuration)*1000);
   }
 
   // Evento do botão "Nossa História"
   magicButton.addEventListener('click', () => {
-    // Corações
     for(let i=0;i<20;i++){ createFloatingHeart(); }
 
-    // Mostrar link do vídeo
-    if(videoLinkContainer.classList.contains('hidden')){
-      videoLinkContainer.classList.remove('hidden');
+    // Mostrar link do vídeo sem quebrar layout
+    if(videoLinkContainer.style.display !== "block"){
+      videoLinkContainer.style.display = "block";
       videoLinkContainer.style.animation = 'fadeIn 0.8s ease forwards';
       videoLinkContainer.scrollIntoView({behavior: "smooth"});
     }

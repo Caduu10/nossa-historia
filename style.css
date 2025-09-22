@@ -163,3 +163,26 @@ button#magicButton:hover {
     opacity:0;
   }
 }
+.message, #videoLinkContainer {
+  display: none; /* oculto inicialmente */
+  margin: 20px auto;
+  max-width: 90%;
+  font-size: 1.3rem;
+  color: #ff3366;
+  text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px 20px;
+  background: rgba(255,0,102,0.05); /* fundo leve para destaque */
+  animation: fadeIn 0.8s ease forwards;
+}
+
+#videoLinkContainer a {
+  color: #ff6699;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#videoLinkContainer a:hover {
+  text-decoration: underline;
+}
