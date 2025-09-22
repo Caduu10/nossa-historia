@@ -1,53 +1,156 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentos com Beatriz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatriz e Carlos - Nosso Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <header class="hero">
-    <h1>Com você, cada momento é um capítulo da nossa eternidade ❤️</h1>
-    <button id="magicButton">Nossa História 💌</button>
-    <div class="carousel">
-      <button class="prev">&#10084;</button>
-      <div class="carousel-track-container">
-        <ul class="carousel-track">
-          <li class="carousel-slide"><img src="img/noisdoiscomcoração.jpg" alt="Foto 1"></li>
-          <li class="carousel-slide"><img src="img/beatriz2.jpg" alt="Foto 2"></li>
-          <li class="carousel-slide"><img src="img/minhaMedica.jpg" alt="Foto 3"></li>
-          <li class="carousel-slide"><img src="img/beatriz.jpg" alt="Foto 4"></li>
-          <li class="carousel-slide"><img src="img/nosdois.jpg" alt="Foto 5"></li>
-        </ul>
-      </div>
-      <button class="next">&#10084;</button>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Beatriz & Carlos</h1>
+                <p>Nosso amor em fotos</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                    <li><a href="#about">Nossa História</a></li>
+                    <li><a href="#moments">Momentos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Nosso Amor em Cada Momento</h2>
+                <p>Um lugar especial para guardar nossas memórias mais preciosas</p>
+                <button class="btn-hero">Nossa História</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Casal feliz">
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <h2>Nossa Galeria</h2>
+            <p>Os melhores momentos da nossa jornada juntos</p>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active">Todos</button>
+                <button class="filter-btn">Viagens</button>
+                <button class="filter-btn">Especiais</button>
+                <button class="filter-btn">Dia a Dia</button>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- As fotos serão carregadas pelo JavaScript -->
+            </div>
+        </section>
+
+        <section id="about" class="our-story">
+            <h2>Nossa História</h2>
+            <div class="story-content">
+                <div class="story-text">
+                    <p>Tudo começou em uma ensolarada tarde de primavera. Nosso primeiro encontro foi casual, mas algo especial aconteceu naquele dia. Desde então, temos construído uma linda história juntos, cheia de amor, risadas e momentos inesquecíveis.</p>
+                    <p>Este site é o nosso cantinho especial para guardar todas as memórias que estamos criando e que ainda vamos criar. Cada foto conta um pedaço da nossa história, cada momento é único e especial.</p>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <h3>2018</h3>
+                            <p>Nosso primeiro encontro</p>
+                        </div>
+                        <div class="milestone">
+                            <h3>2019</h3>
+                            <p>Primeira viagem juntos</p>
+                        </div>
+                        <div class="milestone">
+                            <h3>2020</h3>
+                            <p>Começamos a morar juntos</p>
+                        </div>
+                        <div class="milestone">
+                            <h3>2023</h3>
+                            <p>Noivado</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Nossa história">
+                </div>
+            </div>
+        </section>
+
+        <section id="moments" class="special-moments">
+            <h2>Momentos Especiais</h2>
+            <div class="moments-container">
+                <div class="moment-card">
+                    <div class="moment-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Primeiro Beijo</h3>
+                    <p>14 de Fevereiro, 2018</p>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Primeira Viagem</h3>
+                    <p>Junho, 2019</p>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Morando Juntos</h3>
+                    <p>Março, 2020</p>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>Noivado</h3>
+                    <p>Fevereiro, 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Beatriz & Carlos</h3>
+                    <p>Um amor para toda vida</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Nosso Site</h3>
+                    <p>&copy; 2023 - Todos os direitos reservados</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Conecte-se</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-  </header>
 
-  <!-- Timeline -->
-  <section class="timeline" id="timeline">
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <h2>Nosso primeiro encontro 🍷</h2>
-        <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma.</p>
-      </div>
-      <div class="timeline-bg" style="background-image: url('img/restaurante.jpg');"></div>
+    <!-- Modal para visualização de imagem -->
+    <div class="modal" id="imageModal">
+        <span class="close" id="closeModal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Imagem em tamanho maior">
+            <div class="image-info">
+                <h3 id="imageTitle"></h3>
+                <p id="imageDate"></p>
+            </div>
+        </div>
     </div>
 
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <h2>Nossa primeira viagem ✈️</h2>
-        <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos. Primeiro temos o chalezinho e depois viram varios momentos romanticos ao seu lado !</p>
-      </div>
-      <div class="timeline-bg" style="background-image: url('img/viagem.jpg');"></div>
-    </div>
-  </section>
-
-  <!-- Corações flutuantes -->
-  <div id="heartContainer"></div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
