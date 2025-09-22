@@ -50,16 +50,17 @@ window.onload = () => {
   }
 
   // Botão "Nossa História"
-  magicButton.addEventListener('click', () => {
-    for(let i=0;i<20;i++){ createFloatingHeart(); }
+magicButton.addEventListener('click', () => {
+  for(let i=0;i<20;i++){ createFloatingHeart(); }
 
-    // Mostrar mensagens uma a uma
-    messages.forEach((msg, index) => {
-      setTimeout(() => {
-        msg.style.display = 'block';
-        msg.style.animation = 'fadeIn 0.8s ease forwards';
-        msg.scrollIntoView({behavior: "smooth"});
-      }, index * 1200);
-    });
+  // Mostrar mensagens uma a uma
+  messages.forEach((msg, index) => {
+    setTimeout(() => {
+      msg.style.display = 'block';
+      msg.style.opacity = '0';
+      msg.style.animation = 'fadeIn 0.8s ease forwards';
+      msg.scrollIntoView({behavior: "smooth"});
+    }, index * 1200); // tempo entre mensagens
   });
-};
+});
+}

@@ -6,7 +6,7 @@
 
 body {
   font-family:'Dancing Script', cursive;
-  background:#2b001f; /* tema escuro */
+  background:#fff0f5; /* volta ao fundo original */
   display:flex;
   justify-content:center;
   align-items:flex-start;
@@ -14,6 +14,21 @@ body {
   padding-top:50px;
   color:#fff;
 }
+
+/* Mensagens da história */
+.message {
+  display: none; /* fica oculto inicialmente */
+  margin: 15px auto;
+  max-width: 90%;
+  font-size: 1.3rem;
+  color: #ff3366;
+  text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px 20px;
+  background: rgba(255,0,102,0.05);
+}
+
 
 .container {
   max-width:900px;
