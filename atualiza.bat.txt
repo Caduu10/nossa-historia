@@ -1,0 +1,14 @@
+@echo off
+cd /d "%~dp0"
+
+echo Adicionando arquivos ao Git...
+git add .
+
+echo Commitando alterações...
+git commit -m "Atualização rápida"
+
+echo Enviando para o GitHub...
+git push
+
+echo Tudo atualizado! Seu site no GitHub Pages foi atualizado.
+pause
