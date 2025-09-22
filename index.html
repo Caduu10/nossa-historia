@@ -8,37 +8,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Com você, cada momento vira lembrança eterna 💖</h1>
-
+  <header class="hero">
+    <h1>Com você, cada momento é um capítulo da nossa eternidade ❤️</h1>
     <button id="magicButton">Nossa História 💌</button>
-
-    <!-- Mensagens da história -->
-    <div id="messagesContainer">
-      <div class="message">🍽️ Nosso primeiro encontro no restaurante...</div>
-      <div class="message">🌅 Caminhada na praia inesquecível...</div>
-      <div class="message">🎡 Nossa aventura no parque...</div>
-      <div class="message">✈️ Viagem inesquecível juntos...</div>
-      <div class="message">💖 Assista ao nosso vídeo fofo: <a href="https://memoryiit.com/720db29c-Beatriz-e-Carlos-s2" target="_blank">Clique aqui!</a></div>
-    </div>
-
-    <!-- Carrossel -->
     <div class="carousel">
       <button class="prev">&#10084;</button>
       <div class="carousel-track-container">
         <ul class="carousel-track">
-          <li class="carousel-slide"><img src="img/beatriz.jpg" alt="Foto 1"></li>
+          <li class="carousel-slide"><img src="img/noisdoiscomcoração.jpg" alt="Foto 1"></li>
           <li class="carousel-slide"><img src="img/beatriz2.jpg" alt="Foto 2"></li>
           <li class="carousel-slide"><img src="img/minhaMedica.jpg" alt="Foto 3"></li>
-          <li class="carousel-slide"><img src="img/noisdoiscomcoração.jpg" alt="Foto 4"></li>
+          <li class="carousel-slide"><img src="img/beatriz.jpg" alt="Foto 4"></li>
           <li class="carousel-slide"><img src="img/nosdois.jpg" alt="Foto 5"></li>
         </ul>
       </div>
       <button class="next">&#10084;</button>
     </div>
-  </div>
+  </header>
 
-  <!-- Container para corações flutuantes -->
+  <!-- Timeline -->
+  <section class="timeline" id="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h2>Nosso primeiro encontro 🍷</h2>
+        <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma.</p>
+      </div>
+      <div class="timeline-bg" style="background-image: url('img/restaurante.jpg');"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h2>Nossa primeira viagem ✈️</h2>
+        <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos.
+          Primeiro temos o chalezinho e depois viram varios momentos romanticos ao seu lado !
+        </p>
+      </div>
+      <div class="timeline-bg" style="background-image: url('img/viagem.jpg');"></div>
+    </div>
+  </section>
+
+  <!-- Corações flutuantes -->
   <div id="heartContainer"></div>
 
   <script src="script.js"></script>

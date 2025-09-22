@@ -6,88 +6,44 @@
 
 body {
   font-family:'Dancing Script', cursive;
-  background:#fff0f5; /* volta ao fundo original */
+  background:linear-gradient(135deg, #0d0d0d, #1a0010);
+  color:white;
   display:flex;
-  justify-content:center;
-  align-items:flex-start;
+  flex-direction:column;
+  align-items:center;
   min-height:100vh;
-  padding-top:50px;
-  color:#fff;
 }
 
-/* Mensagens da história */
-.message {
-  display: none; /* fica oculto inicialmente */
-  margin: 15px auto;
-  max-width: 90%;
-  font-size: 1.3rem;
-  color: #ff3366;
-  text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
-  text-align: center;
-  border-radius: 15px;
-  padding: 10px 20px;
-  background: rgba(255,0,102,0.05);
-}
-
-
-.container {
-  max-width:900px;
+/* Seção inicial */
+.hero {
   text-align:center;
+  padding:60px 20px;
+  max-width:900px;
 }
 
 h1 {
-  font-size:2rem;
-  color:#ff3366;
+  font-size:2.5rem;
+  color:#ff4d6d;
   margin-bottom:30px;
-  text-shadow:2px 2px 8px rgba(255,0,102,0.5);
+  text-shadow:2px 2px 20px rgba(255, 0, 80, 0.9);
 }
 
 button#magicButton {
-  padding:12px 40px;
-  font-size:1.3rem;
+  padding:14px 50px;
+  font-size:1.5rem;
   border:none;
   border-radius:50px;
-  background:linear-gradient(45deg,#ff6699,#ff3366);
+  background:linear-gradient(45deg,#990033,#ff0033);
   color:white;
   cursor:pointer;
-  box-shadow:0 5px 15px rgba(255,0,102,0.4);
+  box-shadow:0 5px 20px rgba(255,0,80,0.6);
   transition: all 0.3s ease;
-  margin-bottom:20px;
+  margin-bottom:40px;
 }
 
 button#magicButton:hover {
   transform: scale(1.1);
-  box-shadow:0 8px 25px rgba(255,0,102,0.6);
-}
-
-/* Mensagens da história */
-.message {
-  display: none;
-  margin: 15px auto;
-  max-width: 90%;
-  font-size: 1.3rem;
-  color: #ff3366;
-  text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
-  text-align: center;
-  border-radius: 15px;
-  padding: 10px 20px;
-  background: rgba(255,0,102,0.05);
-  animation: fadeIn 0.8s ease forwards;
-}
-
-.message a {
-  color: #ff6699;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.message a:hover {
-  text-decoration: underline;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-10px); }
-  100% { opacity: 1; transform: translateY(0); }
+  box-shadow:0 8px 35px rgba(255,0,80,0.9);
 }
 
 /* Carrossel */
@@ -97,7 +53,7 @@ button#magicButton:hover {
   max-height:500px;
   border-radius:20px;
   margin:auto;
-  box-shadow:0 10px 25px rgba(255,0,102,0.4);
+  box-shadow:0 10px 30px rgba(255,0,80,0.6);
 }
 
 .carousel-track-container {
@@ -117,12 +73,11 @@ button#magicButton:hover {
   width:100%;
   height:auto;
   max-height:500px;
-  object-fit: contain;
-  object-position:center;
+  object-fit:contain;
   border-radius:20px;
 }
 
-/* Botões do carrossel */
+/* Botões carrossel */
 .carousel button {
   position:absolute;
   top:50%;
@@ -131,7 +86,7 @@ button#magicButton:hover {
   border:none;
   font-size:2.5rem;
   cursor:pointer;
-  color:#ff3366;
+  color:#ff4d6d;
   transition: transform 0.2s;
   z-index:2;
 }
@@ -143,6 +98,72 @@ button#magicButton:hover {
 .prev { left:10px; }
 .next { right:10px; }
 
+/* Timeline */
+.timeline {
+  width:100%;
+  max-width:1000px;
+  margin:80px auto;
+  display:none; /* oculta inicialmente */
+  flex-direction:column;
+  gap:80px;
+  opacity:0;
+  transition: opacity 1.2s ease;
+}
+
+.timeline.show {
+  display:flex;
+  opacity:1;
+}
+
+.timeline-item {
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(255,0,80,0.4);
+  min-height:300px;
+}
+
+.timeline-bg {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(40%) blur(2px);
+  z-index:1;
+}
+
+.timeline-content {
+  position:relative;
+  z-index:2;
+  padding:60px 30px;
+  color:white;
+  text-align:center;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.timeline-content h2 {
+  font-size:2rem;
+  margin-bottom:20px;
+  color:#ff4d6d;
+  text-shadow:2px 2px 15px rgba(255,0,80,0.8);
+}
+
+.timeline-content p {
+  font-size:1.3rem;
+  line-height:1.6;
+  max-width:700px;
+  margin:auto;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(50px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
 /* Corações flutuantes */
 #heartContainer {
   position:fixed;
@@ -151,7 +172,7 @@ button#magicButton:hover {
   width:100%;
   height:100%;
   pointer-events:none;
-  z-index:1;
+  z-index:10;
 }
 
 .heart {
