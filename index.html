@@ -10,12 +10,7 @@
 <body>
   <header class="hero">
     <h1>Com você, cada momento é um capítulo da nossa eternidade ❤️</h1>
-   <div class="button-group">
-  <button id="magicButton">Nossa História 💌</button>
-  <button id="videosButton">Nossos Vídeos Fofos 🎥</button>
-</div>
-
-
+    <button id="magicButton">Nossa História 💌</button>
     <div class="carousel">
       <button class="prev">&#10084;</button>
       <div class="carousel-track-container">
@@ -31,32 +26,28 @@
     </div>
   </header>
 
- <!-- Timeline -->
-<section class="timeline" id="timeline" style="display:none;">
-  <div class="timeline-item">
-    <div class="timeline-content">
-      <h2>Nosso primeiro encontro 🍷</h2>
-      <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma.</p>
+  <!-- Timeline -->
+  <section class="timeline" id="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h2>Nosso primeiro encontro 🍷</h2>
+        <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma.</p>
+      </div>
+      <div class="timeline-bg" style="background-image: url('img/restaurante.jpg');"></div>
     </div>
-    <div class="timeline-bg" style="background-image: url('img/restaurante.jpg');"></div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="timeline-content">
-      <h2>Nossa primeira viagem ✈️</h2>
-      <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos. Primeiro temos o chalezinho e depois viram varios momentos romanticos ao seu lado !</p>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h2>Nossa primeira viagem ✈️</h2>
+        <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos. Primeiro temos o chalezinho e depois viram varios momentos romanticos ao seu lado !</p>
+      </div>
+      <div class="timeline-bg" style="background-image: url('img/viagem.jpg');"></div>
     </div>
-    <div class="timeline-bg" style="background-image: url('img/viagem.jpg');"></div>
-  </div>
-</section>
+  </section>
 
-<!-- Seção de vídeos -->
-<section class="videos" id="videos" style="display:none;">
-  <h2>🎬 Nossos Vídeos Fofos</h2>
-  <div class="video-container">
-    <iframe id="video1" src="https://www.youtube.com/embed/VIDEO_ID1" frameborder="0" allowfullscreen></iframe>
-    <iframe id="video2" src="https://www.youtube.com/embed/VIDEO_ID2" frameborder="0" allowfullscreen></iframe>
-  </div>
-</section>
+  <!-- Corações flutuantes -->
+  <div id="heartContainer"></div>
 
-
+  <script src="script.js"></script>
+</body>
+</html>
