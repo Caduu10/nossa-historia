@@ -4,9 +4,551 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beatriz e Carlos - Nosso Site</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            color: #888;
+            font-style: italic;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section - Carrossel */
+        .hero {
+            position: relative;
+            margin-bottom: 80px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 30px;
+            color: white;
+        }
+
+        .carousel-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .carousel-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-hero {
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-hero:hover {
+            background-color: #c19b2e;
+        }
+
+        /* Carousel Controls - Heart Arrows */
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-control:hover {
+            background: rgba(212, 175, 55, 0.8);
+        }
+
+        .carousel-control:hover i {
+            color: white;
+        }
+
+        .carousel-control.prev {
+            left: 20px;
+        }
+
+        .carousel-control.next {
+            right: 20px;
+        }
+
+        .carousel-control i {
+            font-size: 24px;
+            color: #d4af37;
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: #d4af37;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin-bottom: 80px;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .gallery-section > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #d4af37;
+            color: white;
+            border-color: #d4af37;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        /* Our Story Section */
+        .our-story {
+            margin-bottom: 80px;
+        }
+
+        .our-story h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .story-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .story-text {
+            flex: 1;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .milestones {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .milestone {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .milestone h3 {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .story-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Special Moments Section */
+        .special-moments {
+            margin-bottom: 80px;
+        }
+
+        .special-moments h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .moments-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .moment-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .moment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .moment-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .moment-icon i {
+            font-size: 30px;
+            color: #d4af37;
+        }
+
+        .moment-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .moment-card p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #d4af37;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #d4af37;
+        }
+
+        .image-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            color: white;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .story-content {
+                flex-direction: column;
+            }
+            
+            .story-text, .story-image {
+                width: 100%;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            .carousel-content h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-filters {
+                flex-wrap: wrap;
+            }
+            
+            .milestones {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+            
+            .carousel-control {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -26,16 +568,52 @@
         </header>
 
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h2>Nosso Amor em Cada Momento</h2>
-                <p>Um lugar especial para guardar nossas memórias mais preciosas</p>
-                <button class="btn-hero">Nossa História</button>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Casal feliz">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Casal feliz">
+                        <div class="carousel-content">
+                            <h2>Nosso Amor em Cada Momento</h2>
+                            <p>Um lugar especial para guardar nossas memórias mais preciosas</p>
+                            <button class="btn-hero">Nossa História</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Casal feliz">
+                        <div class="carousel-content">
+                            <h2>Nossa Jornada Juntos</h2>
+                            <p>Cada dia é uma nova página na nossa história de amor</p>
+                            <button class="btn-hero">Nossa História</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Casal feliz">
+                        <div class="carousel-content">
+                            <h2>Momentos Inesquecíveis</h2>
+                            <p>Guardando cada sorriso, cada abraço, cada beijo</p>
+                            <button class="btn-hero">Nossa História</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles do carrossel com corações -->
+                <div class="carousel-control prev">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="carousel-control next">
+                    <i class="fas fa-heart"></i>
+                </div>
+                
+                <!-- Indicadores do carrossel -->
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active"></div>
+                    <div class="carousel-indicator"></div>
+                    <div class="carousel-indicator"></div>
+                </div>
             </div>
         </section>
 
+        <!-- Restante do conteúdo permanece igual -->
         <section id="gallery" class="gallery-section">
             <h2>Nossa Galeria</h2>
             <p>Os melhores momentos da nossa jornada juntos</p>
@@ -151,6 +729,244 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Dados das fotos da galeria
+        const galleryPhotos = [
+            {
+                id: 1,
+                title: "Dia na Praia",
+                description: "Um dia maravilhoso na praia aproveitando o sol",
+                image: "https://images.unsplash.com/photo-1526662092590-e314cbeaf8da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80",
+                date: "15/05/2023",
+                category: "Viagens"
+            },
+            {
+                id: 2,
+                title: "Jantar Romântico",
+                description: "Celebrando nosso aniversário de namoro",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=781&q=80",
+                date: "22/06/2023",
+                category: "Especiais"
+            },
+            {
+                id: 3,
+                title: "Piquenique no Parque",
+                description: "Domingo relaxante no parque da cidade",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                date: "10/07/2023",
+                category: "Dia a Dia"
+            },
+            {
+                id: 4,
+                title: "Viagem às Montanhas",
+                description: "Fim de semana nas montanhas",
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                date: "05/08/2023",
+                category: "Viagens"
+            },
+            {
+                id: 5,
+                title: "Noite de Filme",
+                description: "Sessão de cinema em casa",
+                image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                date: "18/08/2023",
+                category: "Dia a Dia"
+            },
+            {
+                id: 6,
+                title: "Celebração de Noivado",
+                description: "Momento especial com família e amigos",
+                image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+                date: "02/09/2023",
+                category: "Especiais"
+            },
+            {
+                id: 7,
+                title: "Café da Manhã",
+                description: "Início de dia juntos",
+                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                date: "20/09/2023",
+                category: "Dia a Dia"
+            },
+            {
+                id: 8,
+                title: "Pôr do Sol",
+                description: "Fim de tarde na varanda",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                date: "28/09/2023",
+                category: "Dia a Dia"
+            }
+        ];
+
+        // Elementos do DOM
+        const galleryGrid = document.getElementById('galleryGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        const imageTitle = document.getElementById('imageTitle');
+        const imageDate = document.getElementById('imageDate');
+
+        // Elementos do carrossel
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const carouselIndicators = document.querySelectorAll('.carousel-indicator');
+        const prevButton = document.querySelector('.carousel-control.prev');
+        const nextButton = document.querySelector('.carousel-control.next');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Função para mostrar um slide específico
+        function showSlide(index) {
+            // Esconde todos os slides
+            carouselItems.forEach(item => item.classList.remove('active'));
+            carouselIndicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Ajusta o índice se for beyond dos limites
+            if (index >= carouselItems.length) index = 0;
+            if (index < 0) index = carouselItems.length - 1;
+            
+            // Mostra o slide atual
+            carouselItems[index].classList.add('active');
+            carouselIndicators[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        // Função para avançar para o próximo slide
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Função para iniciar o carrossel automático
+        function startCarousel() {
+            slideInterval = setInterval(nextSlide, 5000); // Muda a cada 5 segundos
+        }
+
+        // Função para parar o carrossel automático
+        function stopCarousel() {
+            clearInterval(slideInterval);
+        }
+
+        // Função para renderizar as fotos na galeria
+        function renderGallery(photos) {
+            galleryGrid.innerHTML = '';
+            
+            photos.forEach(photo => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item');
+                galleryItem.innerHTML = `
+                    <img src="${photo.image}" alt="${photo.title}">
+                    <div class="gallery-item-overlay">
+                        <h3>${photo.title}</h3>
+                        <p>${photo.date}</p>
+                    </div>
+                `;
+                
+                galleryItem.addEventListener('click', () => {
+                    openModal(photo);
+                });
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Função para abrir o modal com a imagem
+        function openModal(photo) {
+            modalImage.src = photo.image;
+            imageTitle.textContent = photo.title;
+            imageDate.textContent = photo.date;
+            imageModal.style.display = 'flex';
+        }
+
+        // Função para fechar o modal
+        function closeModalFunc() {
+            imageModal.style.display = 'none';
+        }
+
+        // Filtros da galeria
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove a classe active de todos os botões
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Adiciona a classe active ao botão clicado
+                button.classList.add('active');
+                
+                // Filtra as fotos
+                const filter = button.textContent;
+                let filteredPhotos;
+                
+                if (filter === 'Todos') {
+                    filteredPhotos = galleryPhotos;
+                } else {
+                    filteredPhotos = galleryPhotos.filter(photo => photo.category === filter);
+                }
+                
+                renderGallery(filteredPhotos);
+            });
+        });
+
+        // Event Listeners para o carrossel
+        prevButton.addEventListener('click', () => {
+            stopCarousel();
+            showSlide(currentSlide - 1);
+            startCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            stopCarousel();
+            nextSlide();
+            startCarousel();
+        });
+
+        // Adiciona event listeners para os indicadores
+        carouselIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                stopCarousel();
+                showSlide(index);
+                startCarousel();
+            });
+        });
+
+        // Pausa o carrossel quando o mouse está sobre ele
+        document.querySelector('.carousel').addEventListener('mouseenter', stopCarousel);
+        document.querySelector('.carousel').addEventListener('mouseleave', startCarousel);
+
+        // Event Listeners
+        closeModal.addEventListener('click', closeModalFunc);
+
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                closeModalFunc();
+            }
+        });
+
+        // Inicializar a galeria quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGallery(galleryPhotos);
+            startCarousel();
+            
+            // Adiciona smooth scrolling para os links de navegação
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Adiciona evento ao botão do hero
+            document.querySelector('.btn-hero').addEventListener('click', function() {
+                document.querySelector('#about').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
