@@ -108,6 +108,7 @@ button#magicButton:hover {
 }
 
 /* Timeline */
+/* Timeline */
 .timeline {
   width: 100%;
   max-width: 1000px;
@@ -116,34 +117,13 @@ button#magicButton:hover {
   flex-direction: column;
   gap: 80px;
   opacity: 0;
-  pointer-events: none; /* bloqueia interações quando escondida */
+  pointer-events: none;
   transition: opacity 1s ease;
 }
 
 .timeline.show {
   opacity: 1;
-  pointer-events: auto; /* libera interações quando visível */
-}
-
-
-.timeline-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(255, 0, 80, 0.4);
-  min-height: 300px;
-}
-
-.timeline-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(40%) blur(2px);
-  z-index: 1;
+  pointer-events: auto;
 }
 
 .timeline-content {
@@ -151,34 +131,49 @@ button#magicButton:hover {
   z-index: 2;
   padding: 60px 30px;
   color: white;
-  animation: fadeInUp 1.5s ease forwards;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
 }
 
-.timeline-content h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #ff4d6d;
-  text-shadow: 2px 2px 15px rgba(255, 0, 80, 0.8);
+.timeline.show .timeline-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.timeline-content p {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: auto;
+/* Corações flutuantes */
+#heartContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
 }
 
-/* Animações */
-@keyframes fadeInUp {
-  from {
+.heart {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0;
+  animation: floatUp 4s ease forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(1);
     opacity: 0;
-    transform: translateY(50px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50px) scale(1.3);
+    opacity: 0;
   }
 }
+
 
 /* Corações flutuantes */
 #heartContainer {

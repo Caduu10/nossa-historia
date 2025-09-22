@@ -4,49 +4,18 @@ const nextButton = document.querySelector('.next');
 const prevButton = document.querySelector('.prev');
 const magicButton = document.getElementById('magicButton');
 const timeline = document.getElementById('timeline');
-
-// Configura os slides
-const slideWidth = slides[0].getBoundingClientRect().width;
-slides.forEach((slide, index) => {
-  slide.style.left = slideWidth * index + 'px';
-});
-
-// Função para mover o carrossel
-const moveToSlide = (track, currentSlide, targetSlide) => {
-  track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-};
-
-// Botão next
-nextButton.addEventListener('click', () => {
-  const currentSlide = track.querySelector('.current-slide') || slides[0];
-  let nextSlide = currentSlide.nextElementSibling || slides[0];
-  currentSlide.classList.remove('current-slide');
-  nextSlide.classList.add('current-slide');
-  moveToSlide(track, currentSlide, nextSlide);
-});
-
-// Botão prev
-prevButton.addEventListener('click', () => {
-  const currentSlide = track.querySelector('.current-slide') || slides[0];
-  let prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
-  currentSlide.classList.remove('current-slide');
-  prevSlide.classList.add('current-slide');
-  moveToSlide(track, currentSlide, prevSlide);
-});
-
-// Inicializa o primeiro slide
-slides[0].classList.add('current-slide');
-
-// Corações flutuantes
 const heartContainer = document.getElementById('heartContainer');
 const heartEmojis = ["💖", "💘", "💕", "💞", "💓", "💝"];
+
+let historyVisible = false;
 let heartInterval;
+let videoElement;
 
 function createFloatingHeart() {
   const heart = document.createElement('div');
   heart.classList.add('heart');
   heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.left = Math.random() * 90 + 'vw';
   heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
   heartContainer.appendChild(heart);
 
@@ -55,35 +24,30 @@ function createFloatingHeart() {
   }, 4000);
 }
 
-// Botão "Nossa História"
-let historyVisible = false;
-let videoElement;
-
 magicButton.addEventListener('click', () => {
   historyVisible = !historyVisible;
 
   if (historyVisible) {
-    // Mostrar timeline
+    // Mostrar timeline com animação
     timeline.classList.add('show');
 
-    // Criar e mostrar vídeo
+    // Criar e mostrar vídeo do link externo
     if (!videoElement) {
-      videoElement = document.createElement('video');
-      videoElement.src = 'img/nossaHistoria.mp4';
-      videoElement.controls = true;
-      videoElement.autoplay = true;
-      videoElement.style.position = 'relative';
-      videoElement.style.width = '90%';
+      videoElement = document.createElement('iframe');
+      videoElement.src = "https://memoryiit.com/720db29c-Beatriz-e-Carlos-s2"; // <-- coloque o link do vídeo
+      videoElement.width = "90%";
+      videoElement.height = "400";
       videoElement.style.maxWidth = '700px';
       videoElement.style.margin = '30px auto';
-      videoElement.style.borderRadius = '20px';
       videoElement.style.display = 'block';
+      videoElement.style.borderRadius = '20px';
       videoElement.style.boxShadow = '0 10px 30px rgba(255,0,80,0.6)';
+      videoElement.allow = "autoplay; encrypted-media";
       magicButton.insertAdjacentElement('afterend', videoElement);
     }
 
     // Iniciar corações
-    heartInterval = setInterval(createFloatingHeart, 300);
+    heartInterval = setInterval(createFloatingHeart, 400);
   } else {
     // Esconder timeline
     timeline.classList.remove('show');
@@ -98,4 +62,3 @@ magicButton.addEventListener('click', () => {
     clearInterval(heartInterval);
   }
 });
-
