@@ -40,11 +40,61 @@ slides[0].classList.add('current-slide');
 // Corações flutuantes
 const heartContainer = document.getElementById('heartContainer');
 const heartEmojis = ["💖", "💘", "💕", "💞", "💓", "💝"];
+let heartInterval;
 
 function createFloatingHeart() {
   const heart = document.createElement('div');
   heart.classList.add('heart');
   heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
- 
-::contentReference[oaicite:4]{index=4}
- 
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+  heartContainer.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 4000);
+}
+
+// Botão "Nossa História"
+let historyVisible = false;
+let videoElement;
+
+magicButton.addEventListener('click', () => {
+  historyVisible = !historyVisible;
+
+  if (historyVisible) {
+    // Mostrar timeline
+    timeline.classList.add('show');
+
+    // Criar e mostrar vídeo
+    if (!videoElement) {
+      videoElement = document.createElement('video');
+      videoElement.src = 'img/nossaHistoria.mp4'; // coloque seu vídeo aqui
+      videoElement.controls = true;
+      videoElement.autoplay = true;
+      videoElement.style.position = 'relative';
+      videoElement.style.width = '90%';
+      videoElement.style.maxWidth = '700px';
+      videoElement.style.margin = '30px auto';
+      videoElement.style.borderRadius = '20px';
+      videoElement.style.display = 'block';
+      videoElement.style.boxShadow = '0 10px 30px rgba(255,0,80,0.6)';
+      magicButton.insertAdjacentElement('afterend', videoElement);
+    }
+
+    // Iniciar corações
+    heartInterval = setInterval(createFloatingHeart, 300);
+  } else {
+    // Esconder timeline
+    timeline.classList.remove('show');
+
+    // Remover vídeo
+    if (videoElement) {
+      videoElement.remove();
+      videoElement = null;
+    }
+
+    // Parar corações
+    clearInterval(heartInterval);
+  }
+});
