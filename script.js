@@ -62,3 +62,25 @@ magicButton.addEventListener('click', () => {
     clearInterval(heartInterval);
   }
 });
+function createFloatingHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+  // Posição horizontal aleatória
+  heart.style.left = Math.random() * 100 + 'vw';
+
+  // Tamanho aleatório
+  heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+
+  // Animação com duração aleatória para suavidade
+  const duration = Math.random() * 2 + 3; // entre 3s e 5s
+  heart.style.animationDuration = duration + 's';
+
+  heartContainer.appendChild(heart);
+
+  // Remover após animação
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000);
+}

@@ -189,8 +189,8 @@ button#magicButton:hover {
 .heart {
   position: absolute;
   font-size: 20px;
-  opacity: 0.8;
-  animation: floatUp linear infinite;
+  opacity: 0;
+  animation: floatUp 4s ease forwards;
 }
 
 @keyframes floatUp {
@@ -202,7 +202,7 @@ button#magicButton:hover {
     opacity: 0.8;
   }
   100% {
-    transform: translateY(-50px) scale(1.3);
+    transform: translateY(-100px) scale(1.3);
     opacity: 0;
   }
 }
