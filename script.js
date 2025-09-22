@@ -47,4 +47,4 @@ function createFloatingHeart() {
   heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
  
 ::contentReference[oaicite:4]{index=4}
-} 
+ 
