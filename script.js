@@ -62,3 +62,16 @@ magicButton.addEventListener('click', () => {
 
   timeline.scrollIntoView({ behavior: 'smooth' });
 });
+const videoLinkContainer = document.getElementById('videoLinkContainer');
+
+magicButton.addEventListener('click', () => {
+  // Mostrar corações
+  for(let i=0;i<20;i++){ createFloatingHeart(); }
+
+  // Mostrar o link do vídeo
+  if(videoLinkContainer.classList.contains('hidden')){
+    videoLinkContainer.classList.remove('hidden');
+    videoLinkContainer.style.animation = 'fadeIn 0.8s ease forwards';
+    videoLinkContainer.scrollIntoView({behavior: "smooth"});
+  }
+});

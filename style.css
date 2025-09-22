@@ -204,3 +204,31 @@ button#magicButton:hover {
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(255,0,102,0.4);
 }
+.hidden {
+  display: none;
+}
+
+#videoLinkContainer {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  color: #ff3366;
+  text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
+  animation: fadeIn 0.8s ease forwards;
+  text-align: center;
+}
+
+#videoLinkContainer a {
+  color: #ff6699;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#videoLinkContainer a:hover {
+  text-decoration: underline;
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
