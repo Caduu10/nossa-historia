@@ -37,7 +37,7 @@ button#magicButton {
   cursor:pointer;
   box-shadow:0 5px 15px rgba(255,0,102,0.4);
   transition: all 0.3s ease;
-  margin-bottom:30px;
+  margin-bottom:20px;
 }
 
 button#magicButton:hover {
@@ -45,27 +45,28 @@ button#magicButton:hover {
   box-shadow:0 8px 25px rgba(255,0,102,0.6);
 }
 
-/* Video Link */
-.hidden {
+/* Mensagens da história */
+.message {
   display: none;
-}
-
-#videoLinkContainer {
-  margin-top: 20px;
+  margin: 15px auto;
+  max-width: 90%;
   font-size: 1.3rem;
   color: #ff3366;
   text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
-  animation: fadeIn 0.8s ease forwards;
   text-align: center;
+  border-radius: 15px;
+  padding: 10px 20px;
+  background: rgba(255,0,102,0.05);
+  animation: fadeIn 0.8s ease forwards;
 }
 
-#videoLinkContainer a {
+.message a {
   color: #ff6699;
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: none;
 }
 
-#videoLinkContainer a:hover {
+.message a:hover {
   text-decoration: underline;
 }
 
@@ -124,13 +125,8 @@ button#magicButton:hover {
   transform:translateY(-50%) scale(1.2);
 }
 
-.prev {
-  left:10px;
-}
-
-.next {
-  right:10px;
-}
+.prev { left:10px; }
+.next { right:10px; }
 
 /* Corações flutuantes */
 #heartContainer {
@@ -151,38 +147,7 @@ button#magicButton:hover {
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(100vh) scale(1);
-    opacity:0;
-  }
-  10% {
-    opacity:0.8;
-  }
-  100% {
-    transform: translateY(-50px) scale(1.3);
-    opacity:0;
-  }
-}
-.message, #videoLinkContainer {
-  display: none; /* oculto inicialmente */
-  margin: 20px auto;
-  max-width: 90%;
-  font-size: 1.3rem;
-  color: #ff3366;
-  text-shadow: 1px 1px 5px rgba(255,0,102,0.3);
-  text-align: center;
-  border-radius: 15px;
-  padding: 10px 20px;
-  background: rgba(255,0,102,0.05); /* fundo leve para destaque */
-  animation: fadeIn 0.8s ease forwards;
-}
-
-#videoLinkContainer a {
-  color: #ff6699;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-#videoLinkContainer a:hover {
-  text-decoration: underline;
+  0% { transform: translateY(100vh) scale(1); opacity:0; }
+  10% { opacity:0.8; }
+  100% { transform: translateY(-50px) scale(1.3); opacity:0; }
 }

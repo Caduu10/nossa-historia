@@ -5,7 +5,7 @@ window.onload = () => {
   const prevButton = document.querySelector('.prev');
   const magicButton = document.getElementById('magicButton');
   const heartContainer = document.getElementById('heartContainer');
-  const videoLinkContainer = document.getElementById('videoLinkContainer');
+  const messages = document.querySelectorAll('.message');
 
   // Configura os slides
   const slideWidth = slides[0].getBoundingClientRect().width;
@@ -17,7 +17,7 @@ window.onload = () => {
     track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
   };
 
-  // Botões do carrossel
+  // Carrossel
   nextButton.addEventListener('click', () => {
     const currentSlide = track.querySelector('.current-slide') || slides[0];
     let nextSlide = currentSlide.nextElementSibling || slides[0];
@@ -49,15 +49,17 @@ window.onload = () => {
     setTimeout(() => { heart.remove(); }, parseFloat(heart.style.animationDuration)*1000);
   }
 
-  // Evento do botão "Nossa História"
+  // Botão "Nossa História"
   magicButton.addEventListener('click', () => {
     for(let i=0;i<20;i++){ createFloatingHeart(); }
 
-    // Mostrar link do vídeo sem quebrar layout
-    if(videoLinkContainer.style.display !== "block"){
-      videoLinkContainer.style.display = "block";
-      videoLinkContainer.style.animation = 'fadeIn 0.8s ease forwards';
-      videoLinkContainer.scrollIntoView({behavior: "smooth"});
-    }
+    // Mostrar mensagens uma a uma
+    messages.forEach((msg, index) => {
+      setTimeout(() => {
+        msg.style.display = 'block';
+        msg.style.animation = 'fadeIn 0.8s ease forwards';
+        msg.scrollIntoView({behavior: "smooth"});
+      }, index * 1200);
+    });
   });
 };
