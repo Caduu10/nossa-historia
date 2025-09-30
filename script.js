@@ -1,11 +1,10 @@
+// Carrossel e timeline
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(track.children);
 const nextButton = document.querySelector('.next');
 const prevButton = document.querySelector('.prev');
 const magicButton = document.getElementById('magicButton');
 const timeline = document.getElementById('timeline');
-
-let firstClick = false; // para ativar som
 
 // Configura slides
 const slideWidth = slides[0].getBoundingClientRect().width;
@@ -39,10 +38,9 @@ prevButton.addEventListener('click', () => {
 // Inicializa
 slides[0].classList.add('current-slide');
 
-// Hearts
+// Corações
 const heartContainer = document.getElementById('heartContainer');
 const heartEmojis = ["💖","💘","💕","💞","💓","💝"];
-
 function createFloatingHeart() {
   const heart = document.createElement('div');
   heart.classList.add('heart');
@@ -57,49 +55,35 @@ function createFloatingHeart() {
 // Magic button
 magicButton.addEventListener('click', () => {
   timeline.classList.add('show');
-
   let heartInterval = setInterval(createFloatingHeart, 300);
   setTimeout(() => clearInterval(heartInterval), 5000);
-
   timeline.scrollIntoView({ behavior: 'smooth' });
 });
 
-// ... todo o código do carrossel, timeline e corações permanece igual ...
-
-// YouTube Player corrigido
+// YouTube Player funcional
 let player;
-let firstClick = false;
+let playerCreated = false;
+const ytIcon = document.getElementById('youtube-icon');
+const ytContainer = document.getElementById('youtube-player-container');
 
-function createYouTubePlayer() {
-  player = new YT.Player('youtube-player', {
-    height: '115',
-    width: '200',
-    videoId: 'Xv5QTAFiOBM',
-    playerVars: {
-      autoplay: 1,
-      mute: 1,
-      loop: 1,
-      playlist: 'Xv5QTAFiOBM',
-      modestbranding: 1,
-      controls: 1
-    },
-    events: {
-      'onReady': onPlayerReady
-    }
-  });
-}
-
-function onPlayerReady(event) {
-  // Ao primeiro clique em qualquer lugar do body, ativa o som
-  document.body.addEventListener('click', () => {
-    if (!firstClick) {
-      player.unMute();
-      firstClick = true;
-    }
-  }, { once: true });
-}
-
-// Aguarda o IFrame API carregar antes de criar o player
-function onYouTubeIframeAPIReady() {
-  createYouTubePlayer();
-}
+ytIcon.addEventListener('click', () => {
+  if(!playerCreated){
+    player = new YT.Player('youtube-player-container', {
+      height: '140',
+      width: '250',
+      videoId: 'Xv5QTAFiOBM',
+      playerVars: {
+        autoplay: 1,
+        controls: 1,
+        modestbranding: 1
+      },
+      events: {
+        'onReady': (event) => { event.target.playVideo(); }
+      }
+    });
+    ytContainer.style.display = 'block';
+    playerCreated = true;
+  } else {
+    ytContainer.style.display = ytContainer.style.display === 'none' ? 'block' : 'none';
+  }
+});

@@ -197,16 +197,30 @@ button#magicButton:hover {
   position:fixed;
   bottom:15px;
   right:15px;
-  width:200px;
   z-index:20;
   text-align:center;
 }
 
-.music-player iframe {
-  width:200px;
-  height:115px;
+#youtube-icon {
+  font-size:2rem;
+  cursor:pointer;
+  background: rgba(255,0,80,0.5);
+  padding:10px;
+  border-radius:50%;
+  box-shadow:0 5px 15px rgba(255,0,80,0.5);
+  transition: transform 0.3s ease;
+}
+
+#youtube-icon:hover {
+  transform: scale(1.2);
+}
+
+#youtube-player-container iframe {
+  width:250px;
+  height:140px;
   border-radius:10px;
   box-shadow:0 5px 15px rgba(255,0,80,0.5);
+  margin-top:5px;
 }
 
 /* Animations */
@@ -224,19 +238,4 @@ button#magicButton:hover {
   0% { transform: translateY(100vh) scale(1) rotate(0deg); opacity:0; }
   10% { opacity:0.9; }
   100% { transform: translateY(-50px) scale(1.3) rotate(360deg); opacity:0; }
-}
-.music-player {
-  position:fixed;
-  bottom:15px;
-  right:15px;
-  width:200px;
-  z-index:20;
-  text-align:center;
-}
-
-.music-player iframe {
-  width:200px;
-  height:115px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(255,0,80,0.5);
 }
