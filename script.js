@@ -5,18 +5,20 @@ const prevButton = document.querySelector('.prev');
 const magicButton = document.getElementById('magicButton');
 const timeline = document.getElementById('timeline');
 
-// Configura os slides
+let firstClick = false; // para ativar som
+
+// Configura slides
 const slideWidth = slides[0].getBoundingClientRect().width;
 slides.forEach((slide, index) => {
   slide.style.left = slideWidth * index + 'px';
 });
 
-// Função para mover o carrossel
+// Move slide
 const moveToSlide = (track, currentSlide, targetSlide) => {
   track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
 };
 
-// Botão next
+// Next
 nextButton.addEventListener('click', () => {
   const currentSlide = track.querySelector('.current-slide') || slides[0];
   let nextSlide = currentSlide.nextElementSibling || slides[0];
@@ -25,7 +27,7 @@ nextButton.addEventListener('click', () => {
   moveToSlide(track, currentSlide, nextSlide);
 });
 
-// Botão prev
+// Prev
 prevButton.addEventListener('click', () => {
   const currentSlide = track.querySelector('.current-slide') || slides[0];
   let prevSlide = currentSlide.previousElementSibling || slides[slides.length-1];
@@ -34,10 +36,10 @@ prevButton.addEventListener('click', () => {
   moveToSlide(track, currentSlide, prevSlide);
 });
 
-// Inicializa o primeiro slide
+// Inicializa
 slides[0].classList.add('current-slide');
 
-// Corações flutuantes
+// Hearts
 const heartContainer = document.getElementById('heartContainer');
 const heartEmojis = ["💖","💘","💕","💞","💓","💝"];
 
@@ -49,11 +51,10 @@ function createFloatingHeart() {
   heart.style.fontSize = (Math.random()*30 + 20) + 'px';
   heart.style.animationDuration = (Math.random()*5 + 5) + 's';
   heartContainer.appendChild(heart);
-
   setTimeout(() => heart.remove(), (parseFloat(heart.style.animationDuration)*1000));
 }
 
-// Ativa timeline e corações ao clicar no botão
+// Magic button
 magicButton.addEventListener('click', () => {
   timeline.classList.add('show');
 
@@ -62,3 +63,29 @@ magicButton.addEventListener('click', () => {
 
   timeline.scrollIntoView({ behavior: 'smooth' });
 });
+
+// YouTube Player
+let player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('youtube-player', {
+    videoId: 'Xv5QTAFiOBM',
+    playerVars: { 
+      autoplay: 1, 
+      mute: 1,
+      loop: 1,
+      playlist: 'Xv5QTAFiOBM'
+    },
+    events: {
+      'onReady': onPlayerReady
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  document.body.addEventListener('click', () => {
+    if(!firstClick){
+      player.unMute();
+      firstClick = true;
+    }
+  }, { once: true });
+}
