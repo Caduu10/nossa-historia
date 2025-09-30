@@ -66,22 +66,36 @@ let playerCreated = false;
 const ytIcon = document.getElementById('youtube-icon');
 const ytContainer = document.getElementById('youtube-player-container');
 
-ytIcon.addEventListener('click', () => {
-  if(!playerCreated){
-    player = new YT.Player('youtube-player-container', {
-      height: '140',
-      width: '250',
-      videoId: 'Xv5QTAFiOBM',
-      playerVars: {
-        autoplay: 1,
-        controls: 1,
-        modestbranding: 1
-      },
-      events: {
-        'onReady': (event) => { event.target.playVideo(); }
+function createYouTubePlayer() {
+  player = new YT.Player('youtube-player-container', {
+    height: '140',
+    width: '250',
+    videoId: 'Xv5QTAFiOBM',
+    playerVars: {
+      autoplay: 1,
+      controls: 1,
+      modestbranding: 1,
+      mute: 1,
+      loop: 1,
+      playlist: 'Xv5QTAFiOBM'
+    },
+    events: {
+      'onReady': (event) => {
+        event.target.playVideo();
+        // Ativa som imediatamente após clique
+        ytContainer.addEventListener('click', () => {
+          event.target.unMute();
+        });
       }
-    });
+    }
+  });
+}
+
+// Clique no ícone cria e toca o player
+ytIcon.addEventListener('click', () => {
+  if (!playerCreated) {
     ytContainer.style.display = 'block';
+    createYouTubePlayer();
     playerCreated = true;
   } else {
     ytContainer.style.display = ytContainer.style.display === 'none' ? 'block' : 'none';
