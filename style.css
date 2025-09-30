@@ -1,326 +1,189 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body {
-  font-family: 'Dancing Script', cursive;
-  background: linear-gradient(135deg, #0d0d0d, #1a0010);
-  color: white;
-  min-height: 100vh;
+  font-family:'Dancing Script', cursive;
+  background:linear-gradient(135deg, #0d0d0d, #1a0010);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
 }
 
-/* === HERO SECTION MELHORADA === */
+/* Seção inicial */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  position: relative;
-  text-align: center;
+  text-align:center;
+  padding:60px 20px;
+  max-width:900px;
 }
 
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(255, 77, 109, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 179, 102, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(155, 0, 100, 0.2) 0%, transparent 50%);
-  z-index: -1;
+h1 {
+  font-size:2.5rem;
+  color:#ff4d6d;
+  margin-bottom:30px;
+  text-shadow:2px 2px 20px rgba(255, 0, 80, 0.9);
 }
 
-.hero-content {
-  margin-bottom: 50px;
-  z-index: 2;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  color: #ff4d6d;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 20px rgba(255, 0, 80, 0.9);
-  line-height: 1.3;
-  animation: pulse 2s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(1);
-    text-shadow: 2px 2px 20px rgba(255, 0, 80, 0.9);
-  }
-  to {
-    transform: scale(1.05);
-    text-shadow: 2px 2px 30px rgba(255, 0, 80, 1);
-  }
-}
-
-/* === BOTÃO MAGICO === */
-#magicButton {
-  padding: 18px 60px;
-  font-size: 1.8rem;
-  font-family: 'Dancing Script', cursive;
-  border: none;
-  border-radius: 50px;
-  background: linear-gradient(45deg, #ff0033, #cc0033);
-  color: white;
-  cursor: pointer;
-  box-shadow: 
-    0 5px 20px rgba(255, 0, 80, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+button#magicButton {
+  padding:14px 50px;
+  font-size:1.5rem;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(45deg,#990033,#ff0033);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(255,0,80,0.6);
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  margin-bottom:40px;
 }
 
-#magicButton:hover {
+button#magicButton:hover {
   transform: scale(1.1);
-  box-shadow: 
-    0 8px 35px rgba(255, 0, 80, 0.9),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow:0 8px 35px rgba(255,0,80,0.9);
 }
 
-#magicButton:active {
-  transform: scale(1.05);
-}
-
-/* === CARROSSEL CENTRALIZADO === */
+/* Carrossel */
 .carousel {
-  position: relative;
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(255, 0, 80, 0.6);
+  position:relative;
+  overflow:hidden;
+  max-height:500px;
+  border-radius:20px;
+  margin:auto;
+  box-shadow:0 10px 30px rgba(255,0,80,0.6);
 }
 
 .carousel-track-container {
-  overflow: hidden;
-  border-radius: 20px;
+  overflow:hidden;
 }
 
 .carousel-track {
-  display: flex;
+  display:flex;
   transition: transform 0.5s ease-in-out;
-  list-style: none;
 }
 
 .carousel-slide {
-  min-width: 100%;
-  position: relative;
+  min-width:100%;
 }
 
 .carousel-slide img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  display: block;
-  border-radius: 20px;
+  width:100%;
+  height:auto;
+  max-height:500px;
+  object-fit:contain;
+  border-radius:20px;
 }
 
-/* Botões do carrossel */
+/* Botões carrossel */
 .carousel button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  font-size: 2.5rem;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 50%;
-  z-index: 10;
-  transition: all 0.3s ease;
-  color: #ff4d6d;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  font-size:2.5rem;
+  cursor:pointer;
+  color:#ff4d6d;
+  transition: transform 0.2s;
+  z-index:2;
 }
 
 .carousel button:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-50%) scale(1.2);
+  transform:translateY(-50%) scale(1.2);
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
+.prev { left:10px; }
+.next { right:10px; }
 
-/* === TIMELINE ESCONDIDA INICIALMENTE === */
+/* Timeline */
 .timeline {
-  width: 100%;
-  max-width: 1000px;
-  margin: 80px auto;
-  display: none;
-  flex-direction: column;
-  gap: 80px;
-  padding: 0 20px;
+  width:100%;
+  max-width:1000px;
+  margin:80px auto;
+  display:none; /* oculta inicialmente */
+  flex-direction:column;
+  gap:80px;
+  opacity:0;
+  transition: opacity 1.2s ease;
 }
 
-.timeline:not(.hidden) {
-  display: flex;
-  animation: fadeInUp 1s ease;
-}
-
-.timeline.hidden {
-  display: none;
+.timeline.show {
+  display:flex;
+  opacity:1;
 }
 
 .timeline-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(255, 0, 80, 0.4);
-  min-height: 300px;
-  transition: transform 0.3s ease;
-}
-
-.timeline-item:hover {
-  transform: translateY(-5px);
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(255,0,80,0.4);
+  min-height:300px;
 }
 
 .timeline-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(40%) blur(1px);
-  z-index: 1;
-  transition: filter 0.3s ease;
-}
-
-.timeline-item:hover .timeline-bg {
-  filter: brightness(50%) blur(0px);
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(40%) blur(2px);
+  z-index:1;
 }
 
 .timeline-content {
-  position: relative;
-  z-index: 2;
-  padding: 60px 40px;
-  color: white;
-  text-align: center;
-  animation: fadeInUp 1s ease 0.3s both;
+  position:relative;
+  z-index:2;
+  padding:60px 30px;
+  color:white;
+  text-align:center;
+  animation: fadeInUp 1.5s ease forwards;
 }
 
 .timeline-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #ff4d6d;
-  text-shadow: 2px 2px 15px rgba(255, 0, 80, 0.8);
+  font-size:2rem;
+  margin-bottom:20px;
+  color:#ff4d6d;
+  text-shadow:2px 2px 15px rgba(255,0,80,0.8);
 }
 
 .timeline-content p {
-  font-size: 1.4rem;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+  font-size:1.3rem;
+  line-height:1.6;
+  max-width:700px;
+  margin:auto;
 }
 
-/* === ANIMAÇÕES === */
+/* Animações */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity:0; transform:translateY(50px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* === CORAÇÕES FLUTUANTES === */
+/* Corações flutuantes */
 #heartContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1000;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:10;
 }
 
 .heart {
-  position: absolute;
-  font-size: 20px;
-  opacity: 0.8;
-  animation: floatUp linear forwards;
+  position:absolute;
+  font-size:20px;
+  opacity:0.8;
+  animation: floatUp linear infinite;
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(100vh) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-50px) scale(1.3);
-    opacity: 0;
-  }
-}
-
-/* === RESPONSIVO === */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-    padding: 0 10px;
-  }
-  
-  #magicButton {
-    padding: 15px 40px;
-    font-size: 1.5rem;
-  }
-  
-  .carousel-slide img {
-    height: 300px;
-  }
-  
-  .carousel button {
-    font-size: 2rem;
-    padding: 8px 12px;
-  }
-  
-  .timeline-content {
-    padding: 40px 20px;
-  }
-  
-  .timeline-content h2 {
-    font-size: 2rem;
-  }
-  
-  .timeline-content p {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-  
-  #magicButton {
-    padding: 12px 30px;
-    font-size: 1.3rem;
-  }
-  
-  .carousel-slide img {
-    height: 250px;
-  }
+  0% { transform: translateY(100vh) scale(1); opacity:0; }
+  10% { opacity:0.8; }
+  100% { transform: translateY(-50px) scale(1.3); opacity:0; }
 }
