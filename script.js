@@ -64,16 +64,24 @@ magicButton.addEventListener('click', () => {
   timeline.scrollIntoView({ behavior: 'smooth' });
 });
 
-// YouTube Player
+// ... todo o código do carrossel, timeline e corações permanece igual ...
+
+// YouTube Player corrigido
 let player;
-function onYouTubeIframeAPIReady() {
+let firstClick = false;
+
+function createYouTubePlayer() {
   player = new YT.Player('youtube-player', {
+    height: '115',
+    width: '200',
     videoId: 'Xv5QTAFiOBM',
-    playerVars: { 
-      autoplay: 1, 
+    playerVars: {
+      autoplay: 1,
       mute: 1,
       loop: 1,
-      playlist: 'Xv5QTAFiOBM'
+      playlist: 'Xv5QTAFiOBM',
+      modestbranding: 1,
+      controls: 1
     },
     events: {
       'onReady': onPlayerReady
@@ -82,10 +90,16 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
+  // Ao primeiro clique em qualquer lugar do body, ativa o som
   document.body.addEventListener('click', () => {
-    if(!firstClick){
+    if (!firstClick) {
       player.unMute();
       firstClick = true;
     }
   }, { once: true });
+}
+
+// Aguarda o IFrame API carregar antes de criar o player
+function onYouTubeIframeAPIReady() {
+  createYouTubePlayer();
 }
