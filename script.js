@@ -54,10 +54,20 @@ function createFloatingHeart() {
 }
 
 // Magic button - AGORA TOCA MÚSICA TAMBÉM
-magicButton.addEventListener('click', () => {
+magicButton.addEventListener('click', (e) => {
+  // Para qualquer áudio que possa estar tocando
+  backgroundMusic.pause();
+  backgroundMusic.currentTime = 0;
+  
   // Inicia a música
-  backgroundMusic.play().catch(e => {
-    console.log('Autoplay bloqueado, aguardando interação');
+  backgroundMusic.volume = 0.7;
+  backgroundMusic.play().then(() => {
+    console.log('Música iniciada com sucesso!');
+  }).catch(error => {
+    console.log('Erro ao tocar música:', error);
+    // Mostra alerta amigável
+    alert('Clique em "OK" para ativar a música! 🎵');
+    backgroundMusic.play();
   });
   
   // Mostra timeline
@@ -68,12 +78,18 @@ magicButton.addEventListener('click', () => {
   setTimeout(() => clearInterval(heartInterval), 5000);
   
   // Scroll suave
-  timeline.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    timeline.scrollIntoView({ behavior: 'smooth' });
+  }, 500);
 });
 
-// Tenta tocar música em qualquer interação do usuário (fallback)
-document.addEventListener('click', () => {
-  if (backgroundMusic.paused) {
-    backgroundMusic.play().catch(e => console.log('Áudio ainda bloqueado'));
+// Fallback para autoplay
+let audioStarted = false;
+document.addEventListener('click', function startAudio() {
+  if (!audioStarted && backgroundMusic.paused) {
+    backgroundMusic.play().catch(e => {
+      console.log('Aguardando interação...');
+    });
+    audioStarted = true;
   }
 });
