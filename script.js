@@ -62,27 +62,42 @@ magicButton.addEventListener('click', () => {
 
 // YouTube Player funcional
 let player;
-let musicaIniciada = false;
+let playerCreated = false;
+const ytIcon = document.getElementById('youtube-icon');
+const ytContainer = document.getElementById('youtube-player-container');
 
-function onYouTubeIframeAPIReady() {
+function createYouTubePlayer() {
   player = new YT.Player('youtube-player-container', {
-    height: '0',
-    width: '0',
-    videoId: 'Xv5QTAFiOBM', // ID da sua música
+    height: '140',
+    width: '250',
+    videoId: 'Xv5QTAFiOBM',
     playerVars: {
-      autoplay: 0,
-      controls: 0,
+      autoplay: 1,
+      controls: 1,
       modestbranding: 1,
-      mute: 0,
+      mute: 1,
       loop: 1,
       playlist: 'Xv5QTAFiOBM'
+    },
+    events: {
+      'onReady': (event) => {
+        event.target.playVideo();
+        // Ativa som imediatamente após clique
+        ytContainer.addEventListener('click', () => {
+          event.target.unMute();
+        });
+      }
     }
   });
 }
 
-document.getElementById('magicButton').addEventListener('click', () => {
-  if (player && !musicaIniciada) {
-    player.playVideo();
-    musicaIniciada = true;
+// Clique no ícone cria e toca o player
+ytIcon.addEventListener('click', () => {
+  if (!playerCreated) {
+    ytContainer.style.display = 'block';
+    createYouTubePlayer();
+    playerCreated = true;
+  } else {
+    ytContainer.style.display = ytContainer.style.display === 'none' ? 'block' : 'none';
   }
 });
