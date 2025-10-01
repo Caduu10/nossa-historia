@@ -68,7 +68,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('youtube-player-container', {
     height: '0',
     width: '0',
-    videoId: 'Xv5QTAFiOBM', // sua música
+    videoId: 'Xv5QTAFiOBM', // ID da sua música
     playerVars: {
       autoplay: 0,
       controls: 0,
@@ -80,8 +80,7 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-// Quando clicar no botão "Nossa História"
-document.getElementById('btn-nossa-historia').addEventListener('click', () => {
+document.getElementById('magicButton').addEventListener('click', () => {
   if (player && !musicaIniciada) {
     player.playVideo();
     musicaIniciada = true;
