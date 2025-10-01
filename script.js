@@ -62,42 +62,28 @@ magicButton.addEventListener('click', () => {
 
 // YouTube Player funcional
 let player;
-let playerCreated = false;
-const ytIcon = document.getElementById('youtube-icon');
-const ytContainer = document.getElementById('youtube-player-container');
+let musicaIniciada = false;
 
-function createYouTubePlayer() {
+function onYouTubeIframeAPIReady() {
   player = new YT.Player('youtube-player-container', {
-    height: '140',
-    width: '250',
-    videoId: 'Xv5QTAFiOBM',
+    height: '0',
+    width: '0',
+    videoId: 'Xv5QTAFiOBM', // sua música
     playerVars: {
-      autoplay: 1,
-      controls: 1,
+      autoplay: 0,
+      controls: 0,
       modestbranding: 1,
-      mute: 1,
+      mute: 0,
       loop: 1,
       playlist: 'Xv5QTAFiOBM'
-    },
-    events: {
-      'onReady': (event) => {
-        event.target.playVideo();
-        // Ativa som imediatamente após clique
-        ytContainer.addEventListener('click', () => {
-          event.target.unMute();
-        });
-      }
     }
   });
 }
 
-// Clique no ícone cria e toca o player
-ytIcon.addEventListener('click', () => {
-  if (!playerCreated) {
-    ytContainer.style.display = 'block';
-    createYouTubePlayer();
-    playerCreated = true;
-  } else {
-    ytContainer.style.display = ytContainer.style.display === 'none' ? 'block' : 'none';
+// Quando clicar no botão "Nossa História"
+document.getElementById('btn-nossa-historia').addEventListener('click', () => {
+  if (player && !musicaIniciada) {
+    player.playVideo();
+    musicaIniciada = true;
   }
 });
