@@ -5,6 +5,7 @@ const nextButton = document.querySelector('.next');
 const prevButton = document.querySelector('.prev');
 const magicButton = document.getElementById('magicButton');
 const timeline = document.getElementById('timeline');
+const backgroundMusic = document.getElementById('backgroundMusic');
 
 // Configura slides
 const slideWidth = slides[0].getBoundingClientRect().width;
@@ -52,56 +53,27 @@ function createFloatingHeart() {
   setTimeout(() => heart.remove(), (parseFloat(heart.style.animationDuration)*1000));
 }
 
-// Magic button
+// Magic button - AGORA TOCA MÚSICA TAMBÉM
 magicButton.addEventListener('click', () => {
+  // Inicia a música
+  backgroundMusic.play().catch(e => {
+    console.log('Autoplay bloqueado, aguardando interação');
+  });
+  
+  // Mostra timeline
   timeline.classList.add('show');
+  
+  // Cria corações
   let heartInterval = setInterval(createFloatingHeart, 300);
   setTimeout(() => clearInterval(heartInterval), 5000);
+  
+  // Scroll suave
   timeline.scrollIntoView({ behavior: 'smooth' });
 });
 
-// YouTube Player - tocar automaticamente
-let player;
-let playerCreated = false;
-
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('youtube-player-container', {
-    height: '140',
-    width: '250',
-    videoId: 'Xv5QTAFiOBM',
-    playerVars: {
-      autoplay: 1,
-      controls: 1,
-      modestbranding: 1,
-      mute: 0, // Alterado para 0 para não iniciar mudo
-      loop: 1,
-      playlist: 'Xv5QTAFiOBM'
-    },
-    events: {
-      'onReady': (event) => {
-        event.target.playVideo();
-        playerCreated = true;
-      },
-      'onStateChange': (event) => {
-        // Garante que o vídeo continue tocando
-        if (event.data === YT.PlayerState.ENDED) {
-          event.target.playVideo();
-        }
-      }
-    }
-  });
-}
-
-// Controle de visibilidade do player
-const ytIcon = document.getElementById('youtube-icon');
-const ytContainer = document.getElementById('youtube-player-container');
-
-ytIcon.addEventListener('click', () => {
-  ytContainer.style.display = ytContainer.style.display === 'none' ? 'block' : 'none';
-});
-
-// Inicia o player automaticamente quando a página carrega
-window.addEventListener('load', () => {
-  // O player já será criado automaticamente pela API do YouTube
-  ytContainer.style.display = 'none'; // Esconde o player inicialmente, mas o áudio toca
+// Tenta tocar música em qualquer interação do usuário (fallback)
+document.addEventListener('click', () => {
+  if (backgroundMusic.paused) {
+    backgroundMusic.play().catch(e => console.log('Áudio ainda bloqueado'));
+  }
 });
