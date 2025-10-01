@@ -54,21 +54,23 @@ function createFloatingHeart() {
 }
 
 // Magic button - AGORA TOCA MÚSICA TAMBÉM
-magicButton.addEventListener('click', (e) => {
-  // Para qualquer áudio que possa estar tocando
-  backgroundMusic.pause();
-  backgroundMusic.currentTime = 0;
-  
+magicButton.addEventListener('click', () => {
   // Inicia a música
-  backgroundMusic.volume = 0.7;
-  backgroundMusic.play().then(() => {
-    console.log('Música iniciada com sucesso!');
-  }).catch(error => {
-    console.log('Erro ao tocar música:', error);
-    // Mostra alerta amigável
-    alert('Clique em "OK" para ativar a música! 🎵');
-    backgroundMusic.play();
-  });
+  try {
+    backgroundMusic.volume = 0.5; // Volume em 50%
+    backgroundMusic.play().then(() => {
+      console.log('Música iniciada com sucesso!');
+    }).catch(error => {
+      console.log('Erro ao tocar música:', error);
+      // Fallback: tenta tocar após interação do usuário
+      document.body.addEventListener('click', function tryPlay() {
+        backgroundMusic.play();
+        document.body.removeEventListener('click', tryPlay);
+      });
+    });
+  } catch (error) {
+    console.log('Erro no áudio:', error);
+  }
   
   // Mostra timeline
   timeline.classList.add('show');
@@ -78,18 +80,13 @@ magicButton.addEventListener('click', (e) => {
   setTimeout(() => clearInterval(heartInterval), 5000);
   
   // Scroll suave
-  setTimeout(() => {
-    timeline.scrollIntoView({ behavior: 'smooth' });
-  }, 500);
+  timeline.scrollIntoView({ behavior: 'smooth' });
 });
 
-// Fallback para autoplay
-let audioStarted = false;
-document.addEventListener('click', function startAudio() {
-  if (!audioStarted && backgroundMusic.paused) {
-    backgroundMusic.play().catch(e => {
-      console.log('Aguardando interação...');
-    });
-    audioStarted = true;
+// Tenta tocar música em qualquer interação do usuário (fallback)
+document.addEventListener('click', function firstInteraction() {
+  if (backgroundMusic.paused) {
+    backgroundMusic.play().catch(e => console.log('Áudio ainda bloqueado'));
   }
+  document.removeEventListener('click', firstInteraction);
 });
