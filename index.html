@@ -3,36 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentos com Beatriz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <title>Momentos com Beatriz | Nossa História</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hero">
-    <h1>Com você, cada momento é um capítulo da nossa eternidade ❤️</h1>
-    <button id="magicButton">Nossa História 💌</button>
-    <div class="carousel">
-      <button class="prev">&#10084;</button>
-      <div class="carousel-track-container">
-        <ul class="carousel-track">
-          <li class="carousel-slide"><img src="img/noisdoiscomcoração.jpg" alt="Foto 1"></li>
-          <li class="carousel-slide"><img src="img/DateMphoto1.jpg" alt="Foto 2"></li>
-          <li class="carousel-slide"><img src="img/DateMphoto2.jpg" alt="Foto 3"></li>
-          <li class="carousel-slide"><img src="img/DateMphoto3.jpg" alt="Foto 4"></li>
-          <li class="carousel-slide"><img src="img/DateMphoto4.jpg" alt="Foto 5"></li>
-          <li class="carousel-slide"><img src="img/nosdois.jpg" alt="Foto 6"></li>
-        </ul>
-      </div>
-      <button class="next">&#10084;</button>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-text">Nossa História...</div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Com você, cada momento é um capítulo da nossa eternidade</h1>
+      <p class="subtitle">Uma jornada de amor, risos e momentos inesquecíveis</p>
+      <button class="cta-button" id="magicButton">
+        <i class="fas fa-heart"></i> Nossa História 
+      </button>
     </div>
-  </header>
+
+    <!-- Carrossel Premium -->
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img src="img/noisdoiscomcoração.jpg" alt="Nós dois com coração">
+          <div class="carousel-caption">Nosso amor em cada detalhe</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="img/DateMphoto1.jpg" alt="Date 1">
+          <div class="carousel-caption">Momentos especiais</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="img/DateMphoto2.jpg" alt="Date 2">
+          <div class="carousel-caption">Risadas compartilhadas</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="img/DateMphoto3.jpg" alt="Date 3">
+          <div class="carousel-caption">Aventuras juntos</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="img/DateMphoto4.jpg" alt="Date 4">
+          <div class="carousel-caption">Memórias eternas</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="img/nosdois.jpg" alt="Nós dois">
+          <div class="carousel-caption">Para sempre nós</div>
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
 
   <!-- Timeline -->
   <section class="timeline" id="timeline">
     <div class="timeline-item">
       <div class="timeline-content">
         <h2>Nosso primeiro encontro 🍷</h2>
-        <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma.</p>
+        <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma. Cada olhar, cada sorriso, confirmava que algo especial estava nascendo.</p>
       </div>
       <div class="timeline-bg" style="background-image: url('img/restaurante.jpg');"></div>
     </div>
@@ -40,27 +72,31 @@
     <div class="timeline-item">
       <div class="timeline-content">
         <h2>Nossa primeira viagem ✈️</h2>
-        <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos.
-          Primeiro temos o chalezinho e depois viram vários momentos românticos ao seu lado!
-        </p>
+        <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos. Primeiro temos o chalezinho e depois viram vários momentos românticos ao seu lado! Cada destino, uma nova memória.</p>
       </div>
       <div class="timeline-bg" style="background-image: url('img/viagem.jpg');"></div>
     </div>
 
     <div class="timeline-item special-message">
       <div class="timeline-content">
-        <h2>🌹 A cada capítulo, mais certeza de que você é meu para sempre. 🌹</h2>
+        <h2>🌹 A cada capítulo, mais certeza de que você é meu para sempre 🌹</h2>
+        <p style="margin-top: 20px; font-style: italic;">Nosso amor é a história mais bonita que poderia viver</p>
       </div>
     </div>
   </section>
 
-  <!-- Corações flutuantes -->
-  <div id="heartContainer"></div>
+  <!-- Floating Elements -->
+  <div class="floating-elements" id="floatingElements"></div>
 
-  <!-- Áudio escondido -->
-<audio id="backgroundMusic" loop style="display: none;">
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+  <!-- Music Indicator -->
+  <div class="music-indicator" id="musicIndicator">
+    <i class="fas fa-music"></i>
+  </div>
+
+  <!-- Áudio -->
+  <audio id="backgroundMusic" loop style="display: none;">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="script.js"></script>
 </body>
