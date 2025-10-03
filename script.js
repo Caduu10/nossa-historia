@@ -6,16 +6,7 @@ let isScrolling = false;
 // Loading Screen
 // ⚡ CARREGAMENTO ULTRA-RÁPIDO - NOVO CÓDIGO
 // ⚡ CARREGAMENTO INSTANTÂNEO
-document.addEventListener('DOMContentLoaded', function() {
-    // Remove loading imediatamente
-    var loadingScreen = document.querySelector('.loading-screen');
-    if (loadingScreen) {
-        loadingScreen.style.display = 'none';
-    }
-    
-    // Inicia site depois
-    setTimeout(initializeSite, 100);
-});
+
 
 function initializeSite() {
     // Só o essencial primeiro
