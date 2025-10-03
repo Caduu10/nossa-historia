@@ -21,7 +21,7 @@ body {
   cursor: default;
 }
 
-/* Loading Screen */
+/* Loading Screen com transição elegante */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -33,7 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 1s ease;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .loading-text {
@@ -41,9 +41,10 @@ body {
   font-size: 3rem;
   color: var(--primary);
   text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+  animation: pulse 2s infinite, fadeIn 1.5s ease;
 }
 
-/* Hero Section Modernizada */
+/* Hero Section com transições suaves */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -54,6 +55,8 @@ body {
   padding: 40px 20px;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: heroEntrance 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
 }
 
 .hero::before {
@@ -65,12 +68,16 @@ body {
   height: 100%;
   background: radial-gradient(circle at center, transparent 0%, rgba(13, 13, 13, 0.9) 70%);
   z-index: 1;
+  animation: gradientShift 8s ease-in-out infinite;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: contentSlideUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
 }
 
 h1 {
@@ -80,7 +87,6 @@ h1 {
   color: var(--primary);
   margin-bottom: 30px;
   text-shadow: 0 0 30px rgba(255, 77, 109, 0.9);
-  animation: fadeInUp 1.5s ease;
   line-height: 1.2;
 }
 
@@ -89,10 +95,9 @@ h1 {
   color: var(--light);
   margin-bottom: 40px;
   opacity: 0.9;
-  animation: fadeInUp 1.5s ease 0.3s both;
 }
 
-/* Botão Premium */
+/* Botão Premium com hover animado */
 .cta-button {
   padding: 18px 60px;
   font-size: 1.3rem;
@@ -103,10 +108,12 @@ h1 {
   color: white;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(255, 77, 109, 0.5);
-  transition: var(--transition);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
-  animation: fadeInUp 1.5s ease 0.6s both;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: buttonEntrance 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s forwards;
 }
 
 .cta-button::before {
@@ -116,20 +123,21 @@ h1 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.8s ease;
 }
 
 .cta-button:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 15px 40px rgba(255, 77, 109, 0.8);
+  background: linear-gradient(45deg, #ff0033, #ff6699);
 }
 
 .cta-button:hover::before {
   left: 100%;
 }
 
-/* Carrossel Corrigido - TODAS AS FOTOS VISÍVEIS SEM CORTAR */
+/* Carrossel com transições elegantes */
 .carousel-container {
   position: relative;
   max-width: 900px;
@@ -137,14 +145,16 @@ h1 {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 2s ease 1s both;
   background: var(--dark);
   height: 500px;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: slideUpFade 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2s forwards;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
   height: 100%;
 }
@@ -156,20 +166,29 @@ h1 {
   align-items: center;
   background: var(--dark);
   position: relative;
+  transition: transform 0.8s ease;
 }
 
-/* IMAGENS SEM CORTAR - MOSTRA FOTO INTEIRA */
+.carousel-slide:hover {
+  transform: scale(1.02);
+}
+
 .carousel-slide img {
   width: auto;
   height: auto;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* MUDADO: contain em vez de cover */
+  object-fit: contain;
   object-position: center;
   display: block;
+  transition: transform 1.2s ease;
 }
 
-/* Legendas - SEMPRE VISÍVEIS */
+.carousel-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Legendas com entrada suave */
 .carousel-caption {
   position: absolute;
   bottom: 0;
@@ -182,6 +201,12 @@ h1 {
   font-family: 'Dancing Script', cursive;
   font-size: 1.6rem;
   z-index: 2;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-slide:hover .carousel-caption {
+  transform: translateY(0);
 }
 
 .carousel-nav {
@@ -205,11 +230,12 @@ h1 {
   font-size: 1.3rem;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  transition: var(--transition);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0.7;
+  transform: scale(0.8);
 }
 
 .carousel-btn:hover {
@@ -218,7 +244,7 @@ h1 {
   opacity: 1;
 }
 
-/* Timeline Premium */
+/* Timeline com entradas sequenciais */
 .timeline {
   width: 100%;
   max-width: 1200px;
@@ -238,10 +264,19 @@ h1 {
   display: flex;
   align-items: center;
   min-height: 400px;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .timeline-item:nth-child(even) {
   flex-direction: row-reverse;
+  transform: translateX(100px);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .timeline-content {
@@ -254,6 +289,13 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 2;
+  transition: all 0.6s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .timeline-content h2 {
@@ -261,12 +303,23 @@ h1 {
   font-size: 2.5rem;
   color: var(--primary);
   margin-bottom: 20px;
+  transition: all 0.4s ease;
+}
+
+.timeline-content:hover h2 {
+  transform: scale(1.05);
+  text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
 }
 
 .timeline-content p {
   font-size: 1.2rem;
   line-height: 1.8;
   color: var(--light);
+  transition: all 0.4s ease;
+}
+
+.timeline-content:hover p {
+  transform: translateX(10px);
 }
 
 .timeline-bg {
@@ -275,6 +328,12 @@ h1 {
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  transition: all 0.6s ease;
+}
+
+.timeline-bg:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
 }
 
 .timeline-bg::before {
@@ -286,20 +345,25 @@ h1 {
   height: 100%;
   background: linear-gradient(45deg, rgba(255, 77, 109, 0.3), rgba(255, 143, 163, 0.3));
   z-index: 1;
+  transition: all 0.6s ease;
+}
+
+.timeline-bg:hover::before {
+  background: linear-gradient(45deg, rgba(255, 77, 109, 0.5), rgba(255, 143, 163, 0.5));
 }
 
 .timeline-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: var(--transition);
+  transition: all 0.8s ease;
 }
 
 .timeline-bg:hover img {
   transform: scale(1.1);
 }
 
-/* Special Message */
+/* Special Message com animação especial */
 .special-message {
   justify-content: center;
   text-align: center;
@@ -308,9 +372,15 @@ h1 {
 .special-message .timeline-content {
   background: linear-gradient(135deg, rgba(255, 77, 109, 0.2), rgba(255, 215, 0, 0.2));
   border: 1px solid rgba(255, 215, 0, 0.3);
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
-/* Floating Elements */
+.special-message .timeline-content:hover {
+  animation: glow 1.5s ease-in-out infinite alternate;
+  transform: scale(1.05);
+}
+
+/* Floating Elements com variações */
 .floating-elements {
   position: fixed;
   top: 0;
@@ -326,9 +396,15 @@ h1 {
   opacity: 0.1;
   font-size: 2rem;
   animation: float 20s infinite linear;
+  transition: all 0.5s ease;
 }
 
-/* Music Indicator */
+.floating-element:hover {
+  opacity: 0.3;
+  transform: scale(1.5);
+}
+
+/* Music Indicator com animação pulsante */
 .music-indicator {
   position: fixed;
   bottom: 30px;
@@ -345,18 +421,104 @@ h1 {
   box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
   cursor: pointer;
   z-index: 100;
-  transition: var(--transition);
-}
-
-.music-indicator.playing {
-  animation: pulse 2s infinite;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(0);
+  animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s forwards;
 }
 
 .music-indicator:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.7);
 }
 
-/* Animações */
+.music-indicator.playing {
+  animation: pulse 2s infinite, rotate 4s linear infinite;
+}
+
+/* NOVAS ANIMAÇÕES */
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes contentSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background: radial-gradient(circle at center, transparent 0%, rgba(13, 13, 13, 0.9) 70%);
+  }
+  50% {
+    background: radial-gradient(circle at 30% 20%, transparent 0%, rgba(13, 13, 13, 0.9) 70%);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(255, 77, 109, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

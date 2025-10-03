@@ -20,21 +20,42 @@ function initializeAnimations() {
   initializeCarousel();
   initializeTypeWriter();
   createFloatingElements();
+  initializeScrollAnimations();
 }
 
-// Carrossel Corrigido - TODAS AS 6 FOTOS
+// Observador de scroll para animações da timeline
+function initializeScrollAnimations() {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 200);
+      }
+    });
+  }, {
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  timelineItems.forEach(item => {
+    observer.observe(item);
+  });
+}
+
+// Carrossel Corrigido
 function initializeCarousel() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(track.children);
   const nextButton = document.querySelector('.next');
   const prevButton = document.querySelector('.prev');
 
-  console.log('Total de slides:', slides.length); // Debug: ver quantas fotos tem
-
   // Pré-carrega TODAS as imagens
   preloadCarouselImages();
 
-  // Configura slides - GARANTE QUE TODOS OS 6 SLIDES FUNCIONEM
+  // Configura slides
   slides.forEach((slide, index) => {
     slide.style.left = `${index * 100}%`;
   });
@@ -47,9 +68,13 @@ function initializeCarousel() {
     currentIndex = index;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
+    // Animação de entrada para o slide atual
+    slides.forEach(slide => slide.style.opacity = '0.7');
+    slides[currentIndex].style.opacity = '1';
+    
     setTimeout(() => {
       isScrolling = false;
-    }, 400);
+    }, 600);
   };
 
   // Event listeners
@@ -67,14 +92,14 @@ function initializeCarousel() {
     resetAutoSlide();
   });
 
-  // Auto slide - 2.5 segundos
+  // Auto slide - 3 segundos
   function startAutoSlide() {
     slideInterval = setInterval(() => {
       if (!isScrolling && document.visibilityState === 'visible') {
         const nextIndex = (currentIndex + 1) % slides.length;
         moveToSlide(nextIndex);
       }
-    }, 2500);
+    }, 3000);
   }
 
   function resetAutoSlide() {
@@ -86,18 +111,28 @@ function initializeCarousel() {
   let hoverTimeout;
   track.addEventListener('mouseenter', () => {
     clearInterval(slideInterval);
+    // Aumenta um pouco a legenda no hover
+    const currentCaption = slides[currentIndex].querySelector('.carousel-caption');
+    if (currentCaption) {
+      currentCaption.style.transform = 'translateY(0) scale(1.05)';
+    }
   });
 
   track.addEventListener('mouseleave', () => {
+    const currentCaption = slides[currentIndex].querySelector('.carousel-caption');
+    if (currentCaption) {
+      currentCaption.style.transform = 'translateY(0)';
+    }
     clearTimeout(hoverTimeout);
     hoverTimeout = setTimeout(startAutoSlide, 500);
   });
 
-  // Inicia auto slide
+  // Inicia com primeira slide ativa
+  slides[0].style.opacity = '1';
   startAutoSlide();
 }
 
-// Pré-carrega TODAS as 6 imagens do carrossel
+// Pré-carrega imagens do carrossel
 function preloadCarouselImages() {
   const imageUrls = [
     'img/noisdoiscomcoração.jpg',
@@ -108,21 +143,13 @@ function preloadCarouselImages() {
     'img/nosdois.jpg'
   ];
   
-  console.log('Pré-carregando imagens:', imageUrls); // Debug
-  
   imageUrls.forEach(url => {
     const img = new Image();
     img.src = url;
-    img.onload = () => {
-      console.log('✅ Imagem carregada:', url);
-    };
-    img.onerror = () => {
-      console.log('❌ Erro ao carregar:', url);
-    };
   });
 }
 
-// Efeito de digitação
+// Efeito de digitação melhorado
 function initializeTypeWriter() {
   const title = document.querySelector('h1');
   const originalText = title.textContent;
@@ -131,16 +158,25 @@ function initializeTypeWriter() {
 
   function typeWriter() {
     if (typeIndex < originalText.length) {
+      // Adiciona efeito de cursor piscante
+      title.textContent = typedText + originalText.charAt(typeIndex) + '|';
       typedText += originalText.charAt(typeIndex);
-      title.textContent = typedText;
       typeIndex++;
-      setTimeout(typeWriter, 80);
+      
+      // Velocidade variável para efeito mais natural
+      const speed = Math.random() * 50 + 50;
+      setTimeout(typeWriter, speed);
+    } else {
+      // Remove o cursor no final
+      title.textContent = typedText;
     }
   }
-  typeWriter();
+  
+  // Delay antes de começar
+  setTimeout(typeWriter, 500);
 }
 
-// Magic Button
+// Magic Button com mais feedback
 const magicButton = document.getElementById('magicButton');
 const timeline = document.getElementById('timeline');
 const backgroundMusic = document.getElementById('backgroundMusic');
@@ -151,6 +187,12 @@ let isProcessing = false;
 magicButton.addEventListener('click', () => {
   if (isProcessing) return;
   isProcessing = true;
+  
+  // Efeito de clique no botão
+  magicButton.style.transform = 'scale(0.95)';
+  setTimeout(() => {
+    magicButton.style.transform = 'scale(1)';
+  }, 150);
   
   playBackgroundMusic();
   showTimeline();
@@ -169,6 +211,8 @@ function playBackgroundMusic() {
     playPromise.then(() => {
       musicIndicator.classList.add('playing');
       musicIndicator.innerHTML = '<i class="fas fa-volume-up"></i>';
+      // Efeito visual quando a música começa
+      musicIndicator.style.animation = 'popIn 0.6s ease, pulse 2s infinite 0.6s';
     }).catch(error => {
       setTimeout(() => {
         backgroundMusic.play().then(() => {
@@ -183,6 +227,16 @@ function playBackgroundMusic() {
 function showTimeline() {
   timeline.classList.add('show');
   
+  // Animação de entrada da timeline
+  setTimeout(() => {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('visible');
+      }, index * 300);
+    });
+  }, 500);
+  
   setTimeout(() => {
     if ('scrollBehavior' in document.documentElement.style) {
       timeline.scrollIntoView({ 
@@ -193,11 +247,17 @@ function showTimeline() {
       const timelineTop = timeline.offsetTop;
       window.scrollTo({ top: timelineTop, behavior: 'smooth' });
     }
-  }, 300);
+  }, 800);
 }
 
-// Music Indicator
+// Music Indicator com mais interatividade
 musicIndicator.addEventListener('click', () => {
+  // Efeito de clique
+  musicIndicator.style.transform = 'scale(0.9)';
+  setTimeout(() => {
+    musicIndicator.style.transform = 'scale(1)';
+  }, 150);
+  
   if (backgroundMusic.paused) {
     backgroundMusic.play();
     musicIndicator.classList.add('playing');
@@ -209,26 +269,31 @@ musicIndicator.addEventListener('click', () => {
   }
 });
 
-// Floating Elements
+// Floating Elements melhorados
 function createFloatingElements() {
   const container = document.getElementById('floatingElements');
-  const elements = ['❤️', '💕', '✨', '🌹', '💘'];
+  const elements = ['❤️', '💕', '✨', '🌹', '💘', '🌟', '💫', '🌸'];
   
   container.innerHTML = '';
   
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 12; i++) {
     const element = document.createElement('div');
     element.className = 'floating-element';
     element.textContent = elements[Math.floor(Math.random() * elements.length)];
     element.style.left = Math.random() * 100 + 'vw';
-    element.style.animationDelay = Math.random() * 15 + 's';
-    element.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-    element.style.opacity = Math.random() * 0.2 + 0.1;
+    element.style.animationDelay = Math.random() * 20 + 's';
+    element.style.animationDuration = (Math.random() * 10 + 15) + 's';
+    element.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+    element.style.opacity = Math.random() * 0.15 + 0.05;
+    
+    // Efeito de flutuação mais orgânico
+    element.style.animation = `float ${element.style.animationDuration} infinite linear`;
+    
     container.appendChild(element);
   }
 }
 
-// Parallax
+// Parallax suave
 let scrollTimeout;
 window.addEventListener('scroll', () => {
   if (!scrollTimeout) {
@@ -262,3 +327,30 @@ function preloadImages() {
 }
 
 setTimeout(preloadImages, 2000);
+
+// Efeito de confete no clique do botão mágico
+function createCelebration() {
+  const container = document.getElementById('floatingElements');
+  const confettiElements = ['🎉', '🎊', '💖', '✨', '🌟', '💫'];
+  
+  for (let i = 0; i < 20; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'floating-element';
+    confetti.textContent = confettiElements[Math.floor(Math.random() * confettiElements.length)];
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.animation = `float ${Math.random() * 3 + 2}s ease-out forwards`;
+    confetti.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+    confetti.style.opacity = '0.8';
+    confetti.style.zIndex = '1000';
+    
+    container.appendChild(confetti);
+    
+    // Remove após animação
+    setTimeout(() => {
+      confetti.remove();
+    }, 3000);
+  }
+}
+
+// Adiciona confete ao clique do botão mágico
+magicButton.addEventListener('click', createCelebration);
