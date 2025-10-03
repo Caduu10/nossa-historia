@@ -24,6 +24,7 @@ function initializeAnimations() {
 }
 
 // Carrossel Otimizado
+// Carrossel Otimizado e Mais Rápido
 function initializeCarousel() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(track.children);
@@ -33,9 +34,14 @@ function initializeCarousel() {
   // Configura slides
   slides.forEach((slide, index) => {
     slide.style.left = `${index * 100}%`;
+    
+    // Adiciona atributo para ajustes específicos se necessário
+    if (index === 0 || index === 5) { // Ajusta slides específicos
+      slide.setAttribute('data-adjust', 'true');
+    }
   });
 
-  // Move para slide (função otimizada)
+  // Move para slide (MAIS RÁPIDO - 0.5s)
   const moveToSlide = (index) => {
     if (isScrolling) return;
     isScrolling = true;
@@ -43,13 +49,13 @@ function initializeCarousel() {
     currentIndex = index;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Reset do flag após a transição
+    // Reset mais rápido
     setTimeout(() => {
       isScrolling = false;
-    }, 800);
+    }, 500); // Reduzido de 800ms para 500ms
   };
 
-  // Event listeners debounced
+  // Event listeners
   nextButton.addEventListener('click', () => {
     if (isScrolling) return;
     const nextIndex = (currentIndex + 1) % slides.length;
@@ -64,14 +70,14 @@ function initializeCarousel() {
     resetAutoSlide();
   });
 
-  // Auto slide com controle
+  // Auto slide MAIS RÁPIDO - 3 segundos (era 5)
   function startAutoSlide() {
     slideInterval = setInterval(() => {
-      if (!isScrolling) {
+      if (!isScrolling && document.visibilityState === 'visible') {
         const nextIndex = (currentIndex + 1) % slides.length;
         moveToSlide(nextIndex);
       }
-    }, 5000);
+    }, 3000); // REDUZIDO: 3000ms = 3 segundos
   }
 
   function resetAutoSlide() {
@@ -79,21 +85,32 @@ function initializeCarousel() {
     startAutoSlide();
   }
 
-  // Controles de hover otimizados
+  // Controles de hover
   let hoverTimeout;
   track.addEventListener('mouseenter', () => {
     clearInterval(slideInterval);
   });
 
   track.addEventListener('mouseleave', () => {
-    // Delay para evitar restart imediato
     clearTimeout(hoverTimeout);
-    hoverTimeout = setTimeout(startAutoSlide, 1000);
+    hoverTimeout = setTimeout(startAutoSlide, 800);
+  });
+
+  // Pausa quando a página não está visível
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(slideInterval);
+    } else {
+      startAutoSlide();
+    }
   });
 
   // Inicia auto slide
   startAutoSlide();
 }
+
+// Resto do código mantido igual...
+
 
 // Efeito de digitação otimizado
 function initializeTypeWriter() {
