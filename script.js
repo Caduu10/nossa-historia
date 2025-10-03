@@ -12,13 +12,7 @@ function initializeSite() {
     // Só o essencial primeiro
     initializeCarousel();
     initializeMagicButton();
-    
-    // Conteúdo pesado depois
-    setTimeout(function() {
-        if (typeof createFloatingElements === 'function') createFloatingElements();
-        if (typeof initializeLoveBoard === 'function') initializeLoveBoard();
-    }, 2000);
-}
+
     
     // Carrega conteúdo pesado depois
     setTimeout(function() {
