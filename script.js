@@ -52,7 +52,7 @@ function initializeCarousel() {
     // Reset mais rápido
     setTimeout(() => {
       isScrolling = false;
-    }, 500); // Reduzido de 800ms para 500ms
+    }, 300); // Reduzido de 800ms para 500ms
   };
 
   // Event listeners
