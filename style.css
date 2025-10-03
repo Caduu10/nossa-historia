@@ -129,7 +129,7 @@ h1 {
   left: 100%;
 }
 
-/* Carrossel Fluido - Legendas Corrigidas */
+/* Carrossel Rápido e Fluido */
 .carousel-container {
   position: relative;
   max-width: 900px;
@@ -144,7 +144,7 @@ h1 {
 
 .carousel-track {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 0.4s ease-in-out; /* MAIS RÁPIDO */
   will-change: transform;
   height: 100%;
 }
@@ -156,16 +156,6 @@ h1 {
   align-items: center;
   background: var(--dark);
   position: relative;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.carousel-slide.loaded {
-  opacity: 1;
-}
-
-.carousel-slide.active {
-  opacity: 1;
 }
 
 .carousel-slide img {
@@ -174,14 +164,9 @@ h1 {
   object-fit: cover;
   object-position: center 30%;
   display: block;
-  transition: transform 0.6s ease;
 }
 
-.carousel-slide.active img {
-  transform: scale(1.02);
-}
-
-/* LEGENDAS CORRIGIDAS - Só mostra no slide ativo */
+/* Legendas - SEMPRE VISÍVEIS */
 .carousel-caption {
   position: absolute;
   bottom: 0;
@@ -194,15 +179,6 @@ h1 {
   font-family: 'Dancing Script', cursive;
   font-size: 1.6rem;
   z-index: 2;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease 0.2s;
-}
-
-/* SÓ MOSTRA LEGENDA NO SLIDE ATIVO */
-.carousel-slide.active .carousel-caption {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .carousel-nav {
@@ -237,110 +213,6 @@ h1 {
   background: var(--primary);
   transform: scale(1.1);
   opacity: 1;
-}
-
-/* Loading sutil para imagens */
-.carousel-slide:not(.loaded)::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top: 3px solid var(--primary);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  z-index: 1;
-}
-
-@keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .carousel-container {
-    height: 400px;
-    max-width: 95%;
-  }
-  
-  .carousel-slide img {
-    object-position: center 25%;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-container {
-    height: 300px;
-  }
-  
-  .carousel-caption {
-    font-size: 1.3rem;
-    padding: 15px;
-  }
-  
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-  }
-}
-
-/* Responsividade para o carrossel */
-@media (max-width: 768px) {
-  .carousel-track {
-    height: 400px; /* Altura menor para mobile */
-  }
-  
-  .carousel-slide img {
-    width: 100%; /* Em mobile, ocupa largura total */
-    height: auto; /* Altura automática */
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-track {
-    height: 300px;
-  }
-  
-  .carousel-caption {
-    font-size: 1.4rem;
-    padding: 20px;
-  }
-}
-
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  transform: translateY(-50%);
-  z-index: 3;
-}
-
-.carousel-btn {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel-btn:hover {
-  background: var(--primary);
-  transform: scale(1.1);
 }
 
 /* Timeline Premium */
@@ -451,7 +323,6 @@ h1 {
   opacity: 0.1;
   font-size: 2rem;
   animation: float 20s infinite linear;
-  will-change: transform; /* Otimização */
 }
 
 /* Music Indicator */
@@ -472,7 +343,6 @@ h1 {
   cursor: pointer;
   z-index: 100;
   transition: var(--transition);
-  will-change: transform; /* Otimização */
 }
 
 .music-indicator.playing {
@@ -483,7 +353,7 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Animações Otimizadas */
+/* Animações */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -520,7 +390,8 @@ h1 {
   h1 { font-size: 2.5rem; }
   .subtitle { font-size: 1.2rem; }
   .cta-button { padding: 15px 40px; font-size: 1.1rem; }
-  .carousel-slide img { height: 400px; }
+  .carousel-container { height: 400px; max-width: 95%; }
+  .carousel-slide img { object-position: center 25%; }
   .timeline-item { flex-direction: column; gap: 30px; }
   .timeline-item:nth-child(even) { flex-direction: column; }
   .timeline-content h2 { font-size: 2rem; }
@@ -532,27 +403,10 @@ h1 {
   h1 { font-size: 2rem; }
   .subtitle { font-size: 1rem; }
   .cta-button { padding: 12px 30px; font-size: 1rem; }
-  .carousel-slide img { height: 300px; }
+  .carousel-container { height: 300px; }
   .timeline-content { padding: 25px 20px; }
   .timeline-content h2 { font-size: 1.8rem; }
   .music-indicator { width: 50px; height: 50px; font-size: 1.2rem; }
-  .carousel-btn { width: 50px; height: 50px; font-size: 1.2rem; }
-}
-/* VERSÃO DE EMERGÊNCIA - Garante que nada seja cortado */
-.carousel-slide img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  margin: 0 auto;
-}
-
-.carousel-container {
-  background: var(--dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .carousel-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+  .carousel-caption { font-size: 1.3rem; padding: 15px; }
 }

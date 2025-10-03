@@ -3,54 +3,41 @@ let currentIndex = 0;
 let slideInterval;
 let isScrolling = false;
 
-// Loading Screen Otimizado
+// Loading Screen
 window.addEventListener('load', () => {
   setTimeout(() => {
     const loadingScreen = document.querySelector('.loading-screen');
     loadingScreen.style.opacity = '0';
     setTimeout(() => {
       loadingScreen.style.display = 'none';
-      // Inicia animações após o loading
       initializeAnimations();
     }, 1000);
-  }, 1500); // Reduzido para melhor experiência
+  }, 1500);
 });
 
-// Inicialização otimizada
+// Inicialização
 function initializeAnimations() {
   initializeCarousel();
   initializeTypeWriter();
-  createFloatingElements(); // Menos elementos para performance
+  createFloatingElements();
 }
 
-// Carrossel Otimizado
-// Carrossel Otimizado e Mais Rápido
-// Carrossel Fluido - Sem Tela Preta e Legendas Corrigidas
+// Carrossel Rápido e Simples
 function initializeCarousel() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(track.children);
   const nextButton = document.querySelector('.next');
   const prevButton = document.querySelector('.prev');
 
-  // PRÉ-CARREGA TODAS AS IMAGENS
+  // Pré-carrega imagens
   preloadCarouselImages();
 
   // Configura slides
   slides.forEach((slide, index) => {
     slide.style.left = `${index * 100}%`;
-    
-    // Garante que a imagem está carregada
-    const img = slide.querySelector('img');
-    if (img.complete) {
-      slide.classList.add('loaded');
-    } else {
-      img.addEventListener('load', () => {
-        slide.classList.add('loaded');
-      });
-    }
   });
 
-  // Move para slide com transição suave
+  // Move para slide - MUITO MAIS RÁPIDO
   const moveToSlide = (index) => {
     if (isScrolling) return;
     isScrolling = true;
@@ -58,13 +45,9 @@ function initializeCarousel() {
     currentIndex = index;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Atualiza classe ativa - REMOVE DE TODOS E ADICIONA APENAS NO ATUAL
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[currentIndex].classList.add('active');
-    
     setTimeout(() => {
       isScrolling = false;
-    }, 500);
+    }, 400); // MUITO MAIS RÁPIDO
   };
 
   // Event listeners
@@ -82,14 +65,14 @@ function initializeCarousel() {
     resetAutoSlide();
   });
 
-  // Auto slide
+  // Auto slide MAIS RÁPIDO - 2.5 segundos
   function startAutoSlide() {
     slideInterval = setInterval(() => {
       if (!isScrolling && document.visibilityState === 'visible') {
         const nextIndex = (currentIndex + 1) % slides.length;
         moveToSlide(nextIndex);
       }
-    }, 3000);
+    }, 2500); // MAIS RÁPIDO: 2.5 segundos
   }
 
   function resetAutoSlide() {
@@ -105,15 +88,14 @@ function initializeCarousel() {
 
   track.addEventListener('mouseleave', () => {
     clearTimeout(hoverTimeout);
-    hoverTimeout = setTimeout(startAutoSlide, 800);
+    hoverTimeout = setTimeout(startAutoSlide, 500);
   });
 
-  // Inicia com primeira slide ativa
-  slides[0].classList.add('active', 'loaded');
+  // Inicia auto slide
   startAutoSlide();
 }
 
-// Pré-carrega todas as imagens do carrossel
+// Pré-carrega imagens do carrossel
 function preloadCarouselImages() {
   const imageUrls = [
     'img/noisdoiscomcoração.jpg',
@@ -127,39 +109,10 @@ function preloadCarouselImages() {
   imageUrls.forEach(url => {
     const img = new Image();
     img.src = url;
-    img.onload = () => {
-      console.log('Imagem pré-carregada:', url);
-    };
   });
 }
 
-// Preload de imagens para melhor performance
-function preloadImages() {
-  const imageUrls = [
-    'img/noisdoiscomcoração.jpg',
-    'img/DateMphoto1.jpg',
-    'img/DateMphoto2.jpg',
-    'img/DateMphoto3.jpg',
-    'img/DateMphoto4.jpg',
-    'img/nosdois.jpg',
-    'img/restaurante.jpg',
-    'img/viagem.jpg'
-  ];
-  
-  imageUrls.forEach(url => {
-    const img = new Image();
-    img.src = url;
-  });
-}
-
-// Inicia preload após o loading
-setTimeout(preloadImages, 2000);
-
-
-// Resto do código mantido igual...
-
-
-// Efeito de digitação otimizado
+// Efeito de digitação
 function initializeTypeWriter() {
   const title = document.querySelector('h1');
   const originalText = title.textContent;
@@ -171,43 +124,32 @@ function initializeTypeWriter() {
       typedText += originalText.charAt(typeIndex);
       title.textContent = typedText;
       typeIndex++;
-      
-      // Usa requestAnimationFrame para melhor performance
-      requestAnimationFrame(() => {
-        setTimeout(typeWriter, 80); // Velocidade ajustada
-      });
+      setTimeout(typeWriter, 80);
     }
   }
-
   typeWriter();
 }
 
-// Magic Button Otimizado
+// Magic Button
 const magicButton = document.getElementById('magicButton');
 const timeline = document.getElementById('timeline');
 const backgroundMusic = document.getElementById('backgroundMusic');
 const musicIndicator = document.getElementById('musicIndicator');
 
-// Debounce para evitar múltiplos cliques
 let isProcessing = false;
 
 magicButton.addEventListener('click', () => {
   if (isProcessing) return;
   isProcessing = true;
   
-  // Toca música
   playBackgroundMusic();
-  
-  // Mostra timeline
   showTimeline();
   
-  // Reset do flag após um tempo
   setTimeout(() => {
     isProcessing = false;
   }, 1000);
 });
 
-// Função separada para tocar música
 function playBackgroundMusic() {
   backgroundMusic.volume = 0.7;
   
@@ -218,8 +160,6 @@ function playBackgroundMusic() {
       musicIndicator.classList.add('playing');
       musicIndicator.innerHTML = '<i class="fas fa-volume-up"></i>';
     }).catch(error => {
-      console.log('Autoplay bloqueado:', error);
-      // Fallback mais suave
       setTimeout(() => {
         backgroundMusic.play().then(() => {
           musicIndicator.classList.add('playing');
@@ -230,11 +170,9 @@ function playBackgroundMusic() {
   }
 }
 
-// Função separada para mostrar timeline
 function showTimeline() {
   timeline.classList.add('show');
   
-  // Scroll suave com verificação
   setTimeout(() => {
     if ('scrollBehavior' in document.documentElement.style) {
       timeline.scrollIntoView({ 
@@ -242,7 +180,6 @@ function showTimeline() {
         block: 'start' 
       });
     } else {
-      // Fallback para browsers antigos
       const timelineTop = timeline.offsetTop;
       window.scrollTo({ top: timelineTop, behavior: 'smooth' });
     }
@@ -262,15 +199,13 @@ musicIndicator.addEventListener('click', () => {
   }
 });
 
-// Floating Elements Otimizado
+// Floating Elements
 function createFloatingElements() {
   const container = document.getElementById('floatingElements');
   const elements = ['❤️', '💕', '✨', '🌹', '💘'];
   
-  // Limpa elementos existentes
   container.innerHTML = '';
   
-  // Menos elementos para melhor performance
   for (let i = 0; i < 8; i++) {
     const element = document.createElement('div');
     element.className = 'floating-element';
@@ -283,7 +218,7 @@ function createFloatingElements() {
   }
 }
 
-// Parallax suave otimizado
+// Parallax
 let scrollTimeout;
 window.addEventListener('scroll', () => {
   if (!scrollTimeout) {
@@ -291,14 +226,13 @@ window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
       const hero = document.querySelector('.hero');
       const rate = scrolled * 0.3;
-      
       hero.style.transform = `translateY(${rate}px)`;
       scrollTimeout = null;
-    }, 10); // Throttle para melhor performance
+    }, 10);
   }
 });
 
-// Preload de imagens para melhor performance
+// Preload de todas as imagens
 function preloadImages() {
   const imageUrls = [
     'img/noisdoiscomcoração.jpg',
@@ -317,5 +251,4 @@ function preloadImages() {
   });
 }
 
-// Inicia preload após o loading
 setTimeout(preloadImages, 2000);
