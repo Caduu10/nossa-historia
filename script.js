@@ -25,23 +25,32 @@ function initializeAnimations() {
 
 // Carrossel Otimizado
 // Carrossel Otimizado e Mais Rápido
+// Carrossel Fluido - Sem Tela Preta e Legendas Corrigidas
 function initializeCarousel() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(track.children);
   const nextButton = document.querySelector('.next');
   const prevButton = document.querySelector('.prev');
 
+  // PRÉ-CARREGA TODAS AS IMAGENS
+  preloadCarouselImages();
+
   // Configura slides
   slides.forEach((slide, index) => {
     slide.style.left = `${index * 100}%`;
     
-    // Adiciona atributo para ajustes específicos se necessário
-    if (index === 0 || index === 5) { // Ajusta slides específicos
-      slide.setAttribute('data-adjust', 'true');
+    // Garante que a imagem está carregada
+    const img = slide.querySelector('img');
+    if (img.complete) {
+      slide.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => {
+        slide.classList.add('loaded');
+      });
     }
   });
 
-  // Move para slide (MAIS RÁPIDO - 0.5s)
+  // Move para slide com transição suave
   const moveToSlide = (index) => {
     if (isScrolling) return;
     isScrolling = true;
@@ -49,10 +58,13 @@ function initializeCarousel() {
     currentIndex = index;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Reset mais rápido
+    // Atualiza classe ativa - REMOVE DE TODOS E ADICIONA APENAS NO ATUAL
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[currentIndex].classList.add('active');
+    
     setTimeout(() => {
       isScrolling = false;
-    }, 300); // Reduzido de 800ms para 500ms
+    }, 500);
   };
 
   // Event listeners
@@ -70,14 +82,14 @@ function initializeCarousel() {
     resetAutoSlide();
   });
 
-  // Auto slide MAIS RÁPIDO - 3 segundos (era 5)
+  // Auto slide
   function startAutoSlide() {
     slideInterval = setInterval(() => {
       if (!isScrolling && document.visibilityState === 'visible') {
         const nextIndex = (currentIndex + 1) % slides.length;
         moveToSlide(nextIndex);
       }
-    }, 3000); // REDUZIDO: 3000ms = 3 segundos
+    }, 3000);
   }
 
   function resetAutoSlide() {
@@ -96,18 +108,53 @@ function initializeCarousel() {
     hoverTimeout = setTimeout(startAutoSlide, 800);
   });
 
-  // Pausa quando a página não está visível
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      clearInterval(slideInterval);
-    } else {
-      startAutoSlide();
-    }
-  });
-
-  // Inicia auto slide
+  // Inicia com primeira slide ativa
+  slides[0].classList.add('active', 'loaded');
   startAutoSlide();
 }
+
+// Pré-carrega todas as imagens do carrossel
+function preloadCarouselImages() {
+  const imageUrls = [
+    'img/noisdoiscomcoração.jpg',
+    'img/DateMphoto1.jpg',
+    'img/DateMphoto2.jpg',
+    'img/DateMphoto3.jpg',
+    'img/DateMphoto4.jpg',
+    'img/nosdois.jpg'
+  ];
+  
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+    img.onload = () => {
+      console.log('Imagem pré-carregada:', url);
+    };
+  });
+}
+
+// Preload de imagens para melhor performance
+function preloadImages() {
+  const imageUrls = [
+    'img/noisdoiscomcoração.jpg',
+    'img/DateMphoto1.jpg',
+    'img/DateMphoto2.jpg',
+    'img/DateMphoto3.jpg',
+    'img/DateMphoto4.jpg',
+    'img/nosdois.jpg',
+    'img/restaurante.jpg',
+    'img/viagem.jpg'
+  ];
+  
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
+// Inicia preload após o loading
+setTimeout(preloadImages, 2000);
+
 
 // Resto do código mantido igual...
 
