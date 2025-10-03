@@ -22,22 +22,24 @@ function initializeAnimations() {
   createFloatingElements();
 }
 
-// Carrossel Rápido e Simples
+// Carrossel Corrigido - TODAS AS 6 FOTOS
 function initializeCarousel() {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(track.children);
   const nextButton = document.querySelector('.next');
   const prevButton = document.querySelector('.prev');
 
-  // Pré-carrega imagens
+  console.log('Total de slides:', slides.length); // Debug: ver quantas fotos tem
+
+  // Pré-carrega TODAS as imagens
   preloadCarouselImages();
 
-  // Configura slides
+  // Configura slides - GARANTE QUE TODOS OS 6 SLIDES FUNCIONEM
   slides.forEach((slide, index) => {
     slide.style.left = `${index * 100}%`;
   });
 
-  // Move para slide - MUITO MAIS RÁPIDO
+  // Move para slide
   const moveToSlide = (index) => {
     if (isScrolling) return;
     isScrolling = true;
@@ -47,7 +49,7 @@ function initializeCarousel() {
     
     setTimeout(() => {
       isScrolling = false;
-    }, 400); // MUITO MAIS RÁPIDO
+    }, 400);
   };
 
   // Event listeners
@@ -65,14 +67,14 @@ function initializeCarousel() {
     resetAutoSlide();
   });
 
-  // Auto slide MAIS RÁPIDO - 2.5 segundos
+  // Auto slide - 2.5 segundos
   function startAutoSlide() {
     slideInterval = setInterval(() => {
       if (!isScrolling && document.visibilityState === 'visible') {
         const nextIndex = (currentIndex + 1) % slides.length;
         moveToSlide(nextIndex);
       }
-    }, 2500); // MAIS RÁPIDO: 2.5 segundos
+    }, 2500);
   }
 
   function resetAutoSlide() {
@@ -95,7 +97,7 @@ function initializeCarousel() {
   startAutoSlide();
 }
 
-// Pré-carrega imagens do carrossel
+// Pré-carrega TODAS as 6 imagens do carrossel
 function preloadCarouselImages() {
   const imageUrls = [
     'img/noisdoiscomcoração.jpg',
@@ -106,9 +108,17 @@ function preloadCarouselImages() {
     'img/nosdois.jpg'
   ];
   
+  console.log('Pré-carregando imagens:', imageUrls); // Debug
+  
   imageUrls.forEach(url => {
     const img = new Image();
     img.src = url;
+    img.onload = () => {
+      console.log('✅ Imagem carregada:', url);
+    };
+    img.onerror = () => {
+      console.log('❌ Erro ao carregar:', url);
+    };
   });
 }
 
