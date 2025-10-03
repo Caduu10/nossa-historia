@@ -1343,3 +1343,46 @@ h1 {
     justify-content: center;
   }
 }
+/* ⚡ OTIMIZAÇÕES DE PERFORMANCE - ADICIONE ISSO NO FINAL */
+
+/* Desativa animações pesadas durante o carregamento */
+.loading-screen ~ * {
+    animation-duration: 0.01s !important;
+    animation-delay: 0.01s !important;
+}
+
+/* Otimizações para mobile */
+@media (max-width: 768px) {
+    /* Reduz elementos flutuantes no mobile */
+    .floating-element:nth-child(n+5) {
+        display: none;
+    }
+    
+    /* Simplifica animações no mobile */
+    .hero::before,
+    .board-container::before {
+        animation: none !important;
+    }
+    
+    /* Reduz qualidade de sombras no mobile */
+    .carousel-container,
+    .board-container {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    }
+}
+
+/* Melhora performance de rolagem */
+.carousel-track,
+.floating-elements {
+    will-change: transform;
+}
+
+/* Loading mais rápido */
+.loading-screen {
+    transition: opacity 0.3s ease !important;
+}
+
+/* Imagens do carrossel otimizadas */
+.carousel-slide img {
+    transform: translateZ(0); /* Aceleração GPU */
+}

@@ -4,23 +4,117 @@ let slideInterval;
 let isScrolling = false;
 
 // Loading Screen
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const loadingScreen = document.querySelector('.loading-screen');
-    loadingScreen.style.opacity = '0';
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-      initializeAnimations();
-    }, 1000);
-  }, 1500);
+// ⚡ CARREGAMENTO ULTRA-RÁPIDO - NOVO CÓDIGO
+window.addEventListener('DOMContentLoaded', function() {
+    // Esconde loading rápido
+    setTimeout(function() {
+        var loadingScreen = document.querySelector('.loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(function() {
+                loadingScreen.style.display = 'none';
+                initializeSite();
+            }, 300);
+        }
+    }, 500); // Reduzido de 2000 para 500ms
 });
 
-// Inicialização
-function initializeAnimations() {
-  initializeCarousel();
-  initializeTypeWriter();
-  createFloatingElements();
-  initializeScrollAnimations();
+function initializeSite() {
+    // Inicializa só o essencial primeiro
+    initializeCarousel();
+    initializeMagicButton();
+    
+    // Carrega conteúdo pesado depois
+    setTimeout(function() {
+        createFloatingElements();
+        preloadHeavyContent();
+    }, 1000);
+}
+
+function preloadHeavyContent() {
+    // Pré-carrega imagens pesadas só quando necessário
+    var heavyImages = ['img/restaurante.jpg', 'img/viagem.jpg'];
+    heavyImages.forEach(function(url) {
+        var img = new Image();
+        img.src = url;
+    });
+}
+
+// ⚡ CARROSSEL OTIMIZADO - substitua a função initializeCarousel
+function initializeCarousel() {
+    var track = document.querySelector('.carousel-track');
+    var slides = document.querySelectorAll('.carousel-slide');
+    var nextButton = document.querySelector('.next');
+    var prevButton = document.querySelector('.prev');
+    
+    if (!track || slides.length === 0) return;
+    
+    var currentIndex = 0;
+    var slideInterval;
+    
+    // Configuração mínima
+    slides.forEach(function(slide, index) {
+        slide.style.left = (index * 100) + '%';
+    });
+    
+    function moveToSlide(index) {
+        currentIndex = index;
+        track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+    }
+    
+    // Event listeners simples
+    nextButton.addEventListener('click', function() {
+        var nextIndex = (currentIndex + 1) % slides.length;
+        moveToSlide(nextIndex);
+        resetAutoSlide();
+    });
+    
+    prevButton.addEventListener('click', function() {
+        var prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        moveToSlide(prevIndex);
+        resetAutoSlide();
+    });
+    
+    function startAutoSlide() {
+        slideInterval = setInterval(function() {
+            var nextIndex = (currentIndex + 1) % slides.length;
+            moveToSlide(nextIndex);
+        }, 4000);
+    }
+    
+    function resetAutoSlide() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+    
+    startAutoSlide();
+}
+
+// ⚡ BOTÃO MÁGICO OTIMIZADO - substitua a função do magic button
+function initializeMagicButton() {
+    var magicButton = document.getElementById('magicButton');
+    var timeline = document.getElementById('timeline');
+    var backgroundMusic = document.getElementById('backgroundMusic');
+    
+    if (!magicButton) return;
+    
+    magicButton.addEventListener('click', function() {
+        // Toca música (não bloqueia)
+        if (backgroundMusic) {
+            backgroundMusic.volume = 0.5;
+            backgroundMusic.play().catch(function() { 
+                // Ignora erros de autoplay
+            });
+        }
+        
+        // Mostra timeline
+        if (timeline) {
+            timeline.classList.add('show');
+            setTimeout(function() {
+                timeline.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    });
 }
 
 // Observador de scroll para animações da timeline
