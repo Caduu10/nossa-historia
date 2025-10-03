@@ -457,41 +457,25 @@ function initializeLoveBoard() {
   }
 
   function createNoteElement(note) {
-  const noteElement = document.createElement('div');
-  noteElement.className = 'note';
-  noteElement.setAttribute('data-color', note.color);
-  noteElement.setAttribute('data-id', note.id);
-  
-  // Rotação aleatória para efeito mais orgânico
-  const rotation = (Math.random() * 4 - 2).toFixed(1);
-  noteElement.style.setProperty('--rotation', `${rotation}deg`);
+    const noteElement = document.createElement('div');
+    noteElement.className = 'note';
+    noteElement.setAttribute('data-color', note.color);
+    noteElement.setAttribute('data-id', note.id);
+    noteElement.style.animation = 'noteAppear 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 
-  noteElement.innerHTML = `
-    <div class="note-header">
-      <h3 class="note-title">${note.title}</h3>
-      <span class="note-emoji">${note.emoji}</span>
-    </div>
-    <div class="note-content">${note.content}</div>
-    <div class="note-date">${note.date}</div>
-    <div class="note-actions">
-      <button class="note-delete" onclick="deleteNote(${note.id})">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-  `;
-
-  // Faz as notas arrastáveis
-  makeNoteDraggable(noteElement);
-
-  notesContainer.appendChild(noteElement);
-  
-  // Animação de entrada com delay
-  setTimeout(() => {
-    noteElement.classList.add('loaded');
-  }, 100);
-  
-  noteCounter++;
-}
+    noteElement.innerHTML = `
+      <div class="note-header">
+        <h3 class="note-title">${note.title}</h3>
+        <span class="note-emoji">${note.emoji}</span>
+      </div>
+      <div class="note-content">${note.content}</div>
+      <div class="note-date">${note.date}</div>
+      <div class="note-actions">
+        <button class="note-delete" onclick="deleteNote(${note.id})">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `;
 
     // Faz as notas arrastáveis
     makeNoteDraggable(noteElement);
