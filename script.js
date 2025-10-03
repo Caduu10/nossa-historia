@@ -5,24 +5,29 @@ let isScrolling = false;
 
 // Loading Screen
 // ⚡ CARREGAMENTO ULTRA-RÁPIDO - NOVO CÓDIGO
-window.addEventListener('DOMContentLoaded', function() {
-    // Esconde loading rápido
-    setTimeout(function() {
-        var loadingScreen = document.querySelector('.loading-screen');
-        if (loadingScreen) {
-            loadingScreen.style.opacity = '0';
-            setTimeout(function() {
-                loadingScreen.style.display = 'none';
-                initializeSite();
-            }, 300);
-        }
-    }, 500); // Reduzido de 2000 para 500ms
+// ⚡ CARREGAMENTO INSTANTÂNEO
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove loading imediatamente
+    var loadingScreen = document.querySelector('.loading-screen');
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+    }
+    
+    // Inicia site depois
+    setTimeout(initializeSite, 100);
 });
 
 function initializeSite() {
-    // Inicializa só o essencial primeiro
+    // Só o essencial primeiro
     initializeCarousel();
     initializeMagicButton();
+    
+    // Conteúdo pesado depois
+    setTimeout(function() {
+        if (typeof createFloatingElements === 'function') createFloatingElements();
+        if (typeof initializeLoveBoard === 'function') initializeLoveBoard();
+    }, 2000);
+}
     
     // Carrega conteúdo pesado depois
     setTimeout(function() {

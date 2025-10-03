@@ -8,17 +8,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <!-- Otimizações de Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <!-- Remove render-blocking -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.media='all'">
 
-<!-- CSS com carga prioritária -->
-<link rel="stylesheet" href="style.css" media="all">
-
-<!-- Font Awesome com carga não-bloqueante -->
+<!-- Font Awesome não-bloqueante -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-</head>
-<body>
+
+<!-- CSS não-bloqueante -->
+<link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
   <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="loading-text">Nossa História...</div>
