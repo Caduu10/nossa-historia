@@ -578,6 +578,7 @@ h1 {
   .carousel-caption { font-size: 1.3rem; padding: 15px; }
 }
 /* Lousa do Amor - Versão Premium */
+/* 🎨 Lousa do Amor - Versão Premium */
 .love-board {
   width: 100%;
   max-width: 1400px;
@@ -585,14 +586,14 @@ h1 {
   padding: 60px 20px;
   display: none;
   opacity: 0;
-  transform: translateY(80px) scale(0.95);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .love-board.show {
   display: block;
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
 .board-container {
@@ -602,7 +603,7 @@ h1 {
     rgba(255, 215, 0, 0.03) 100%);
   backdrop-filter: blur(25px);
   border-radius: 30px;
-  padding: 50px 40px;
+  padding: 60px 50px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
     0 25px 80px rgba(255, 77, 109, 0.15),
@@ -610,16 +611,6 @@ h1 {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
-  transform: perspective(1000px) rotateX(5deg);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.board-container:hover {
-  transform: perspective(1000px) rotateX(0deg) translateY(-10px);
-  box-shadow: 
-    0 35px 100px rgba(255, 77, 109, 0.25),
-    0 15px 50px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .board-container::before {
@@ -639,17 +630,17 @@ h1 {
 
 .board-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   position: relative;
 }
 
 .board-header::after {
   content: '';
   position: absolute;
-  bottom: -20px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
+  width: 120px;
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--primary), transparent);
   border-radius: 2px;
@@ -678,7 +669,7 @@ h1 {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-/* Controles da Lousa - Estilo Premium */
+/* 🎛️ Controles Elegantes */
 .board-controls {
   display: flex;
   justify-content: center;
@@ -688,7 +679,7 @@ h1 {
 }
 
 .board-btn {
-  padding: 15px 30px;
+  padding: 16px 35px;
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.15), 
     rgba(255, 255, 255, 0.05));
@@ -745,18 +736,18 @@ h1 {
   transform: scale(1.2) rotate(10deg);
 }
 
-/* Container das Anotações - Grade Dinâmica */
+/* 📝 Container de Anotações Elegante */
 .notes-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 30px;
-  min-height: 500px;
+  min-height: 400px;
   perspective: 1000px;
 }
 
-/* Estilo das Anotações - Design Premium */
+/* 🎴 Anotações Premium */
 .note {
-  background: linear-gradient(135deg, #ffeb3b, #ffc107);
+  background: linear-gradient(135deg, #ffeb3b, #ffc107, #ffb300);
   padding: 30px 25px;
   border-radius: 20px;
   box-shadow: 
@@ -928,7 +919,7 @@ h1 {
   box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
 }
 
-/* Cores das anotações - Gradientes melhorados */
+/* 🎨 Cores Elegantes para Anotações */
 .note[data-color="#ffeb3b"] { 
   background: linear-gradient(135deg, #ffeb3b, #ffc107, #ffb300);
 }
@@ -958,7 +949,7 @@ h1 {
   color: white;
 }
 
-/* Modal Premium */
+/* ✨ Modal Elegante */
 .modal {
   display: none;
   position: fixed;
@@ -1042,7 +1033,7 @@ h1 {
   background: rgba(255, 77, 109, 0.1);
 }
 
-/* Formulário Premium */
+/* 📝 Formulário Elegante */
 .form-group {
   margin-bottom: 30px;
   position: relative;
@@ -1089,7 +1080,7 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* Color Picker Premium */
+/* 🎨 Color Picker Elegante */
 .color-picker {
   display: flex;
   gap: 15px;
@@ -1131,7 +1122,7 @@ h1 {
     0 0 20px rgba(255, 77, 109, 0.5);
 }
 
-/* Emoji Picker Premium */
+/* 😊 Emoji Picker Elegante */
 .emoji-picker {
   display: flex;
   gap: 12px;
@@ -1161,7 +1152,7 @@ h1 {
   box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
 }
 
-/* Botão Salvar Premium */
+/* 💾 Botão Salvar Elegante */
 .save-note-btn {
   width: 100%;
   padding: 20px;
@@ -1213,7 +1204,7 @@ h1 {
   transform: scale(1.2) rotate(15deg);
 }
 
-/* Novas Animações */
+/* ✨ Animações Elegantes */
 @keyframes noteEntrance {
   0% {
     opacity: 0;
@@ -1266,7 +1257,7 @@ h1 {
   }
 }
 
-/* Responsividade */
+/* 📱 Responsividade */
 @media (max-width: 768px) {
   .love-board {
     padding: 40px 15px;
