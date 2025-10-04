@@ -4,11 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Momentos com Beatriz | Nossa História</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Otimizado para performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-text">Nossa História...</div>
+  </div>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -19,31 +29,31 @@
       </button>
     </div>
 
-    <!-- Carrossel Premium -->
+    <!-- Carrossel -->
     <div class="carousel-container">
       <div class="carousel-track">
         <div class="carousel-slide">
-          <img src="img/noisdoiscomcoração.jpg" alt="Nós dois com coração">
+          <img src="img/noisdoiscomcoração.jpg" alt="Nós dois com coração" loading="lazy">
           <div class="carousel-caption">Nosso amor em cada detalhe</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto1.jpg" alt="Date 1">
+          <img src="img/DateMphoto1.jpg" alt="Date 1" loading="lazy">
           <div class="carousel-caption">Momentos especiais</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto2.jpg" alt="Date 2">
+          <img src="img/DateMphoto2.jpg" alt="Date 2" loading="lazy">
           <div class="carousel-caption">Risadas compartilhadas</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto3.jpg" alt="Date 3">
+          <img src="img/DateMphoto3.jpg" alt="Date 3" loading="lazy">
           <div class="carousel-caption">Aventuras juntos</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto4.jpg" alt="Date 4">
+          <img src="img/DateMphoto4.jpg" alt="Date 4" loading="lazy">
           <div class="carousel-caption">Memórias eternas</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/nosdois.jpg" alt="Nós dois">
+          <img src="img/nosdois.jpg" alt="Nós dois" loading="lazy">
           <div class="carousel-caption">Para sempre nós</div>
         </div>
       </div>
@@ -80,26 +90,11 @@
     </div>
   </section>
 
-  <!-- Floating Elements -->
-  <div class="floating-elements" id="floatingElements"></div>
-
-  <!-- Music Indicator -->
-  <div class="music-indicator" id="musicIndicator">
-    <i class="fas fa-music"></i>
-  </div>
-
-  <!-- Áudio -->
-  <audio id="backgroundMusic" loop style="display: none;">
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="script.js"></script>
-
-    <!-- Lousa do Amor -->
+  <!-- Lousa do Amor -->
   <section class="love-board" id="loveBoard">
     <div class="board-container">
       <div class="board-header">
-        <h2>📝 Nossas lousa</h2>
+        <h2>📝 Nossa Lousa do Amor</h2>
         <p>Deixe suas mensagens, recadinhos e guarde nossas memórias especiais 💕</p>
       </div>
       
@@ -107,19 +102,13 @@
         <button class="board-btn" id="addNoteBtn">
           <i class="fas fa-plus"></i> Nova Anotação
         </button>
-        <button class="board-btn" id="changeBgBtn">
-          <i class="fas fa-palette"></i> Fundo
-        </button>
-        <button class="board-btn" id="saveBoardBtn">
-          <i class="fas fa-download"></i> Salvar
-        </button>
         <button class="board-btn" id="clearBoardBtn">
           <i class="fas fa-trash"></i> Limpar
         </button>
       </div>
 
       <div class="notes-container" id="notesContainer">
-        <!-- As anotações serão adicionadas aqui dinamicamente -->
+        <!-- Anotações aparecem aqui -->
       </div>
 
       <!-- Modal para nova anotação -->
@@ -141,7 +130,7 @@
           <div class="form-group">
             <label>Cor do post-it:</label>
             <div class="color-picker">
-              <div class="color-option" data-color="#ffeb3b" style="background-color: #ffeb3b;"></div>
+              <div class="color-option active" data-color="#ffeb3b" style="background-color: #ffeb3b;"></div>
               <div class="color-option" data-color="#ff9800" style="background-color: #ff9800;"></div>
               <div class="color-option" data-color="#e91e63" style="background-color: #e91e63;"></div>
               <div class="color-option" data-color="#9c27b0" style="background-color: #9c27b0;"></div>
@@ -153,7 +142,7 @@
           <div class="form-group">
             <label>Emoji:</label>
             <div class="emoji-picker">
-              <span class="emoji-option" data-emoji="💕">💕</span>
+              <span class="emoji-option active" data-emoji="💕">💕</span>
               <span class="emoji-option" data-emoji="❤️">❤️</span>
               <span class="emoji-option" data-emoji="🎉">🎉</span>
               <span class="emoji-option" data-emoji="⭐">⭐</span>
@@ -171,5 +160,18 @@
       </div>
     </div>
   </section>
+
+  <!-- Elementos -->
+  <div class="floating-elements" id="floatingElements"></div>
+  <div class="music-indicator" id="musicIndicator">
+    <i class="fas fa-music"></i>
+  </div>
+
+  <!-- Áudio -->
+  <audio id="backgroundMusic" loop preload="none">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
 </body>
 </html>

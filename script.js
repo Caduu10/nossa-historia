@@ -1,6 +1,6 @@
 // ⚡ CARREGAMENTO RÁPIDO
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Carregado - Iniciando site...');
+    console.log('🚀 DOM Carregado - Iniciando site...');
     
     // Remove loading rápido
     setTimeout(function() {
@@ -16,26 +16,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeSite() {
-    console.log('Inicializando componentes do site...');
+    console.log('🎯 Inicializando componentes do site...');
     
     // Inicializa componentes essenciais
     initializeCarousel();
     initializeMagicButton();
+    initializeMusicIndicator();
     
     // Carrega conteúdo pesado depois
     setTimeout(function() {
         createFloatingElements();
-        preloadHeavyContent();
     }, 1000);
-}
-
-function preloadHeavyContent() {
-    // Pré-carrega imagens pesadas
-    const heavyImages = ['img/restaurante.jpg', 'img/viagem.jpg'];
-    heavyImages.forEach(function(url) {
-        const img = new Image();
-        img.src = url;
-    });
 }
 
 // 🎠 CARROSSEL
@@ -46,7 +37,7 @@ function initializeCarousel() {
     const prevButton = document.querySelector('.prev');
     
     if (!track || slides.length === 0) {
-        console.log('Carrossel não encontrado');
+        console.log('❌ Carrossel não encontrado');
         return;
     }
     
@@ -98,7 +89,7 @@ function initializeCarousel() {
     });
     
     startAutoSlide();
-    console.log('Carrossel inicializado');
+    console.log('✅ Carrossel inicializado');
 }
 
 // 💫 ELEMENTOS FLUTUANTES
@@ -106,11 +97,13 @@ function createFloatingElements() {
     const container = document.getElementById('floatingElements');
     const elements = ['❤️', '💕', '✨', '🌹', '💘'];
     
-    if (!container) return;
+    if (!container) {
+        console.log('❌ Container de elementos flutuantes não encontrado');
+        return;
+    }
     
     container.innerHTML = '';
     
-    // Menos elementos no mobile
     const elementCount = window.innerWidth <= 768 ? 4 : 8;
     
     for (let i = 0; i < elementCount; i++) {
@@ -124,10 +117,12 @@ function createFloatingElements() {
         element.style.opacity = Math.random() * 0.15 + 0.05;
         container.appendChild(element);
     }
+    
+    console.log('✅ Elementos flutuantes criados');
 }
 
 // 🎵 INDICADOR DE MÚSICA
-document.addEventListener('DOMContentLoaded', function() {
+function initializeMusicIndicator() {
     const musicIndicator = document.getElementById('musicIndicator');
     const backgroundMusic = document.getElementById('backgroundMusic');
     
@@ -143,10 +138,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 musicIndicator.innerHTML = '<i class="fas fa-music"></i>';
             }
         });
+        console.log('✅ Indicador de música inicializado');
     }
-});
+}
 
-// ✨ BOTÃO MÁGICO PRINCIPAL - CORRIGIDO
+// ✨ BOTÃO MÁGICO PRINCIPAL
 function initializeMagicButton() {
     const magicButton = document.getElementById('magicButton');
     const timeline = document.getElementById('timeline');
@@ -155,16 +151,18 @@ function initializeMagicButton() {
     const musicIndicator = document.getElementById('musicIndicator');
 
     if (!magicButton) {
-        console.log('Botão mágico não encontrado');
+        console.log('❌ Botão mágico não encontrado');
         return;
     }
 
+    console.log('✅ Botão mágico encontrado, adicionando evento...');
+
     magicButton.addEventListener('click', function() {
-        console.log('🎯 Botão "Nossa História" clicado!');
+        console.log('🎯 BOTÃO "NOSSA HISTÓRIA" CLICADO!');
         
         // 1. Toca a música
         if (backgroundMusic) {
-            backgroundMusic.volume = 0.7;
+            backgroundMusic.volume = 0.5;
             backgroundMusic.play().then(() => {
                 console.log('🎵 Música iniciada');
                 if (musicIndicator) {
@@ -180,53 +178,68 @@ function initializeMagicButton() {
         if (timeline) {
             timeline.classList.add('show');
             console.log('📜 Timeline mostrada');
+            
+            // Scroll para timeline
+            setTimeout(function() {
+                timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                console.log('📜 Scroll para timeline executado');
+            }, 300);
         }
 
-        // 3. Scroll para timeline primeiro
-        setTimeout(() => {
-            if (timeline) {
-                timeline.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-            }
-        }, 300);
+        // 3. Inicializa animações da timeline
+        setTimeout(function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 300);
+            });
+        }, 500);
 
-        // 4. Mostra a Lousa do Amor depois
-        setTimeout(() => {
+        // 4. Mostra a Lousa do Amor
+        setTimeout(function() {
             if (loveBoard) {
                 loveBoard.classList.add('show');
                 console.log('📝 Lousa do Amor mostrada');
                 
-                // Inicializa a Lousa do Amor
+                // Inicializa a Lousa
                 initLoveBoard();
                 
                 // Scroll para a Lousa
-                setTimeout(() => {
-                    loveBoard.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }, 800);
+                setTimeout(function() {
+                    loveBoard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    console.log('📝 Scroll para Lousa executado');
+                }, 1000);
+                
             } else {
-                console.log('❌ Lousa do Amor não encontrada no DOM');
+                console.log('❌ Lousa do Amor não encontrada!');
             }
-        }, 1500);
+        }, 2000);
     });
     
-    console.log('🔮 Botão mágico inicializado');
+    console.log('✅ Evento do botão mágico adicionado');
 }
 
 // 🎨 LOUSA DO AMOR - SISTEMA COMPLETO
 function initLoveBoard() {
-    console.log('📝 Inicializando Lousa do Amor...');
+    console.log('📝 INICIANDO LOUSA DO AMOR...');
     
     const addNoteBtn = document.getElementById('addNoteBtn');
     const clearBoardBtn = document.getElementById('clearBoardBtn');
     const notesContainer = document.getElementById('notesContainer');
+    const noteModal = document.getElementById('noteModal');
+    const closeModal = document.getElementById('closeModal');
+    const saveNoteBtn = document.getElementById('saveNoteBtn');
+
+    // Verifica se os elementos existem
+    console.log('🔍 Elementos da Lousa:');
+    console.log('- addNoteBtn:', addNoteBtn);
+    console.log('- clearBoardBtn:', clearBoardBtn);
+    console.log('- notesContainer:', notesContainer);
+    console.log('- noteModal:', noteModal);
 
     if (!notesContainer) {
-        console.log('❌ Container de anotações não encontrado');
+        console.log('❌ Container de anotações não encontrado!');
         return;
     }
 
@@ -236,17 +249,18 @@ function initLoveBoard() {
     // Event Listeners
     if (addNoteBtn) {
         addNoteBtn.addEventListener('click', function() {
-            console.log('➕ Criando anotações de exemplo...');
-            createSampleNotes();
+            console.log('➕ Botão Nova Anotação clicado');
+            openNoteModal();
         });
     }
 
     if (clearBoardBtn) {
         clearBoardBtn.addEventListener('click', function() {
+            console.log('🗑️ Botão Limpar clicado');
             if (confirm('Tem certeza que quer limpar todas as anotações? 💔')) {
                 notesContainer.innerHTML = '';
                 localStorage.removeItem('loveBoardNotes');
-                loadSavedNotes(); // Mostra mensagem de vazio
+                loadSavedNotes();
                 
                 // Efeito visual
                 this.innerHTML = '<i class="fas fa-check"></i> Limpo!';
@@ -257,7 +271,43 @@ function initLoveBoard() {
         });
     }
 
-    console.log('✅ Lousa do Amor inicializada!');
+    // Modal events
+    if (closeModal) {
+        closeModal.addEventListener('click', closeNoteModal);
+    }
+
+    if (saveNoteBtn) {
+        saveNoteBtn.addEventListener('click', saveNote);
+    }
+
+    // Fecha modal ao clicar fora
+    if (noteModal) {
+        noteModal.addEventListener('click', function(e) {
+            if (e.target === noteModal) {
+                closeNoteModal();
+            }
+        });
+    }
+
+    // Color Picker
+    const colorOptions = document.querySelectorAll('.color-option');
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            colorOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Emoji Picker
+    const emojiOptions = document.querySelectorAll('.emoji-option');
+    emojiOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            emojiOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    console.log('✅ LOUSA DO AMOR INICIALIZADA COM SUCESSO!');
 }
 
 // 📥 CARREGA ANOTAÇÕES SALVAS
@@ -279,10 +329,12 @@ function loadSavedNotes() {
                 </div>
             </div>
         `;
+        console.log('📝 Mensagem de lousa vazia exibida');
     } else {
         // Limpa container e carrega anotações
         notesContainer.innerHTML = '';
         notes.forEach(note => createNoteElement(note));
+        console.log(`📝 ${notes.length} anotações carregadas`);
     }
 }
 
@@ -296,7 +348,7 @@ function createNoteElement(note) {
     noteElement.setAttribute('data-color', note.color);
     noteElement.setAttribute('data-id', note.id);
     
-    // Rotação aleatória para efeito orgânico
+    // Rotação aleatória
     const rotation = (Math.random() * 4 - 2).toFixed(1);
     noteElement.style.setProperty('--rotation', `${rotation}deg`);
 
@@ -324,50 +376,90 @@ function createNoteElement(note) {
     console.log(`📄 Anotação criada: "${note.title}"`);
 }
 
-// 🌟 CRIA ANOTAÇÕES DE EXEMPLO
-function createSampleNotes() {
-    console.log('🎨 Criando anotações de exemplo...');
+// 🔓 ABRE MODAL DE NOVA ANOTAÇÃO
+function openNoteModal() {
+    const noteModal = document.getElementById('noteModal');
+    if (!noteModal) return;
     
-    const sampleNotes = [
-        {
-            id: Date.now() + 1,
-            title: 'Nosso primeiro date 💕',
-            content: 'Lembro como se fosse hoje... cada momento especial ao seu lado! Cada sorriso, cada olhar, tudo ficou guardado no meu coração.',
-            color: '#ffeb3b',
-            emoji: '💕',
-            date: new Date().toLocaleDateString('pt-BR')
-        },
-        {
-            id: Date.now() + 2,
-            title: 'Lista de sonhos 🌟',
-            content: 'Viajar pelo mundo juntos ✈️, construir nossa casa 🏡, criar uma família 👨‍👩‍👧‍👦, crescer velhinhos juntos 💑...',
-            color: '#2196f3',
-            emoji: '🌟',
-            date: new Date().toLocaleDateString('pt-BR')
-        },
-        {
-            id: Date.now() + 3,
-            title: 'Coisas que amo em você ❤️',
-            content: 'Seu sorriso ilumina meu dia 😊, seu cuidado me aquece o coração 🤗, sua forma de me olhar me faz sentir especial 🥰... Tudo em você é perfeito!',
-            color: '#e91e63',
-            emoji: '❤️',
-            date: new Date().toLocaleDateString('pt-BR')
-        }
-    ];
+    noteModal.style.display = 'block';
+    
+    // Limpa campos
+    document.getElementById('noteTitle').value = '';
+    document.getElementById('noteContent').value = '';
+    
+    // Reseta seleções
+    const colorOptions = document.querySelectorAll('.color-option');
+    const emojiOptions = document.querySelectorAll('.emoji-option');
+    
+    colorOptions.forEach(opt => opt.classList.remove('active'));
+    emojiOptions.forEach(opt => opt.classList.remove('active'));
+    
+    // Seleciona padrões
+    document.querySelector('.color-option[data-color="#ffeb3b"]').classList.add('active');
+    document.querySelector('.emoji-option[data-emoji="💕"]').classList.add('active');
+    
+    console.log('📝 Modal de nova anotação aberto');
+}
 
-    const notesContainer = document.getElementById('notesContainer');
-    if (!notesContainer) return;
+// 🔒 FECHA MODAL
+function closeNoteModal() {
+    const noteModal = document.getElementById('noteModal');
+    if (noteModal) {
+        noteModal.style.display = 'none';
+        console.log('📝 Modal fechado');
+    }
+}
+
+// 💾 SALVA NOVA ANOTAÇÃO
+function saveNote() {
+    const title = document.getElementById('noteTitle').value.trim();
+    const content = document.getElementById('noteContent').value.trim();
+    const activeColor = document.querySelector('.color-option.active');
+    const activeEmoji = document.querySelector('.emoji-option.active');
+
+    if (!title || !content) {
+        alert('Por favor, preencha o título e a mensagem! 💖');
+        return;
+    }
+
+    if (!activeColor || !activeEmoji) {
+        alert('Por favor, selecione uma cor e um emoji! 🎨');
+        return;
+    }
+
+    const note = {
+        id: Date.now(),
+        title: title,
+        content: content,
+        color: activeColor.getAttribute('data-color'),
+        emoji: activeEmoji.getAttribute('data-emoji'),
+        date: new Date().toLocaleDateString('pt-BR')
+    };
+
+    createNoteElement(note);
+    saveNoteToLocalStorage(note);
+    closeNoteModal();
+
+    // Efeito visual de confirmação
+    const saveBtn = document.getElementById('saveNoteBtn');
+    const originalHTML = saveBtn.innerHTML;
+    saveBtn.innerHTML = '<i class="fas fa-check"></i> Salvo!';
+    saveBtn.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
     
-    // Limpa mensagem de vazio
-    notesContainer.innerHTML = '';
-    
-    // Cria anotações de exemplo
-    sampleNotes.forEach(note => createNoteElement(note));
-    
-    // Salva no localStorage
-    localStorage.setItem('loveBoardNotes', JSON.stringify(sampleNotes));
-    
-    console.log('✅ Anotações de exemplo criadas e salvas!');
+    setTimeout(() => {
+        saveBtn.innerHTML = originalHTML;
+        saveBtn.style.background = '';
+    }, 2000);
+
+    console.log('✅ Nova anotação salva:', note.title);
+}
+
+// 💾 SALVA NO LOCALSTORAGE
+function saveNoteToLocalStorage(note) {
+    let notes = JSON.parse(localStorage.getItem('loveBoardNotes')) || [];
+    notes.push(note);
+    localStorage.setItem('loveBoardNotes', JSON.stringify(notes));
+    console.log('💾 Anotação salva no localStorage');
 }
 
 // 🗑️ FUNÇÃO GLOBAL PARA DELETAR ANOTAÇÃO
@@ -375,7 +467,6 @@ window.deleteNote = function(noteId) {
     if (confirm('Tem certeza que quer apagar esta linda anotação? 💔')) {
         console.log(`🗑️ Apagando anotação ${noteId}`);
         
-        // Remove do DOM com animação
         const noteElement = document.querySelector(`.note[data-id="${noteId}"]`);
         if (noteElement) {
             noteElement.style.animation = 'noteEntrance 0.6s ease reverse';
@@ -398,7 +489,7 @@ window.deleteNote = function(noteId) {
     }
 };
 
-// 🖼️ EFEITO PARALLAX SUAVE
+// 🖼️ EFEITO PARALLAX
 let scrollTimeout;
 window.addEventListener('scroll', function() {
     if (!scrollTimeout) {
@@ -423,4 +514,40 @@ window.addEventListener('resize', function() {
     }, 250);
 });
 
-console.log('🚀 Script.js carregado com sucesso!');
+// 🎪 EFEITO DE DIGITAÇÃO NO TÍTULO
+function initializeTypeWriter() {
+    const title = document.querySelector('h1');
+    if (!title) return;
+    
+    const originalText = title.textContent;
+    let typedText = '';
+    let typeIndex = 0;
+
+    title.textContent = '';
+
+    function typeWriter() {
+        if (typeIndex < originalText.length) {
+            typedText += originalText.charAt(typeIndex);
+            title.textContent = typedText + '|';
+            typeIndex++;
+            setTimeout(typeWriter, 80);
+        } else {
+            title.textContent = typedText;
+        }
+    }
+    
+    setTimeout(typeWriter, 1000);
+}
+
+// Inicializa efeito de digitação
+setTimeout(initializeTypeWriter, 1500);
+
+console.log('🎉 SCRIPT.JS CARREGADO COM SUCESSO!');
+console.log('✨ Site pronto para uso!');
+console.log('💫 Funcionalidades:');
+console.log('   - 🎠 Carrossel automático');
+console.log('   - 📜 Timeline animada');
+console.log('   - 📝 Lousa do Amor interativa');
+console.log('   - 🎵 Player de música');
+console.log('   - 💫 Elementos flutuantes');
+console.log('   - 📱 Totalmente responsivo');

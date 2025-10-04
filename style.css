@@ -21,7 +21,7 @@ body {
   cursor: default;
 }
 
-/* Loading Screen com transição elegante */
+/* Loading Screen */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -33,7 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1s ease;
 }
 
 .loading-text {
@@ -41,10 +41,9 @@ body {
   font-size: 3rem;
   color: var(--primary);
   text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
-  animation: pulse 2s infinite, fadeIn 1.5s ease;
 }
 
-/* Hero Section com transições suaves */
+/* Hero Section */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -55,8 +54,6 @@ body {
   padding: 40px 20px;
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  animation: heroEntrance 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
 }
 
 .hero::before {
@@ -68,16 +65,12 @@ body {
   height: 100%;
   background: radial-gradient(circle at center, transparent 0%, rgba(13, 13, 13, 0.9) 70%);
   z-index: 1;
-  animation: gradientShift 8s ease-in-out infinite;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
-  transform: translateY(30px);
-  opacity: 0;
-  animation: contentSlideUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
 }
 
 h1 {
@@ -87,6 +80,7 @@ h1 {
   color: var(--primary);
   margin-bottom: 30px;
   text-shadow: 0 0 30px rgba(255, 77, 109, 0.9);
+  animation: fadeInUp 1.5s ease;
   line-height: 1.2;
 }
 
@@ -95,9 +89,10 @@ h1 {
   color: var(--light);
   margin-bottom: 40px;
   opacity: 0.9;
+  animation: fadeInUp 1.5s ease 0.3s both;
 }
 
-/* Botão Premium com hover animado */
+/* Botão Premium */
 .cta-button {
   padding: 18px 60px;
   font-size: 1.3rem;
@@ -108,12 +103,10 @@ h1 {
   color: white;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(255, 77, 109, 0.5);
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: var(--transition);
   position: relative;
   overflow: hidden;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: buttonEntrance 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s forwards;
+  animation: fadeInUp 1.5s ease 0.6s both;
 }
 
 .cta-button::before {
@@ -123,21 +116,20 @@ h1 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.8s ease;
 }
 
 .cta-button:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 15px 40px rgba(255, 77, 109, 0.8);
-  background: linear-gradient(45deg, #ff0033, #ff6699);
 }
 
 .cta-button:hover::before {
   left: 100%;
 }
 
-/* Carrossel com transições elegantes */
+/* Carrossel */
 .carousel-container {
   position: relative;
   max-width: 900px;
@@ -145,11 +137,9 @@ h1 {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 2s ease 1s both;
   background: var(--dark);
   height: 500px;
-  transform: translateY(50px);
-  opacity: 0;
-  animation: slideUpFade 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2s forwards;
 }
 
 .carousel-track {
@@ -166,11 +156,6 @@ h1 {
   align-items: center;
   background: var(--dark);
   position: relative;
-  transition: transform 0.8s ease;
-}
-
-.carousel-slide:hover {
-  transform: scale(1.02);
 }
 
 .carousel-slide img {
@@ -181,14 +166,8 @@ h1 {
   object-fit: contain;
   object-position: center;
   display: block;
-  transition: transform 1.2s ease;
 }
 
-.carousel-slide:hover img {
-  transform: scale(1.05);
-}
-
-/* Legendas com entrada suave */
 .carousel-caption {
   position: absolute;
   bottom: 0;
@@ -201,12 +180,6 @@ h1 {
   font-family: 'Dancing Script', cursive;
   font-size: 1.6rem;
   z-index: 2;
-  transform: translateY(100%);
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.carousel-slide:hover .carousel-caption {
-  transform: translateY(0);
 }
 
 .carousel-nav {
@@ -230,12 +203,11 @@ h1 {
   font-size: 1.3rem;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: var(--transition);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0.7;
-  transform: scale(0.8);
 }
 
 .carousel-btn:hover {
@@ -244,7 +216,7 @@ h1 {
   opacity: 1;
 }
 
-/* Timeline com entradas sequenciais */
+/* Timeline */
 .timeline {
   width: 100%;
   max-width: 1200px;
@@ -363,7 +335,7 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Special Message com animação especial */
+/* Special Message */
 .special-message {
   justify-content: center;
   text-align: center;
@@ -380,7 +352,7 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Floating Elements com variações */
+/* Floating Elements */
 .floating-elements {
   position: fixed;
   top: 0;
@@ -396,15 +368,9 @@ h1 {
   opacity: 0.1;
   font-size: 2rem;
   animation: float 20s infinite linear;
-  transition: all 0.5s ease;
 }
 
-.floating-element:hover {
-  opacity: 0.3;
-  transform: scale(1.5);
-}
-
-/* Music Indicator com animação pulsante */
+/* Music Indicator */
 .music-indicator {
   position: fixed;
   bottom: 30px;
@@ -421,164 +387,18 @@ h1 {
   box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
   cursor: pointer;
   z-index: 100;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform: scale(0);
-  animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s forwards;
-}
-
-.music-indicator:hover {
-  transform: scale(1.1) rotate(15deg);
-  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.7);
+  transition: var(--transition);
 }
 
 .music-indicator.playing {
-  animation: pulse 2s infinite, rotate 4s linear infinite;
+  animation: pulse 2s infinite;
 }
 
-/* NOVAS ANIMAÇÕES */
-@keyframes heroEntrance {
-  0% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.music-indicator:hover {
+  transform: scale(1.1);
 }
 
-@keyframes contentSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes buttonEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes slideUpFade {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes gradientShift {
-  0%, 100% {
-    background: radial-gradient(circle at center, transparent 0%, rgba(13, 13, 13, 0.9) 70%);
-  }
-  50% {
-    background: radial-gradient(circle at 30% 20%, transparent 0%, rgba(13, 13, 13, 0.9) 70%);
-  }
-}
-
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 40px rgba(255, 77, 109, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
-  }
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0);
-  }
-  70% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-100px) rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
-  .subtitle { font-size: 1.2rem; }
-  .cta-button { padding: 15px 40px; font-size: 1.1rem; }
-  .carousel-container { 
-    height: 400px; 
-    max-width: 95%;
-  }
-  .timeline-item { flex-direction: column; gap: 30px; }
-  .timeline-item:nth-child(even) { flex-direction: column; }
-  .timeline-content h2 { font-size: 2rem; }
-  .timeline-content p { font-size: 1.1rem; }
-  .carousel-caption { font-size: 1.4rem; padding: 20px; }
-}
-
-@media (max-width: 480px) {
-  h1 { font-size: 2rem; }
-  .subtitle { font-size: 1rem; }
-  .cta-button { padding: 12px 30px; font-size: 1rem; }
-  .carousel-container { height: 300px; }
-  .timeline-content { padding: 25px 20px; }
-  .timeline-content h2 { font-size: 1.8rem; }
-  .music-indicator { width: 50px; height: 50px; font-size: 1.2rem; }
-  .carousel-btn { width: 40px; height: 40px; font-size: 1.1rem; }
-  .carousel-caption { font-size: 1.3rem; padding: 15px; }
-}
-/* Lousa do Amor - Versão Premium */
-/* 🎨 Lousa do Amor - Versão Premium */
+/* 🎨 LOUSA DO AMOR - VERSÃO PREMIUM */
 .love-board {
   width: 100%;
   max-width: 1400px;
@@ -669,7 +489,7 @@ h1 {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-/* 🎛️ Controles Elegantes */
+/* Controles da Lousa */
 .board-controls {
   display: flex;
   justify-content: center;
@@ -736,7 +556,7 @@ h1 {
   transform: scale(1.2) rotate(10deg);
 }
 
-/* 📝 Container de Anotações Elegante */
+/* Container de Anotações */
 .notes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -745,7 +565,7 @@ h1 {
   perspective: 1000px;
 }
 
-/* 🎴 Anotações Premium */
+/* Anotações Premium */
 .note {
   background: linear-gradient(135deg, #ffeb3b, #ffc107, #ffb300);
   padding: 30px 25px;
@@ -797,23 +617,6 @@ h1 {
     transparent);
   border-radius: 20px 20px 0 0;
   opacity: 0.6;
-}
-
-.note::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.note:hover::after {
-  opacity: 1;
 }
 
 .note-header {
@@ -919,7 +722,7 @@ h1 {
   box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
 }
 
-/* 🎨 Cores Elegantes para Anotações */
+/* Cores das anotações */
 .note[data-color="#ffeb3b"] { 
   background: linear-gradient(135deg, #ffeb3b, #ffc107, #ffb300);
 }
@@ -949,7 +752,7 @@ h1 {
   color: white;
 }
 
-/* ✨ Modal Elegante */
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -1033,7 +836,7 @@ h1 {
   background: rgba(255, 77, 109, 0.1);
 }
 
-/* 📝 Formulário Elegante */
+/* Formulário */
 .form-group {
   margin-bottom: 30px;
   position: relative;
@@ -1080,7 +883,7 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* 🎨 Color Picker Elegante */
+/* Color Picker */
 .color-picker {
   display: flex;
   gap: 15px;
@@ -1122,7 +925,7 @@ h1 {
     0 0 20px rgba(255, 77, 109, 0.5);
 }
 
-/* 😊 Emoji Picker Elegante */
+/* Emoji Picker */
 .emoji-picker {
   display: flex;
   gap: 12px;
@@ -1152,7 +955,7 @@ h1 {
   box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
 }
 
-/* 💾 Botão Salvar Elegante */
+/* Botão Salvar */
 .save-note-btn {
   width: 100%;
   padding: 20px;
@@ -1204,7 +1007,76 @@ h1 {
   transform: scale(1.2) rotate(15deg);
 }
 
-/* ✨ Animações Elegantes */
+/* Mensagem para Lousa Vazia */
+.empty-board {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.empty-message i {
+  font-size: 4rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.empty-message h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.empty-message p {
+  font-size: 1.2rem;
+  color: var(--light);
+  opacity: 0.8;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 @keyframes noteEntrance {
   0% {
     opacity: 0;
@@ -1257,8 +1129,31 @@ h1 {
   }
 }
 
-/* 📱 Responsividade */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(255, 77, 109, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  .subtitle { font-size: 1.2rem; }
+  .cta-button { padding: 15px 40px; font-size: 1.1rem; }
+  .carousel-container { 
+    height: 400px; 
+    max-width: 95%;
+  }
+  .carousel-slide img { object-position: center 25%; }
+  .timeline-item { flex-direction: column; gap: 30px; }
+  .timeline-item:nth-child(even) { flex-direction: column; }
+  .timeline-content h2 { font-size: 2rem; }
+  .timeline-content p { font-size: 1.1rem; }
+  .carousel-caption { font-size: 1.4rem; padding: 20px; }
+  
   .love-board {
     padding: 40px 15px;
     margin: 80px auto;
@@ -1303,6 +1198,16 @@ h1 {
 }
 
 @media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  .subtitle { font-size: 1rem; }
+  .cta-button { padding: 12px 30px; font-size: 1rem; }
+  .carousel-container { height: 300px; }
+  .timeline-content { padding: 25px 20px; }
+  .timeline-content h2 { font-size: 1.8rem; }
+  .music-indicator { width: 50px; height: 50px; font-size: 1.2rem; }
+  .carousel-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+  .carousel-caption { font-size: 1.3rem; padding: 15px; }
+  
   .board-header h2 {
     font-size: 2.5rem;
   }
