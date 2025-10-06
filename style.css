@@ -1360,3 +1360,472 @@
   .music-player { min-width: 280px; flex-direction: column; gap: 15px; border-radius: 25px; }
   .player-info { order: -1; }
 }
+/* 🌟 LAYOUT PARA DESKTOP */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+  }
+  
+  .glowing-text {
+    font-size: 5.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.8rem;
+  }
+  
+  .carousel-container {
+    max-width: 1100px;
+    height: 600px;
+  }
+  
+  .love-counter {
+    max-width: 900px;
+    margin: 0 auto 60px;
+  }
+  
+  .counter-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .counter-number {
+    font-size: 3rem;
+  }
+  
+  .cta-buttons {
+    gap: 30px;
+  }
+  
+  .cta-button {
+    padding: 20px 45px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    max-width: 1100px;
+  }
+  
+  .hero-content {
+    max-width: 1000px;
+  }
+  
+  .glowing-text {
+    font-size: 4.5rem;
+  }
+  
+  .carousel-container {
+    max-width: 900px;
+    height: 500px;
+  }
+}
+
+/* 🔧 CORREÇÕES ESPECÍFICAS PARA PC */
+.hero {
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+.hero-content {
+  margin-bottom: 60px;
+}
+
+.carousel-container {
+  margin: 80px auto 0;
+}
+
+/* 📊 LAYOUT DE GRID PARA PC */
+.messages-container {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 35px;
+}
+
+.notes-container {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 35px;
+}
+
+/* 🎠 CARROSSEL OTIMIZADO PARA PC */
+.carousel-slide img {
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 1.5s ease;
+}
+
+.carousel-slide:hover img {
+  transform: scale(1.08);
+}
+
+/* ❤️ CONTADOR MAIOR PARA PC */
+.counter-item {
+  padding: 25px 20px;
+}
+
+.counter-number {
+  font-size: 2.8rem;
+}
+
+.counter-label {
+  font-size: 1.1rem;
+}
+
+.counter-message {
+  font-size: 1.3rem;
+}
+
+/* 🎵 PLAYER MAIOR PARA PC */
+.music-player {
+  min-width: 400px;
+  padding: 18px 35px;
+  bottom: 30px;
+}
+
+.player-controls {
+  gap: 15px;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+}
+
+.control-btn.play-pause {
+  width: 55px;
+  height: 55px;
+}
+
+.player-info {
+  font-size: 1.1rem;
+}
+
+/* 💝 SURPRESA MAIOR PARA PC */
+.floating-surprise {
+  width: 70px;
+  height: 70px;
+  font-size: 1.8rem;
+  bottom: 150px;
+  right: 50px;
+}
+
+/* 📅 TIMELINE OTIMIZADA PARA PC */
+.timeline {
+  max-width: 1000px;
+}
+
+.timeline-content {
+  padding: 35px;
+}
+
+.timeline-content h3 {
+  font-size: 1.6rem;
+}
+
+.timeline-content p {
+  font-size: 1.1rem;
+}
+
+/* 🎵 PLAYLIST MAIOR PARA PC */
+.playlist-container {
+  max-width: 700px;
+  padding: 40px;
+}
+
+.now-playing {
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.album-art {
+  width: 100px;
+  height: 100px;
+  font-size: 2.5rem;
+}
+
+.track-title {
+  font-size: 1.5rem;
+}
+
+.track-artist {
+  font-size: 1.2rem;
+}
+
+.track {
+  padding: 18px 20px;
+  font-size: 1.1rem;
+}
+
+/* 🎮 QUIZ MAIOR PARA PC */
+.quiz-container {
+  max-width: 800px;
+  padding: 50px;
+}
+
+.quiz-question h3 {
+  font-size: 1.6rem;
+  margin-bottom: 35px;
+}
+
+.quiz-option {
+  padding: 20px 30px;
+  font-size: 1.2rem;
+}
+
+.quiz-option:hover {
+  transform: translateX(15px);
+}
+
+.score {
+  font-size: 3.5rem;
+}
+
+.score-label {
+  font-size: 1.3rem;
+}
+
+/* 📝 LOUSA DO AMOR PARA PC */
+.love-board {
+  padding: 120px 20px;
+}
+
+.board-controls {
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.board-btn {
+  padding: 18px 30px;
+  font-size: 1.2rem;
+}
+
+/* 💌 MENSAGENS MAIORES PARA PC */
+.message-card {
+  padding: 30px;
+}
+
+.message-emoji {
+  font-size: 2.2rem;
+}
+
+.message-content p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+/* 🎪 MODAIS MAIORES PARA PC */
+.modal-content {
+  max-width: 600px;
+  padding: 50px;
+}
+
+.modal-content h3 {
+  font-size: 3rem;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 18px 22px;
+  font-size: 1.2rem;
+}
+
+.save-btn {
+  padding: 20px;
+  font-size: 1.3rem;
+}
+
+/* 🔔 NOTIFICAÇÕES MAIORES PARA PC */
+.notification {
+  padding: 25px 35px;
+  font-size: 1.2rem;
+  max-width: 400px;
+}
+
+/* ✨ EFEITOS ESPECIAIS PARA PC */
+.floating-element {
+  font-size: 2rem;
+}
+
+.floating-heart {
+  font-size: 1.8rem;
+}
+
+/* 🎭 SEÇÕES COM MAIOR ESPAÇAMENTO */
+.calendar-section,
+.playlist-section,
+.messages-section,
+.love-board,
+.quiz-section {
+  padding: 120px 20px;
+}
+
+.section-header {
+  margin-bottom: 80px;
+}
+
+.section-header h2 {
+  font-size: 4rem;
+}
+
+.section-header p {
+  font-size: 1.5rem;
+}
+
+/* 🖱️ MELHORIAS DE HOVER PARA PC */
+.cta-button:hover {
+  transform: translateY(-8px) scale(1.08);
+}
+
+.message-card:hover {
+  transform: translateY(-12px);
+}
+
+.note-card:hover {
+  transform: translateY(-12px);
+}
+
+.track:hover {
+  transform: translateX(8px);
+}
+
+.counter-item:hover {
+  transform: translateY(-8px);
+}
+
+/* 📐 AJUSTES DE ALTURA PARA PC */
+.carousel-container {
+  height: 550px;
+}
+
+.carousel-caption {
+  padding: 30px;
+  font-size: 2rem;
+}
+
+/* 🎨 MELHORIAS VISUAIS PARA TELAS GRANDES */
+.hero::before {
+  background: 
+    radial-gradient(circle at 15% 70%, rgba(255, 77, 109, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 143, 163, 0.1) 0%, transparent 70%);
+}
+
+/* 🔄 ANIMAÇÕES MAIS SUAVES PARA PC */
+@media (min-width: 768px) {
+  .timeline-item {
+    animation: slideInLeft 1s ease both;
+  }
+  
+  .timeline-item:nth-child(even) {
+    animation: slideInRight 1s ease both;
+  }
+  
+  .love-counter {
+    animation: slideInUp 1.2s ease;
+  }
+  
+  .carousel-container {
+    animation: slideInUp 1.5s ease 0.5s both;
+  }
+}
+
+/* 🎯 FOCO NA EXPERIÊNCIA DO PC */
+@media (min-width: 768px) {
+  .theme-toggle {
+    top: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+  
+  .floating-surprise {
+    bottom: 120px;
+    right: 40px;
+  }
+  
+  .music-player {
+    bottom: 25px;
+  }
+}
+
+/* 📖 TIPOGRAFIA OTIMIZADA PARA PC */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .subtitle {
+    font-size: 1.6rem;
+  }
+  
+  .counter-message {
+    font-size: 1.2rem;
+  }
+  
+  .carousel-caption {
+    font-size: 1.9rem;
+  }
+  
+  .timeline-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .timeline-content p {
+    font-size: 1.05rem;
+  }
+}
+
+/* 🎪 BOTÕES MAIS IMPACTANTES NO PC */
+@media (min-width: 768px) {
+  .cta-button {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .cta-button:hover::before {
+    left: 100%;
+  }
+}
+
+/* ✨ EFEITOS DE GLOW MELHORADOS PARA PC */
+@media (min-width: 768px) {
+  .glowing-text {
+    text-shadow: 
+      0 0 50px rgba(255, 77, 109, 0.9),
+      0 0 100px rgba(255, 77, 109, 0.6),
+      0 0 150px rgba(255, 77, 109, 0.3);
+  }
+  
+  .counter-number {
+    text-shadow: 
+      0 0 20px rgba(255, 77, 109, 0.8),
+      0 0 40px rgba(255, 77, 109, 0.4);
+  }
+}
