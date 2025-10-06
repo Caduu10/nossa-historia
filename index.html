@@ -3,57 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentos com Beatriz | Nossa História</title>
+  <title>Beatriz & [Seu Nome] | Nossa História</title>
   
   <!-- Otimizado para performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Loading Screen -->
+  <!-- 🌟 Partículas no Background -->
+  <div id="particles-js"></div>
+  
+  <!-- Loading Screen Premium -->
   <div class="loading-screen">
-    <div class="loading-text">Nossa História...</div>
+    <div class="loading-content">
+      <div class="loading-hearts">
+        <div class="heart-pulse">💖</div>
+        <div class="heart-pulse">💕</div>
+        <div class="heart-pulse">💗</div>
+      </div>
+      <div class="loading-text">Preparando nossa história especial...</div>
+    </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- 🎭 Botão Tema Dark/Light -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <!-- Hero Section Super Premium -->
+  <section class="hero" id="hero">
     <div class="hero-content">
-      <h1>Com você, cada momento é um capítulo da nossa eternidade</h1>
-      <p class="subtitle">Uma jornada de amor, risos e momentos inesquecíveis</p>
-      <button class="cta-button" id="magicButton">
-        <i class="fas fa-heart"></i> Nossa História 
-      </button>
+      <!-- ❤️ Contador de Tempo Juntos -->
+      <div class="love-counter" id="loveCounter">
+        <div class="counter-grid">
+          <div class="counter-item">
+            <div class="counter-number" id="monthsTogether">3</div>
+            <div class="counter-label">Meses</div>
+          </div>
+          <div class="counter-item">
+            <div class="counter-number" id="daysTogether">92</div>
+            <div class="counter-label">Dias</div>
+          </div>
+          <div class="counter-item">
+            <div class="counter-number" id="hoursTogether">2208</div>
+            <div class="counter-label">Horas</div>
+          </div>
+          <div class="counter-item">
+            <div class="counter-number" id="minutesTogether">132480</div>
+            <div class="counter-label">Minutos</div>
+          </div>
+        </div>
+        <div class="counter-message">
+          💝 Desde nosso primeiro date: <span id="firstDate">18/07/2025</span>
+        </div>
+      </div>
+
+      <h1 class="glowing-text">Beatriz & [Seu Nome]</h1>
+      <p class="subtitle">Cada momento contigo é uma página da nossa eternidade</p>
+      
+      <div class="cta-buttons">
+        <button class="cta-button primary" id="magicButton">
+          <i class="fas fa-heart"></i> Descobrir Nossa História
+        </button>
+        <button class="cta-button secondary" id="surpriseButton">
+          <i class="fas fa-gift"></i> Surpresa Especial
+        </button>
+      </div>
     </div>
 
-    <!-- Carrossel -->
+    <!-- Carrossel Premium -->
     <div class="carousel-container">
       <div class="carousel-track">
         <div class="carousel-slide">
-          <img src="img/noisdoiscomcoração.jpg" alt="Nós dois com coração" loading="lazy">
+          <img src="img/noisdoiscomcoração.jpg" alt="Nosso amor" loading="lazy">
           <div class="carousel-caption">Nosso amor em cada detalhe</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto1.jpg" alt="Date 1" loading="lazy">
+          <img src="img/DateMphoto1.jpg" alt="Momentos especiais" loading="lazy">
           <div class="carousel-caption">Momentos especiais</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto2.jpg" alt="Date 2" loading="lazy">
+          <img src="img/DateMphoto2.jpg" alt="Risadas compartilhadas" loading="lazy">
           <div class="carousel-caption">Risadas compartilhadas</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto3.jpg" alt="Date 3" loading="lazy">
+          <img src="img/DateMphoto3.jpg" alt="Aventuras juntos" loading="lazy">
           <div class="carousel-caption">Aventuras juntos</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/DateMphoto4.jpg" alt="Date 4" loading="lazy">
+          <img src="img/DateMphoto4.jpg" alt="Memórias eternas" loading="lazy">
           <div class="carousel-caption">Memórias eternas</div>
         </div>
         <div class="carousel-slide">
-          <img src="img/nosdois.jpg" alt="Nós dois" loading="lazy">
+          <img src="img/nosdois.jpg" alt="Para sempre nós" loading="lazy">
           <div class="carousel-caption">Para sempre nós</div>
         </div>
       </div>
@@ -64,114 +110,286 @@
     </div>
   </section>
 
-  <!-- Timeline -->
-  <section class="timeline" id="timeline">
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <h2>Nosso primeiro encontro 🍷</h2>
-        <p>Tudo começou naquele jantar no restaurante… e eu já sabia que minha vida não seria mais a mesma. Cada olhar, cada sorriso, confirmava que algo especial estava nascendo.</p>
+  <!-- 📅 Calendário de Momentos Especiais -->
+  <section class="calendar-section" id="calendarSection">
+    <div class="container">
+      <div class="section-header">
+        <h2>📅 Nossa Linha do Tempo</h2>
+        <p>Datas especiais que marcam nossa história</p>
       </div>
-      <div class="timeline-bg" style="background-image: url('img/restaurante.jpg');"></div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-content">
-        <h2>Nossa primeira viagem ✈️</h2>
-        <p>Entre risadas, músicas e abraços, foi o começo das nossas aventuras pelo mundo juntos. Primeiro temos o chalezinho e depois viram vários momentos românticos ao seu lado! Cada destino, uma nova memória.</p>
-      </div>
-      <div class="timeline-bg" style="background-image: url('img/viagem.jpg');"></div>
-    </div>
-
-    <div class="timeline-item special-message">
-      <div class="timeline-content">
-        <h2>🌹 A cada capítulo, mais certeza de que você é meu para sempre 🌹</h2>
-        <p style="margin-top: 20px; font-style: italic;">Nosso amor é a história mais bonita que poderia viver</p>
+      
+      <div class="timeline">
+        <div class="timeline-item" data-date="2025-07-18">
+          <div class="timeline-badge">💕</div>
+          <div class="timeline-content">
+            <h3>Primeiro Date</h3>
+            <p>18 de Julho de 2025 - O início de tudo</p>
+            <span class="timeline-date">Há 3 meses</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-date="2025-08-29">
+          <div class="timeline-badge">💍</div>
+          <div class="timeline-content">
+            <h3>Pedido de Namoro</h3>
+            <p>29 de Agosto de 2025 - O dia que oficializamos nosso amor</p>
+            <span class="timeline-date">Próximo evento!</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-date="2026-01-29">
+          <div class="timeline-badge">🎂</div>
+          <div class="timeline-content">
+            <h3>Seu Aniversário</h3>
+            <p>29 de Janeiro - Mais um ano de vida para celebrar juntos</p>
+            <span class="timeline-date">Em 5 meses</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-date="2026-04-02">
+          <div class="timeline-badge">🎂</div>
+          <div class="timeline-content">
+            <h3>Aniversário da Beatriz</h3>
+            <p>2 de Abril - O dia mais especial do ano</p>
+            <span class="timeline-date">Em 7 meses</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Lousa do Amor -->
+  <!-- 🎵 Playlist Colaborativa -->
+  <section class="playlist-section" id="playlistSection">
+    <div class="container">
+      <div class="section-header">
+        <h2>🎵 Nossa Trilha Sonora</h2>
+        <p>As músicas que marcam nossa história</p>
+      </div>
+      
+      <div class="playlist-container">
+        <div class="now-playing">
+          <div class="album-art">
+            <i class="fas fa-music"></i>
+          </div>
+          <div class="track-info">
+            <h3 class="track-title">No Ar</h3>
+            <p class="track-artist">Chris Brown</p>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="playlist-tracks">
+          <div class="track active">
+            <span class="track-number">1</span>
+            <span class="track-title">Coming Together</span>
+            <span class="track-artist">Chris Brown</span>
+            <span class="track-duration">3:45</span>
+          </div>
+          <div class="track">
+            <span class="track-number">2</span>
+            <span class="track-title">No Guidance</span>
+            <span class="track-artist">Chris Brown ft. Drake</span>
+            <span class="track-duration">4:20</span>
+          </div>
+          <div class="track">
+            <span class="track-number">3</span>
+            <span class="track-title">Under The Influence</span>
+            <span class="track-artist">Chris Brown</span>
+            <span class="track-duration">3:04</span>
+          </div>
+          <!-- Adicione mais músicas aqui -->
+        </div>
+        
+        <button class="add-track-btn">
+          <i class="fas fa-plus"></i> Adicionar Música
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💌 Sistema de Mensagens Surpresa -->
+  <section class="messages-section" id="messagesSection">
+    <div class="container">
+      <div class="section-header">
+        <h2>💌 Mensagens do Coração</h2>
+        <p>Deixe surpresas especiais um para o outro</p>
+      </div>
+      
+      <div class="messages-container">
+        <div class="message-card love">
+          <div class="message-header">
+            <span class="message-emoji">💝</span>
+            <span class="message-date">Hoje</span>
+          </div>
+          <div class="message-content">
+            <p>Você é a pessoa mais especial da minha vida! Cada momento contigo é único.</p>
+          </div>
+          <div class="message-footer">
+            <span class="message-author">Com amor</span>
+          </div>
+        </div>
+        
+        <div class="message-card surprise">
+          <div class="message-header">
+            <span class="message-emoji">🎁</span>
+            <span class="message-date">Ontem</span>
+          </div>
+          <div class="message-content">
+            <p>Mal posso esperar para nosso próximo encontro! Tenho uma surpresa para você! 😊</p>
+          </div>
+          <div class="message-footer">
+            <span class="message-author">Sua pessoa</span>
+          </div>
+        </div>
+      </div>
+      
+      <button class="new-message-btn" id="newMessageBtn">
+        <i class="fas fa-envelope"></i> Nova Mensagem Surpresa
+      </button>
+    </div>
+  </section>
+
+  <!-- 📝 Lousa do Amor (Versão Melhorada) -->
   <section class="love-board" id="loveBoard">
-    <div class="board-container">
+    <div class="container">
       <div class="board-header">
-        <h2>📝 Nossa Lousa do Amor</h2>
-        <p>Deixe suas mensagens, recadinhos e guarde nossas memórias especiais 💕</p>
+        <h2>📝 Nosso Quadro de Memórias</h2>
+        <p>Guarde todos os momentos especiais do nosso amor</p>
       </div>
       
       <div class="board-controls">
         <button class="board-btn" id="addNoteBtn">
-          <i class="fas fa-plus"></i> Nova Anotação
+          <i class="fas fa-plus"></i> Nova Memória
         </button>
-        <button class="board-btn" id="clearBoardBtn">
-          <i class="fas fa-trash"></i> Limpar
+        <button class="board-btn" id="addPhotoBtn">
+          <i class="fas fa-camera"></i> Adicionar Foto
+        </button>
+        <button class="board-btn" id="searchNotesBtn">
+          <i class="fas fa-search"></i> Buscar
         </button>
       </div>
 
       <div class="notes-container" id="notesContainer">
         <!-- Anotações aparecem aqui -->
       </div>
+    </div>
+  </section>
 
-      <!-- Modal para nova anotação -->
-      <div class="modal" id="noteModal">
-        <div class="modal-content">
-          <span class="close" id="closeModal">&times;</span>
-          <h3>✨ Nova Anotação</h3>
-          
-          <div class="form-group">
-            <label>Título:</label>
-            <input type="text" id="noteTitle" placeholder="Nosso jantar especial...">
+  <!-- 🎮 Quiz do Casal -->
+  <section class="quiz-section" id="quizSection">
+    <div class="container">
+      <div class="section-header">
+        <h2>💑 Quiz do Nosso Amor</h2>
+        <p>Teste o quanto vocês se conhecem!</p>
+      </div>
+      
+      <div class="quiz-container">
+        <div class="quiz-question">
+          <h3>Qual foi nosso primeiro date?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option">18 de Julho de 2025</button>
+            <button class="quiz-option">15 de Agosto de 2025</button>
+            <button class="quiz-option">20 de Junho de 2025</button>
           </div>
-
-          <div class="form-group">
-            <label>Mensagem:</label>
-            <textarea id="noteContent" placeholder="Escreva sua mensagem de amor... 💖" rows="6"></textarea>
+        </div>
+        
+        <div class="quiz-score">
+          <div class="score-display">
+            <span class="score">0</span>
+            <span class="score-label">Pontos</span>
           </div>
-
-          <div class="form-group">
-            <label>Cor do post-it:</label>
-            <div class="color-picker">
-              <div class="color-option active" data-color="#ffeb3b" style="background-color: #ffeb3b;"></div>
-              <div class="color-option" data-color="#ff9800" style="background-color: #ff9800;"></div>
-              <div class="color-option" data-color="#e91e63" style="background-color: #e91e63;"></div>
-              <div class="color-option" data-color="#9c27b0" style="background-color: #9c27b0;"></div>
-              <div class="color-option" data-color="#2196f3" style="background-color: #2196f3;"></div>
-              <div class="color-option" data-color="#4caf50" style="background-color: #4caf50;"></div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Emoji:</label>
-            <div class="emoji-picker">
-              <span class="emoji-option active" data-emoji="💕">💕</span>
-              <span class="emoji-option" data-emoji="❤️">❤️</span>
-              <span class="emoji-option" data-emoji="🎉">🎉</span>
-              <span class="emoji-option" data-emoji="⭐">⭐</span>
-              <span class="emoji-option" data-emoji="🌹">🌹</span>
-              <span class="emoji-option" data-emoji="📅">📅</span>
-              <span class="emoji-option" data-emoji="💌">💌</span>
-              <span class="emoji-option" data-emoji="🎊">🎊</span>
-            </div>
-          </div>
-
-          <button class="save-note-btn" id="saveNoteBtn">
-            <i class="fas fa-heart"></i> Salvar Anotação
-          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Elementos -->
+  <!-- ✨ Elementos Especiais -->
   <div class="floating-elements" id="floatingElements"></div>
-  <div class="music-indicator" id="musicIndicator">
-    <i class="fas fa-music"></i>
+  
+  <!-- 🎵 Music Player -->
+  <div class="music-player" id="musicPlayer">
+    <div class="player-controls">
+      <button class="control-btn" id="prevBtn">
+        <i class="fas fa-step-backward"></i>
+      </button>
+      <button class="control-btn play-pause" id="playPauseBtn">
+        <i class="fas fa-play"></i>
+      </button>
+      <button class="control-btn" id="nextBtn">
+        <i class="fas fa-step-forward"></i>
+      </button>
+    </div>
+    <div class="player-info">
+      <span class="current-track">Coming Together - Chris Brown</span>
+    </div>
   </div>
 
-  <!-- Áudio -->
+  <!-- 💝 Botão Surpresa Flutuante -->
+  <div class="floating-surprise" id="floatingSurprise">
+    <i class="fas fa-gift"></i>
+  </div>
+
+  <!-- Modais -->
+  <!-- Modal Nova Mensagem -->
+  <div class="modal" id="messageModal">
+    <div class="modal-content">
+      <span class="close" id="closeMessageModal">&times;</span>
+      <h3>💌 Nova Mensagem Surpresa</h3>
+      <form id="messageForm">
+        <div class="form-group">
+          <label>Tipo de Mensagem:</label>
+          <select id="messageType">
+            <option value="love">💝 Mensagem de Amor</option>
+            <option value="surprise">🎁 Surpresa</option>
+            <option value="memory">📸 Lembrança</option>
+            <option value="future">🌟 Planos Futuros</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Sua Mensagem:</label>
+          <textarea id="messageText" placeholder="Escreva uma mensagem especial..." rows="5"></textarea>
+        </div>
+        <button type="submit" class="save-btn">
+          <i class="fas fa-paper-plane"></i> Enviar Mensagem
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Nova Música -->
+  <div class="modal" id="musicModal">
+    <div class="modal-content">
+      <span class="close" id="closeMusicModal">&times;</span>
+      <h3>🎵 Adicionar Música</h3>
+      <form id="musicForm">
+        <div class="form-group">
+          <label>Nome da Música:</label>
+          <input type="text" id="musicTitle" placeholder="Nome da música">
+        </div>
+        <div class="form-group">
+          <label>Artista:</label>
+          <input type="text" id="musicArtist" placeholder="Nome do artista">
+        </div>
+        <button type="submit" class="save-btn">
+          <i class="fas fa-plus"></i> Adicionar à Playlist
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Áudios -->
   <audio id="backgroundMusic" loop preload="none">
     <source src="musica.mp3" type="audio/mpeg">
   </audio>
+  
+  <audio id="notificationSound" preload="none">
+    <source src="notification.mp3" type="audio/mpeg">
+  </audio>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
