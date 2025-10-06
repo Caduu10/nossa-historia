@@ -1,6 +1,5 @@
 // 🌟 INICIALIZAÇÃO DO SISTEMA
 document.addEventListener('DOMContentLoaded', function() {
-    // Configurações iniciais
     initializeSystem();
     initializeParticles();
     startLoveCounter();
@@ -9,26 +8,20 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeModals();
     initializeQuiz();
     initializeFloatingElements();
-    
-    // Event Listeners
     setupEventListeners();
     
-    // Mostrar conteúdo após loading
     setTimeout(() => {
         document.querySelector('.loading-screen').style.opacity = '0';
         document.querySelector('.loading-screen').style.visibility = 'hidden';
-        document.querySelector('.love-board').classList.add('show');
     }, 2000);
 });
 
 // 🎪 CONFIGURAÇÕES INICIAIS
 function initializeSystem() {
-    // Verificar tema salvo
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeToggle(savedTheme);
     
-    // Configurar data do primeiro date
     const firstDate = new Date('2025-07-18');
     document.getElementById('firstDate').textContent = formatDate(firstDate);
 }
@@ -93,7 +86,7 @@ function startLoveCounter() {
     }
     
     updateCounter();
-    setInterval(updateCounter, 60000); // Atualizar a cada minuto
+    setInterval(updateCounter, 60000);
 }
 
 // 🎠 SISTEMA DE CARROSSEL
@@ -120,33 +113,14 @@ function initializeCarousel() {
         updateCarousel();
     }
     
-    // Event listeners
     nextBtn.addEventListener('click', nextSlide);
     prevBtn.addEventListener('click', prevSlide);
     
-    // Auto-play
     let autoPlay = setInterval(nextSlide, 5000);
     
-    // Pausar auto-play no hover
     track.addEventListener('mouseenter', () => clearInterval(autoPlay));
     track.addEventListener('mouseleave', () => {
         autoPlay = setInterval(nextSlide, 5000);
-    });
-    
-    // Swipe para mobile
-    let startX = 0;
-    track.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-    });
-    
-    track.addEventListener('touchend', e => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) nextSlide();
-            else prevSlide();
-        }
     });
 }
 
@@ -170,7 +144,6 @@ function initializeMusicPlayer() {
     function loadTrack(index) {
         const track = playlist[index];
         currentTrack.textContent = `${track.title} - ${track.artist}`;
-        // Aqui você carregaria o arquivo de áudio real
     }
     
     function togglePlay() {
@@ -196,12 +169,10 @@ function initializeMusicPlayer() {
         if (isPlaying) audio.play();
     }
     
-    // Event listeners
     playPauseBtn.addEventListener('click', togglePlay);
     nextBtn.addEventListener('click', nextTrack);
     prevBtn.addEventListener('click', prevTrack);
     
-    // Carregar primeira música
     loadTrack(currentTrackIndex);
 }
 
@@ -213,25 +184,21 @@ function initializeModals() {
     const addTrackBtn = document.querySelector('.add-track-btn');
     const closeButtons = document.querySelectorAll('.close');
     
-    // Abrir modais
     newMessageBtn.addEventListener('click', () => openModal(messageModal));
     addTrackBtn.addEventListener('click', () => openModal(musicModal));
     
-    // Fechar modais
     closeButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             closeModal(e.target.closest('.modal'));
         });
     });
     
-    // Fechar modal clicando fora
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal')) {
             closeModal(e.target);
         }
     });
     
-    // Formulários
     document.getElementById('messageForm').addEventListener('submit', handleMessageSubmit);
     document.getElementById('musicForm').addEventListener('submit', handleMusicSubmit);
 }
@@ -280,12 +247,10 @@ function initializeQuiz() {
         option.addEventListener('click', function() {
             const isCorrect = this.textContent === '18 de Julho de 2025';
             
-            // Resetar outras opções
             options.forEach(opt => {
                 opt.classList.remove('correct', 'incorrect');
             });
             
-            // Marcar resposta
             this.classList.add(isCorrect ? 'correct' : 'incorrect');
             
             if (isCorrect) {
@@ -303,7 +268,6 @@ function updateQuizScore(points) {
     const currentScore = parseInt(scoreDisplay.textContent);
     scoreDisplay.textContent = currentScore + points;
     
-    // Animação de pontos
     scoreDisplay.style.transform = 'scale(1.2)';
     setTimeout(() => {
         scoreDisplay.style.transform = 'scale(1)';
@@ -320,26 +284,20 @@ function initializeFloatingElements() {
         element.className = 'floating-element';
         element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         
-        // Posição aleatória
         element.style.left = Math.random() * 100 + 'vw';
         element.style.top = Math.random() * 100 + 'vh';
-        
-        // Animação única
         element.style.animationDuration = (Math.random() * 20 + 10) + 's';
         element.style.animationDelay = Math.random() * 5 + 's';
         
         container.appendChild(element);
         
-        // Remover após animação
         setTimeout(() => {
             element.remove();
         }, 30000);
     }
     
-    // Criar elementos periodicamente
     setInterval(createFloatingElement, 2000);
     
-    // Criar alguns elementos iniciais
     for (let i = 0; i < 5; i++) {
         setTimeout(createFloatingElement, i * 500);
     }
@@ -347,18 +305,12 @@ function initializeFloatingElements() {
 
 // 🎭 SISTEMA DE TEMA
 function setupEventListeners() {
-    // Toggle de tema
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    
-    // Botões especiais
     document.getElementById('magicButton').addEventListener('click', triggerMagicEffect);
     document.getElementById('surpriseButton').addEventListener('click', showSpecialSurprise);
     document.getElementById('floatingSurprise').addEventListener('click', triggerSurprise);
-    
-    // Sistema de notas (lousa do amor)
     document.getElementById('addNoteBtn').addEventListener('click', addNewNote);
     document.getElementById('addPhotoBtn').addEventListener('click', addPhotoNote);
-    document.getElementById('searchNotesBtn').addEventListener('click', searchNotes);
 }
 
 function toggleTheme() {
@@ -380,13 +332,11 @@ function triggerMagicEffect() {
     const button = document.getElementById('magicButton');
     const hearts = ['💖', '💕', '💗', '💓', '💞'];
     
-    // Animação do botão
     button.style.transform = 'scale(0.95)';
     setTimeout(() => {
         button.style.transform = 'scale(1)';
     }, 150);
     
-    // Criar corações flutuantes
     for (let i = 0; i < 15; i++) {
         createFloatingHeart(hearts[Math.floor(Math.random() * hearts.length)]);
     }
@@ -396,14 +346,10 @@ function triggerMagicEffect() {
 
 function createFloatingHeart(heart) {
     const element = document.createElement('div');
+    element.className = 'floating-heart';
     element.textContent = heart;
-    element.style.position = 'fixed';
-    element.style.fontSize = (Math.random() * 20 + 15) + 'px';
     element.style.left = Math.random() * 100 + 'vw';
-    element.style.top = '100vh';
-    element.style.pointerEvents = 'none';
-    element.style.zIndex = '1000';
-    element.style.animation = `floatHeart ${Math.random() * 2 + 3}s ease-in forwards`;
+    element.style.fontSize = (Math.random() * 20 + 15) + 'px';
     
     document.body.appendChild(element);
     
@@ -411,22 +357,6 @@ function createFloatingHeart(heart) {
         element.remove();
     }, 5000);
 }
-
-// Adicionar CSS para a animação dos corações
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes floatHeart {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
 
 function showSpecialSurprise() {
     const surprises = [
@@ -439,46 +369,11 @@ function showSpecialSurprise() {
     
     const surprise = surprises[Math.floor(Math.random() * surprises.length)];
     showNotification(surprise);
-    
-    // Efeito visual adicional
-    document.body.style.overflow = 'hidden';
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, transparent 20%, var(--primary) 70%);
-        opacity: 0;
-        animation: surpriseGlow 2s ease;
-        z-index: 9999;
-        pointer-events: none;
-    `;
-    
-    document.body.appendChild(overlay);
-    
-    setTimeout(() => {
-        overlay.remove();
-        document.body.style.overflow = 'auto';
-    }, 2000);
 }
-
-// Adicionar CSS para o efeito de surpresa
-const surpriseStyle = document.createElement('style');
-surpriseStyle.textContent = `
-    @keyframes surpriseGlow {
-        0% { opacity: 0; transform: scale(0.5); }
-        50% { opacity: 0.3; transform: scale(1); }
-        100% { opacity: 0; transform: scale(1.5); }
-    }
-`;
-document.head.appendChild(surpriseStyle);
 
 function triggerSurprise() {
     const surpriseBtn = document.getElementById('floatingSurprise');
     
-    // Animação do botão
     surpriseBtn.style.animation = 'none';
     surpriseBtn.style.transform = 'scale(1.5) rotate(360deg)';
     
@@ -487,132 +382,10 @@ function triggerSurprise() {
         surpriseBtn.style.transform = 'scale(1) rotate(0deg)';
     }, 600);
     
-    // Surpresa aleatória
-    const surprises = [
-        () => showNotification('Surpresa! Você é amazing! 💝'),
-        () => triggerMagicEffect(),
-        () => createFireworks(),
-        () => showLoveMessage()
-    ];
-    
-    const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
-    randomSurprise();
+    showNotification('Surpresa! Você é amazing! 💝');
 }
 
-function createFireworks() {
-    for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-            createFirework();
-        }, i * 100);
-    }
-}
-
-function createFirework() {
-    const firework = document.createElement('div');
-    firework.style.cssText = `
-        position: fixed;
-        width: 4px;
-        height: 4px;
-        background: var(--primary);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 1000;
-        left: ${Math.random() * 100}vw;
-        top: ${Math.random() * 100}vh;
-        animation: fireworkExplosion 1s ease-out forwards;
-    `;
-    
-    document.body.appendChild(firework);
-    
-    setTimeout(() => {
-        firework.remove();
-    }, 1000);
-}
-
-// Adicionar CSS para fogos de artifício
-const fireworkStyle = document.createElement('style');
-fireworkStyle.textContent = `
-    @keyframes fireworkExplosion {
-        0% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        50% {
-            transform: scale(3);
-            opacity: 0.5;
-        }
-        100% {
-            transform: scale(5);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(fireworkStyle);
-
-function showLoveMessage() {
-    const messages = [
-        "Amo cada momento ao teu lado!",
-        "Você é meu sonho realizado!",
-        "Nossa conexão é única!",
-        "Cada dia contigo é especial!",
-        "Te amo mais a cada dia!"
-    ];
-    
-    const message = messages[Math.floor(Math.random() * messages.length)];
-    
-    const messageElement = document.createElement('div');
-    messageElement.textContent = message;
-    messageElement.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
-        padding: 20px 40px;
-        border-radius: 50px;
-        font-family: 'Dancing Script', cursive;
-        font-size: 1.5rem;
-        z-index: 10000;
-        animation: loveMessage 3s ease-in-out forwards;
-        box-shadow: 0 10px 30px rgba(255, 77, 109, 0.5);
-    `;
-    
-    document.body.appendChild(messageElement);
-    
-    setTimeout(() => {
-        messageElement.remove();
-    }, 3000);
-}
-
-// Adicionar CSS para mensagem de amor
-const messageStyle = document.createElement('style');
-messageStyle.textContent = `
-    @keyframes loveMessage {
-        0% {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-        }
-        20% {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-        40% {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        80% {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-        100% {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-        }
-    }
-`;
-document.head.appendChild(messageStyle);
-
-// 📝 SISTEMA DE NOTAS (LOUSA DO AMOR)
+// 📝 SISTEMA DE NOTAS
 function addNewNote() {
     const noteText = prompt('Digite sua memória especial:');
     if (noteText && noteText.trim()) {
@@ -632,42 +405,50 @@ function addPhotoNote() {
 function createNoteElement(type, content) {
     const notesContainer = document.getElementById('notesContainer');
     const noteElement = document.createElement('div');
-    noteElement.className = 'message-card';
+    noteElement.className = 'note-card';
     
     const date = new Date().toLocaleDateString('pt-BR');
     
     if (type === 'text') {
         noteElement.innerHTML = `
-            <div class="message-header">
-                <span class="message-emoji">📝</span>
-                <span class="message-date">${date}</span>
+            <div class="note-header">
+                <span class="note-emoji">📝</span>
+                <span class="note-date">${date}</span>
             </div>
-            <div class="message-content">
+            <div class="note-content">
                 <p>${content}</p>
+            </div>
+            <div class="note-footer">
+                <span class="note-author">Nossa História</span>
+                <div class="note-actions">
+                    <button class="note-action-btn" onclick="this.closest('.note-card').remove()">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
             </div>
         `;
     } else {
         noteElement.innerHTML = `
-            <div class="message-header">
-                <span class="message-emoji">📸</span>
-                <span class="message-date">${date}</span>
+            <div class="note-header">
+                <span class="note-emoji">📸</span>
+                <span class="note-date">${date}</span>
             </div>
-            <div class="message-content">
-                <img src="${content}" alt="Nossa memória" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+            <div class="note-content">
+                <p>Memória especial 💕</p>
+                <img src="${content}" alt="Nossa memória" loading="lazy">
+            </div>
+            <div class="note-footer">
+                <span class="note-author">Nosso Momento</span>
+                <div class="note-actions">
+                    <button class="note-action-btn" onclick="this.closest('.note-card').remove()">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
             </div>
         `;
     }
     
-    noteElement.style.animation = 'slideInUp 0.6s ease';
     notesContainer.prepend(noteElement);
-}
-
-function searchNotes() {
-    const searchTerm = prompt('Digite o termo para buscar:');
-    if (searchTerm) {
-        showNotification(`Buscando por: "${searchTerm}" 🔍`);
-        // Implementar lógica de busca aqui
-    }
 }
 
 // 💌 SISTEMA DE MENSAGENS
@@ -696,7 +477,6 @@ function createMessageCard(type, text) {
         </div>
     `;
     
-    messageCard.style.animation = 'slideInUp 0.6s ease';
     messagesContainer.prepend(messageCard);
 }
 
@@ -714,141 +494,10 @@ function addTrackToPlaylist(title, artist) {
         <span class="track-duration">3:00</span>
     `;
     
-    trackElement.style.animation = 'slideInUp 0.6s ease';
     playlistTracks.appendChild(trackElement);
-    
-    // Adicionar evento de clique
-    trackElement.addEventListener('click', function() {
-        document.querySelectorAll('.track').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Atualizar player
-        document.querySelector('.track-title').textContent = title;
-        document.querySelector('.track-artist').textContent = artist;
-        document.querySelector('.current-track').textContent = `${title} - ${artist}`;
-    });
 }
 
 // 🔔 SISTEMA DE NOTIFICAÇÕES
-function showNotification(message) {
-    // Tocar som de notificação se disponível
-    const notificationSound = document.getElementById('notificationSound');
-    if (notificationSound) {
-        notificationSound.play().catch(e => console.log('Audio play prevented'));
-    }
-    
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
-        padding: 15px 25px;
-        border-radius: 15px;
-        z-index: 10000;
-        box-shadow: 0 10px 30px rgba(255, 77, 109, 0.5);
-        animation: notificationSlide 3s ease-in-out forwards;
-        max-width: 300px;
-        font-family: 'Playfair Display', serif;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-// Adicionar CSS para notificações
-const notificationStyle = document.createElement('style');
-notificationStyle.textContent = `
-    @keyframes notificationSlide {
-        0% {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        20% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        80% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(notificationStyle);
-
-// 🛠️ FUNÇÕES UTILITÁRIAS
-function formatDate(date) {
-    return date.toLocaleDateString('pt-BR');
-}
-
-function getTimeTogether() {
-    const firstDate = new Date('2025-07-18');
-    const now = new Date();
-    const diff = now - firstDate;
-    
-    return {
-        months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)),
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(diff / (1000 * 60 * 60)),
-        minutes: Math.floor(diff / (1000 * 60))
-    };
-}
-
-// 🌟 INICIALIZAR ANIMAÇÕES DE SCROLL
-function initializeScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-            }
-        });
-    }, observerOptions);
-    
-    // Observar elementos para animação
-    document.querySelectorAll('.timeline-item, .message-card, .track').forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// Inicializar animações de scroll quando a página carregar
-window.addEventListener('load', initializeScrollAnimations);
-
-// 🎉 CONFIGURAÇÃO DE PERFORMANCE
-// Debounce para eventos de scroll e resize
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Otimizar redimensionamento
-window.addEventListener('resize', debounce(() => {
-    // Recálculos necessários aqui
-}, 250));
-
-console.log('💝 Sistema de Amor inicializado com sucesso!');
-console.log('✨ Desenvolvido com muito carinho para Beatriz & [Carlos]');
-// ✨ SISTEMA DE NOTIFICAÇÕES PREMIUM
 function showNotification(message) {
     const notificationSound = document.getElementById('notificationSound');
     if (notificationSound) {
@@ -867,251 +516,13 @@ function showNotification(message) {
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 3500);
+        notification.remove();
+    }, 3000);
 }
 
-// 📝 SISTEMA DE NOTAS PREMIUM
-function createNoteElement(type, content) {
-    const notesContainer = document.getElementById('notesContainer');
-    const noteElement = document.createElement('div');
-    noteElement.className = 'note-card';
-    
-    const date = new Date().toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-    
-    const emojis = {
-        text: '📝',
-        photo: '📸',
-        love: '💝',
-        memory: '🌟'
-    };
-    
-    if (type === 'text') {
-        noteElement.innerHTML = `
-            <div class="note-header">
-                <span class="note-emoji">${emojis.text}</span>
-                <span class="note-date">${date}</span>
-            </div>
-            <div class="note-content">
-                <p>${content}</p>
-            </div>
-            <div class="note-footer">
-                <span class="note-author">Nossa História</span>
-                <div class="note-actions">
-                    <button class="note-action-btn" onclick="this.closest('.note-card').style.transform = 'scale(0.9)'; setTimeout(() => this.closest('.note-card').remove(), 300)">
-                        <i class="fas fa-heart"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-    } else {
-        noteElement.innerHTML = `
-            <div class="note-header">
-                <span class="note-emoji">${emojis.photo}</span>
-                <span class="note-date">${date}</span>
-            </div>
-            <div class="note-content">
-                <p>Memória especial 💕</p>
-                <img src="${content}" alt="Nossa memória" loading="lazy">
-            </div>
-            <div class="note-footer">
-                <span class="note-author">Nosso Momento</span>
-                <div class="note-actions">
-                    <button class="note-action-btn" onclick="this.closest('.note-card').style.transform = 'scale(0.9)'; setTimeout(() => this.closest('.note-card').remove(), 300)">
-                        <i class="fas fa-heart"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-    }
-    
-    noteElement.style.animation = 'slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    notesContainer.prepend(noteElement);
-    
-    // Efeito de entrada
-    setTimeout(() => {
-        noteElement.style.transform = 'translateY(0) scale(1)';
-        noteElement.style.opacity = '1';
-    }, 100);
+// 🛠️ FUNÇÕES UTILITÁRIAS
+function formatDate(date) {
+    return date.toLocaleDateString('pt-BR');
 }
 
-// 🎵 SISTEMA DE MÚSICA PREMIUM
-function initializeMusicPlayer() {
-    const audio = document.getElementById('backgroundMusic');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const currentTrack = document.querySelector('.current-track');
-    
-    const playlist = [
-        { title: 'Coming Together', artist: 'Chris Brown', duration: '3:45' },
-        { title: 'No Guidance', artist: 'Chris Brown ft. Drake', duration: '4:20' },
-        { title: 'Under The Influence', artist: 'Chris Brown', duration: '3:04' },
-        { title: 'No Air', artist: 'Chris Brown ft. Jordin Sparks', duration: '4:20' },
-        { title: 'Forever', artist: 'Chris Brown', duration: '4:38' }
-    ];
-    
-    let currentTrackIndex = 0;
-    let isPlaying = false;
-    
-    function loadTrack(index) {
-        const track = playlist[index];
-        currentTrack.textContent = `${track.title} - ${track.artist}`;
-        
-        // Atualizar progresso visual
-        const progress = document.querySelector('.progress');
-        progress.style.width = '0%';
-        
-        // Simular progresso da música
-        if (isPlaying) {
-            let progressWidth = 0;
-            const progressInterval = setInterval(() => {
-                if (!isPlaying) {
-                    clearInterval(progressInterval);
-                    return;
-                }
-                progressWidth += 0.5;
-                progress.style.width = `${progressWidth}%`;
-                
-                if (progressWidth >= 100) {
-                    clearInterval(progressInterval);
-                    nextTrack();
-                }
-            }, 1000);
-        }
-    }
-    
-    function togglePlay() {
-        if (isPlaying) {
-            audio.pause();
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            playPauseBtn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1))';
-        } else {
-            audio.play().catch(e => console.log('Autoplay prevented:', e));
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            playPauseBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
-        }
-        isPlaying = !isPlaying;
-        loadTrack(currentTrackIndex);
-    }
-    
-    function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-        loadTrack(currentTrackIndex);
-        updateActiveTrack();
-        if (isPlaying) audio.play();
-    }
-    
-    function prevTrack() {
-        currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-        loadTrack(currentTrackIndex);
-        updateActiveTrack();
-        if (isPlaying) audio.play();
-    }
-    
-    function updateActiveTrack() {
-        document.querySelectorAll('.track').forEach((track, index) => {
-            track.classList.toggle('active', index === currentTrackIndex);
-        });
-    }
-    
-    // Event listeners
-    playPauseBtn.addEventListener('click', togglePlay);
-    nextBtn.addEventListener('click', nextTrack);
-    prevBtn.addEventListener('click', prevTrack);
-    
-    // Clique nas tracks da playlist
-    document.querySelectorAll('.track').forEach((track, index) => {
-        track.addEventListener('click', () => {
-            currentTrackIndex = index;
-            loadTrack(currentTrackIndex);
-            updateActiveTrack();
-            if (!isPlaying) togglePlay();
-        });
-    });
-    
-    // Carregar primeira música
-    loadTrack(currentTrackIndex);
-    updateActiveTrack();
-}
-
-// ✨ EFEITOS ESPECIAIS PREMIUM
-function createFloatingHeart(heart) {
-    const element = document.createElement('div');
-    element.className = 'floating-heart';
-    element.textContent = heart;
-    element.style.left = Math.random() * 100 + 'vw';
-    element.style.fontSize = (Math.random() * 25 + 20) + 'px';
-    element.style.animationDuration = (Math.random() * 3 + 4) + 's';
-    
-    document.body.appendChild(element);
-    
-    setTimeout(() => {
-        element.remove();
-    }, 5000);
-}
-
-// 🎮 QUIZ PREMIUM
-function initializeQuiz() {
-    const options = document.querySelectorAll('.quiz-option');
-    let score = 0;
-    
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            if (this.classList.contains('correct') || this.classList.contains('incorrect')) {
-                return; // Não permitir múltiplos cliques
-            }
-            
-            const isCorrect = this.textContent === '18 de Julho de 2025';
-            
-            // Resetar outras opções
-            options.forEach(opt => {
-                opt.classList.remove('correct', 'incorrect');
-                opt.style.pointerEvents = 'none';
-            });
-            
-            // Marcar resposta
-            this.classList.add(isCorrect ? 'correct' : 'incorrect');
-            
-            if (isCorrect) {
-                score += 100;
-                updateQuizScore(score);
-                showNotification('🎉 Resposta correta! +100 pontos de amor!');
-                
-                // Efeito visual
-                createFloatingHeart('💝');
-                createFloatingHeart('✨');
-                createFloatingHeart('🌟');
-            } else {
-                showNotification('💕 Quase lá! Tente novamente com o coração!');
-            }
-            
-            // Mostrar próxima pergunta após delay
-            setTimeout(() => {
-                showNotification('📝 Próxima pergunta: Qual nossa música especial?');
-            }, 2000);
-        });
-    });
-}
-
-function updateQuizScore(points) {
-    const scoreDisplay = document.querySelector('.score');
-    scoreDisplay.textContent = points;
-    
-    // Animação de pontos
-    scoreDisplay.style.transform = 'scale(1.3)';
-    scoreDisplay.style.color = 'var(--accent)';
-    
-    setTimeout(() => {
-        scoreDisplay.style.transform = 'scale(1)';
-        scoreDisplay.style.color = 'var(--primary)';
-    }, 300);
-}
+console.log('💝 Sistema de Amor inicializado com sucesso!');
