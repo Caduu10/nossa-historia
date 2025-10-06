@@ -848,3 +848,270 @@ window.addEventListener('resize', debounce(() => {
 
 console.log('💝 Sistema de Amor inicializado com sucesso!');
 console.log('✨ Desenvolvido com muito carinho para Beatriz & [Carlos]');
+// ✨ SISTEMA DE NOTIFICAÇÕES PREMIUM
+function showNotification(message) {
+    const notificationSound = document.getElementById('notificationSound');
+    if (notificationSound) {
+        notificationSound.play().catch(e => console.log('Audio play prevented'));
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 1.4rem;">💝</span>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3500);
+}
+
+// 📝 SISTEMA DE NOTAS PREMIUM
+function createNoteElement(type, content) {
+    const notesContainer = document.getElementById('notesContainer');
+    const noteElement = document.createElement('div');
+    noteElement.className = 'note-card';
+    
+    const date = new Date().toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
+    const emojis = {
+        text: '📝',
+        photo: '📸',
+        love: '💝',
+        memory: '🌟'
+    };
+    
+    if (type === 'text') {
+        noteElement.innerHTML = `
+            <div class="note-header">
+                <span class="note-emoji">${emojis.text}</span>
+                <span class="note-date">${date}</span>
+            </div>
+            <div class="note-content">
+                <p>${content}</p>
+            </div>
+            <div class="note-footer">
+                <span class="note-author">Nossa História</span>
+                <div class="note-actions">
+                    <button class="note-action-btn" onclick="this.closest('.note-card').style.transform = 'scale(0.9)'; setTimeout(() => this.closest('.note-card').remove(), 300)">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    } else {
+        noteElement.innerHTML = `
+            <div class="note-header">
+                <span class="note-emoji">${emojis.photo}</span>
+                <span class="note-date">${date}</span>
+            </div>
+            <div class="note-content">
+                <p>Memória especial 💕</p>
+                <img src="${content}" alt="Nossa memória" loading="lazy">
+            </div>
+            <div class="note-footer">
+                <span class="note-author">Nosso Momento</span>
+                <div class="note-actions">
+                    <button class="note-action-btn" onclick="this.closest('.note-card').style.transform = 'scale(0.9)'; setTimeout(() => this.closest('.note-card').remove(), 300)">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    noteElement.style.animation = 'slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    notesContainer.prepend(noteElement);
+    
+    // Efeito de entrada
+    setTimeout(() => {
+        noteElement.style.transform = 'translateY(0) scale(1)';
+        noteElement.style.opacity = '1';
+    }, 100);
+}
+
+// 🎵 SISTEMA DE MÚSICA PREMIUM
+function initializeMusicPlayer() {
+    const audio = document.getElementById('backgroundMusic');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const currentTrack = document.querySelector('.current-track');
+    
+    const playlist = [
+        { title: 'Coming Together', artist: 'Chris Brown', duration: '3:45' },
+        { title: 'No Guidance', artist: 'Chris Brown ft. Drake', duration: '4:20' },
+        { title: 'Under The Influence', artist: 'Chris Brown', duration: '3:04' },
+        { title: 'No Air', artist: 'Chris Brown ft. Jordin Sparks', duration: '4:20' },
+        { title: 'Forever', artist: 'Chris Brown', duration: '4:38' }
+    ];
+    
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+    
+    function loadTrack(index) {
+        const track = playlist[index];
+        currentTrack.textContent = `${track.title} - ${track.artist}`;
+        
+        // Atualizar progresso visual
+        const progress = document.querySelector('.progress');
+        progress.style.width = '0%';
+        
+        // Simular progresso da música
+        if (isPlaying) {
+            let progressWidth = 0;
+            const progressInterval = setInterval(() => {
+                if (!isPlaying) {
+                    clearInterval(progressInterval);
+                    return;
+                }
+                progressWidth += 0.5;
+                progress.style.width = `${progressWidth}%`;
+                
+                if (progressWidth >= 100) {
+                    clearInterval(progressInterval);
+                    nextTrack();
+                }
+            }, 1000);
+        }
+    }
+    
+    function togglePlay() {
+        if (isPlaying) {
+            audio.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            playPauseBtn.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1))';
+        } else {
+            audio.play().catch(e => console.log('Autoplay prevented:', e));
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            playPauseBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+        }
+        isPlaying = !isPlaying;
+        loadTrack(currentTrackIndex);
+    }
+    
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        loadTrack(currentTrackIndex);
+        updateActiveTrack();
+        if (isPlaying) audio.play();
+    }
+    
+    function prevTrack() {
+        currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+        loadTrack(currentTrackIndex);
+        updateActiveTrack();
+        if (isPlaying) audio.play();
+    }
+    
+    function updateActiveTrack() {
+        document.querySelectorAll('.track').forEach((track, index) => {
+            track.classList.toggle('active', index === currentTrackIndex);
+        });
+    }
+    
+    // Event listeners
+    playPauseBtn.addEventListener('click', togglePlay);
+    nextBtn.addEventListener('click', nextTrack);
+    prevBtn.addEventListener('click', prevTrack);
+    
+    // Clique nas tracks da playlist
+    document.querySelectorAll('.track').forEach((track, index) => {
+        track.addEventListener('click', () => {
+            currentTrackIndex = index;
+            loadTrack(currentTrackIndex);
+            updateActiveTrack();
+            if (!isPlaying) togglePlay();
+        });
+    });
+    
+    // Carregar primeira música
+    loadTrack(currentTrackIndex);
+    updateActiveTrack();
+}
+
+// ✨ EFEITOS ESPECIAIS PREMIUM
+function createFloatingHeart(heart) {
+    const element = document.createElement('div');
+    element.className = 'floating-heart';
+    element.textContent = heart;
+    element.style.left = Math.random() * 100 + 'vw';
+    element.style.fontSize = (Math.random() * 25 + 20) + 'px';
+    element.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    
+    document.body.appendChild(element);
+    
+    setTimeout(() => {
+        element.remove();
+    }, 5000);
+}
+
+// 🎮 QUIZ PREMIUM
+function initializeQuiz() {
+    const options = document.querySelectorAll('.quiz-option');
+    let score = 0;
+    
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            if (this.classList.contains('correct') || this.classList.contains('incorrect')) {
+                return; // Não permitir múltiplos cliques
+            }
+            
+            const isCorrect = this.textContent === '18 de Julho de 2025';
+            
+            // Resetar outras opções
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.style.pointerEvents = 'none';
+            });
+            
+            // Marcar resposta
+            this.classList.add(isCorrect ? 'correct' : 'incorrect');
+            
+            if (isCorrect) {
+                score += 100;
+                updateQuizScore(score);
+                showNotification('🎉 Resposta correta! +100 pontos de amor!');
+                
+                // Efeito visual
+                createFloatingHeart('💝');
+                createFloatingHeart('✨');
+                createFloatingHeart('🌟');
+            } else {
+                showNotification('💕 Quase lá! Tente novamente com o coração!');
+            }
+            
+            // Mostrar próxima pergunta após delay
+            setTimeout(() => {
+                showNotification('📝 Próxima pergunta: Qual nossa música especial?');
+            }, 2000);
+        });
+    });
+}
+
+function updateQuizScore(points) {
+    const scoreDisplay = document.querySelector('.score');
+    scoreDisplay.textContent = points;
+    
+    // Animação de pontos
+    scoreDisplay.style.transform = 'scale(1.3)';
+    scoreDisplay.style.color = 'var(--accent)';
+    
+    setTimeout(() => {
+        scoreDisplay.style.transform = 'scale(1)';
+        scoreDisplay.style.color = 'var(--primary)';
+    }, 300);
+}
